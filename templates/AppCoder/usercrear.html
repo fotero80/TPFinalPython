@@ -26,22 +26,19 @@
                         <div class="text-center my-5">
                             <h1 class="display-5 fw-bolder text-white mb-2">Cree su usuario</h1>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Crear usuario</a>
-                                <a class="btn btn-outline-light btn-lg px-4" href="#!">Ingresar</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         <div class="datos-usuario">
-            <form id="Libros" name="Libros" action="{% url 'TPFinalMostrarUsuarios' %}" method="POST"> {% csrf_token %}
+            <form style="color:white;" id="usuarios" name="usuarios" action="{% url 'TPFinalMostrarUsuarios' %}" method="POST">
+                <b>
+                {% csrf_token %}
+                    {{ formulariousuario.as_p }}
+                <p><input type="submit" value="Submit" onclick="validate()"/></p>
                 <br>
-                <p style="color:white;"><b>Ingrese su nombre: </b><input type="text" name="nombre_usuario" required placeholder="ej: Fernando"/></p>
-                <p style="color:white;"><b>Ingrese su apellido: </b><input type="text" name="apellido_usuario" required placeholder="ej: Otero"/></p>
-                <p style="color:white;"><b>Fecha de nacimiento: </b><input type="text" name="fecha_nacimiento_usuario" required placeholder="ej: 01/01/1980"/></p>
-                <p style="color:white;"><b>Ingrese su email: </b><input type="text" name="email_usuario" required placeholder="ej: fernando@gmail.com"/></p>
-                <p><input type="submit" value="Cargar Libro" onclick="return onclick="validate()"/></p>
-                <br>
+                </b>
             </form>
         </div>
     </header>

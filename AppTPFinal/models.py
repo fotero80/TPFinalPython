@@ -12,14 +12,14 @@ class Literatura (models.Model):
 class Musica (models.Model):
     nombre_artista_musica = models.CharField(max_length=50)
     nombre_disco_musica = models.CharField(max_length=50)
-    anio_lanzamiento_musica = models.CharField(max_length=50)
+    anio_lanzamiento_musica = models.IntegerField()
     email_usuario_musica = models.EmailField()
 
 
 class Cine (models.Model):
     nombre_pelicula_cine = models.CharField(max_length=50)
     nombre_director_cine = models.CharField(max_length=50)
-    anio_lanzamiento_cine = models.CharField(max_length=50)
+    anio_lanzamiento_cine = models.IntegerField()
     email_usuario_cine = models.EmailField()
 
 
