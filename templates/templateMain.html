@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+ <!--Valido que los datos de la carga de libros sean validos-->
+  <script>
+function validateForm1() {
+  var x = document.forms["Libros"]["NombreLibro"].value;
+  var y = document.forms["Libros"]["CantidadHojasLibro"].value;
+  if (x == "" || y == "") {
+    alert("Por favor cargue los datos que faltan");
+    return false;
+  } else {
+    $("form").submit(function(event) {
+    event.preventDefault();
+    window.location.href = "http://127.0.0.1:8000/MiPrimerMVT/CargaLibros/" + $("input[name=NombreLibro]").val() + "/" + $("input[name=CantidadHojasLibro]").val();
+   });
+  }
+}
+form
+</script>
+   <!--Valido que los datos de la carga de libros sean validos-->
+  <script>
+function validateForm2() {
+  var x = document.forms["Autores"]["NombreAutor"].value;
+  var y = document.forms["Autores"]["ApellidoAutor"].value;
+  if (x == "" || y == "") {
+    alert("Por favor cargue los datos que faltan");
+    return false;
+  } else {
+    $("form").submit(function(event) {
+    event.preventDefault();
+    window.location.href = "http://127.0.0.1:8000/MiPrimerMVT/CargaAutores/" + $("input[name=NombreAutor]").val() + "/" + $("input[name=ApellidoAutor]").val();
+   });
+  }
+}
+</script>
+   <!--Valido que los datos de la carga de libros sean validos-->
+  <script>
+function validateForm3() {
+  var x = document.forms["Editoriales"]["NombreEditorial"].value;
+  var y = document.forms["Editoriales"]["DireccionEditorial"].value;
+  var z = document.forms["Editoriales"]["EmailEditorial"].value;
+  if (x == "" || y == "" || z == "") {
+    alert("Por favor cargue los datos que faltan");
+    return false;
+  } else {
+    $("form").submit(function(event) {
+    event.preventDefault();
+    window.location.href = "http://127.0.0.1:8000/MiPrimerMVT/CargaEditoriales/" + $("input[name=NombreEditorial]").val() + "/" + $("input[name=DireccionEditorial]").val()+ "/" + $("input[name=EmailEditorial]").val();
+   });
+  }
+}
+</script>
+   <!--Valido que los datos de la carga de libros sean validos-->
+  <script>
+function validateForm4() {
+  var x = document.forms["Clasificaciones"]["TipoClasificacion"].value;
+  if (x == "") {
+    alert("Por favor cargue los datos que faltan");
+    return false;
+  } else {
+    $("form").submit(function(event) {
+    event.preventDefault();
+    window.location.href = "http://127.0.0.1:8000/MiPrimerMVT/CargaClasificaciones/" + $("input[name=TipoClasificacion]").val();
+   });
+  }
+}
+</script>
+
+</head>
+<style>
+    .div-1 {
+        background-color: #F7AE92;
+    }
+    .div-2 {
+    	background-color: #D2F792;
+    }
+    .div-3 {
+    	background-color: #92F7DA;
+    }
+    .div-4 {
+    	background-color: #CF92F7;
+    }
+</style>
+
+<body>
+<b><u><font SIZE=20> Biblioteca personal.</font></u></b>
+  <br>
+  <br>
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!--codigo en comun para todos los divs y scripts-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- Linea para separa la carga de datos -->
+<hr />
+<!-- Linea para separa la carga de datos -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- Zona para cargar los datos del libro -->
+<div class="div-1">
+<form id="Libros" name="Libros">
+  <br>
+  <p><b>Ingrese el nombre del libro: </b><input type="text" name="NombreLibro" /></p>
+  <p><b>Ingrese la cantidad de hojas: </b><input type="text" name="CantidadHojasLibro"/></p>
+  <p><input type="submit" value="Cargar Libro" onclick="return validateForm1()"/></p>
+  <br>
+</form>
+</div>
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- Linea para separa la carga de datos -->
+<hr />
+<!-- Linea para separa la carga de datos -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- Zona para cargar los datos del autor -->
+<div class="div-2">
+<form id="Autores" name="Autores">
+  <br>
+  <p><b>Ingrese el nombre del autor: </b><input type="text" name="NombreAutor" /></p>
+  <p><b>Ingrese el apellido del autor: </b><input type="text" name="ApellidoAutor" /></p>
+  <p><input type="submit" value="Cargar Autor" onclick="return validateForm2()"/></p>
+  <br>
+</form>
+</div>
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- Linea para separa la carga de datos -->
+<hr />
+<!-- Linea para separa la carga de datos -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- Zona para cargar los datos de las editoriales -->
+<div class="div-3">
+<form id="Editoriales" name="Editoriales">
+  <br>
+  <p><b>Ingrese el nombre de la editorial: </b><input type="text" name="NombreEditorial" /></p>
+  <p><b>Ingrese la direccion de la editorial: </b><input type="text" name="DireccionEditorial" /></p>
+  <p><b>Ingrese el email de la editorial: </b><input type="text" name="EmailEditorial" /></p>
+  <p><input type="submit" value="Cargar Editorial" onclick="return validateForm3()"/></p>
+  <br>
+</form>
+</div>
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- Linea para separa la carga de datos -->
+<hr />
+<!-- Linea para separa la carga de datos -->
+<!-- ------------------------------------------------------------------------------------------------- -->
+<!-- Zona para cargar los tipos de clasificaciones -->
+<div class="div-4">
+<form id name="Clasificaciones">
+  <br>
+  <p><b>Ingrese el nombre de la clasificacion: </b><input type="text" name="TipoClasificacion" /></p>
+  <p><input type="submit" value="Cargar Clasificacion" onclick="return validateForm4()"/></p>
+  <br>
+</form>
+</div>
+
+</body>
+</html>
