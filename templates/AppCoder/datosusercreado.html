@@ -11,7 +11,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="main.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'TPFinalMain' %}">Home</a></li>
                     </ul>
                 </div>
             </div>
@@ -25,11 +25,11 @@
                     <div class="col-lg-6">
                         <div class="text-center my-5">
                             <h1 class="display-5 fw-bolder text-white mb-2">Los datos del usuario creado son:</h1>
-                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                El nombre del usuario que acaba de ingresar es: {{nombre_usuario}}<br>
-                                El apellido del usuario que acaba de ingresar es: {{apellido_usuario}} hojas<br>
-                                La fecha de nacimiento del usuario que acaba de ingresar es: {{fecha_nacimiento_usuario}} hojas<br>
-                                El email del usuario que acaba de ingresar es: {{email_usuario}} hojas<br>
+                            <div style="color:white;" class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                                El nombre del usuario que acaba de ingresar es: {{usuario.nombre_usuario}}<br>
+                                El apellido del usuario que acaba de ingresar es: {{usuario.apellido_usuario}} <br>
+                                La fecha de nacimiento del usuario que acaba de ingresar es: {{usuario.fecha_nacimiento_usuario}} <br>
+                                El email del usuario que acaba de ingresar es: {{usuario.email_usuario}} <br>
                             </div>
                         </div>
                     </div>

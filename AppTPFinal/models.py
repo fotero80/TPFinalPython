@@ -26,5 +26,5 @@ class Cine (models.Model):
 class Usuario (models.Model):
     nombre_usuario = models.CharField(max_length=50)
     apellido_usuario = models.CharField(max_length=50)
-    fecha_nacimiento_usuario = models.DateField(max_length=8)
+    fecha_nacimiento_usuario = models.DateField()
     email_usuario = models.EmailField()
