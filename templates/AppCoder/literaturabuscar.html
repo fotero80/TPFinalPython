@@ -36,9 +36,13 @@
 {% endblock %}
 
 {% block bodyoptions %}
-    <div class="datos-literatura">
-        <h4>Los datos encontrados son: </h4>h4>
-        {%for literatura in literatura %}
+<section class="py-5 border-bottom" id="features">
+        <div class="datos-literatura">
+        <h4>Los datos encontrados son: </h4>
+            El nombre del usuario que acaba de ingresar es: {{lit_data.nombre_literatura}}<br>
+        {% for literatura in formularioliteratura %}
             <p> El nombre es: {{literatura.nombre_literatura}}</p>
+            {% endfor %}
     </div>
+</section>
 {% endblock %}

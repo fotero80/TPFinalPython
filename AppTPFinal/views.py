@@ -5,8 +5,11 @@ from django.shortcuts import render
 
 from AppTPFinal.forms import Usuario_Form, Literatura_Form, Musica_Form, Cine_Form
 from AppTPFinal.models import Cine, Usuario, Musica, Literatura
-
-
+import pandas as pd
+import sqlite3
+con = sqlite3.connect("data/portal_mammals.sqlite")
+cur = con.cursor()
+df = pd.read_sql_query("SELECT * from surveys", con)
 
 def Main(request):
     return render(request, 'AppCoder/main.html')
@@ -60,16 +63,17 @@ def mostrar_literatura(request):
     lit = Literatura_Form(request.POST)
     if request.method == 'POST':
         lit = Literatura(
-            nombre_literatura=request.POST.get('nombre_literatura'),
-            autor_literatura=request.POST.get('autor_literatura'),
-            editorial_literatura=request.POST.get('editorial_literatura'),
-            anio_edicion_literatura=request.POST.get('anio_edicion_literatura'),
-            email_usuario_literatura=request.POST.get('email_usuario_literatura'),
+            nombre_literatura=request.get('nombre_literatura'),
+            autor_literatura=request.get('autor_literatura'),
+            editorial_literatura=request.get('editorial_literatura'),
+            anio_edicion_literatura=request.get('anio_edicion_literatura'),
+            email_usuario_literatura=request.get('email_usuario_literatura'),
         )
-    lit_data = Literatura().objects.all()
+    lit_data =
     contexto = {
-        'formularioliteratura': Literatura_Form,
-        'lit_data': lit_data
+        'lit_data': lit_data,
+        'formularioliteratura': Literatura_Form()
+
     }
     return render(request, 'AppCoder/literaturabuscar.html', contexto)
 
