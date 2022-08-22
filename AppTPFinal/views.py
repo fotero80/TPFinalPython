@@ -3,7 +3,8 @@ import ctypes
 
 from django.shortcuts import render
 
-from AppTPFinal.forms import Usuario_Form, Literatura_Form, Musica_Form, Cine_Form, Buscar_Literatura_Form
+from AppTPFinal.forms import Usuario_Form, Literatura_Form, Musica_Form, Cine_Form, Buscar_Literatura_Form, \
+    Buscar_Musica_Form, Buscar_Cine_Form
 from AppTPFinal.models import Cine, Usuario, Musica, Literatura
 
 
@@ -62,16 +63,15 @@ def buscar_literatura(request):
         autor_literatura = request.POST.get('autor_literatura')
         editorial_literatura = request.POST.get('editorial_literatura')
         anio_edicion_literatura = request.POST.get('anio_edicion_literatura')
-        a_buscar =  Literatura.objects.filter(nombre_literatura__icontains=nombre_literatura) & \
-                    Literatura.objects.filter(autor_literatura__icontains=autor_literatura) & \
-                    Literatura.objects.filter(editorial_literatura__icontains=editorial_literatura) & \
-                    Literatura.objects.filter(anio_edicion_literatura__icontains=anio_edicion_literatura)
+        a_buscar = Literatura.objects.filter(nombre_literatura__icontains=nombre_literatura) & \
+                   Literatura.objects.filter(autor_literatura__icontains=autor_literatura) & \
+                   Literatura.objects.filter(editorial_literatura__icontains=editorial_literatura) & \
+                   Literatura.objects.filter(anio_edicion_literatura__icontains=anio_edicion_literatura)
 
     contexto = {
         'buscar_literatura': Buscar_Literatura_Form(),
         'literatura': a_buscar
     }
-
     return render(request, 'AppCoder/literaturabuscar.html', contexto)
 
 
@@ -93,6 +93,21 @@ def cargar_Musica(request):
     }
     return render(request, 'AppCoder/musica.html', contexto)
 
+def buscar_musica(request):
+    a_buscar = []
+    if request.method == 'POST':
+        nombre_artista_musica = request.POST.get('nombre_artista_musica')
+        nombre_disco_musica = request.POST.get('nombre_disco_musica')
+        anio_lanzamiento_musica = request.POST.get('anio_lanzamiento_musica')
+        a_buscar = Musica.objects.filter(nombre_artista_musica__icontains=nombre_artista_musica) & \
+                   Musica.objects.filter(nombre_disco_musica__icontains=nombre_disco_musica) & \
+                   Musica.objects.filter(anio_lanzamiento_musica__icontains=anio_lanzamiento_musica)
+
+    contexto = {
+        'buscar_musica': Buscar_Musica_Form(),
+        'musica': a_buscar
+    }
+    return render(request, 'AppCoder/musicabuscar.html', contexto)
 
 def cargar_Cine(request):
     cine = Cine_Form(request.POST)
@@ -110,3 +125,19 @@ def cargar_Cine(request):
         'formulariocine': Cine_Form()
     }
     return render(request, 'AppCoder/cine.html', contexto)
+
+def buscar_cine(request):
+    a_buscar = []
+    if request.method == 'POST':
+        nombre_pelicula_cine = request.POST.get('nombre_pelicula_cine')
+        nombre_director_cine = request.POST.get('nombre_director_cine')
+        anio_lanzamiento_cine = request.POST.get('anio_lanzamiento_cine')
+        a_buscar = Cine.objects.filter(nombre_pelicula_cine__icontains=nombre_pelicula_cine) & \
+                   Cine.objects.filter(nombre_director_cine__icontains=nombre_director_cine) & \
+                   Cine.objects.filter(anio_lanzamiento_cine__icontains=anio_lanzamiento_cine)
+
+    contexto = {
+        'buscar_cine': Buscar_Cine_Form(),
+        'cine': a_buscar
+    }
+    return render(request, 'AppCoder/cinebuscar.html', contexto)

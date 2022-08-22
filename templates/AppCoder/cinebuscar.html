@@ -43,12 +43,12 @@ table, th, td {
             </div>
         </div>
     </div>
-    <div class="datos-literatura">
-        <form style="color:white; margin: length; width: 240px;" id="literatura" name="literatura" action="{% url 'TPFinalBuscarLiteratura' %}"
+    <div class="datos-cine">
+        <form style="color:white; margin: length; width: 240px;" id="cine" name="cine" action="{% url 'TPFinalBuscarCine' %}"
               method="POST" novalidate>
             <b>
                 {% csrf_token %}
-                {{ buscar_literatura.as_p }}
+                {{ buscar_cine.as_p }}
                 <p><input type="submit" value="Buscar" /></p>
                 <br>
             </b>
@@ -64,16 +64,14 @@ table, th, td {
         <table style="width:100%" >
             <tr>
                 <th>Nombre</th>
-                <th>Autor</th>
-                <th>Editorial</th>
+                <th>Director</th>
                 <th>Año</th>
             </tr>
-            {% for literatura in literatura %}
+            {% for cine in cine %}
                 <tr>
-                    <td>{{literatura.nombre_literatura}}</td>
-                    <td>{{literatura.autor_literatura}}</td>
-                    <td>{{literatura.editorial_literatura}}</td>
-                    <td>{{literatura.anio_edicion_literatura}}</td>
+                    <td>{{cine.nombre_pelicula_cine}}</td>
+                    <td>{{cine.nombre_director_cine}}</td>
+                    <td>{{cine.anio_lanzamiento_cine}}</td>
                 </tr>
             {% endfor %}
 
