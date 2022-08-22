@@ -24,7 +24,7 @@
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
                 <div class="text-center my-5">
-                    <h1 class="display-5 fw-bolder text-white mb-2">Cargue los datos que desa buscar</h1>
+                    <h1 class="display-5 fw-bolder text-white mb-2">Cargue los datos que desea buscar</h1>
                      <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                     </div>
                 </div>
@@ -39,8 +39,7 @@
 <section class="py-5 border-bottom" id="features">
         <div class="datos-literatura">
         <h4>Los datos encontrados son: </h4>
-            El nombre del usuario que acaba de ingresar es: {{lit_data.nombre_literatura}}<br>
-        {% for literatura in formularioliteratura %}
+        {% for literatura in lit_data %}
             <p> El nombre es: {{literatura.nombre_literatura}}</p>
             {% endfor %}
     </div>
