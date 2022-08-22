@@ -6,6 +6,7 @@ from django.shortcuts import render
 from AppTPFinal.forms import Usuario_Form, Literatura_Form, Musica_Form, Cine_Form, Buscar_Literatura_Form
 from AppTPFinal.models import Cine, Usuario, Musica, Literatura
 
+
 def Main(request):
     return render(request, 'AppCoder/main.html')
 
@@ -54,30 +55,17 @@ def cargar_literatura(request):
     return render(request, 'AppCoder/literatura.html', contexto)
 
 
-def mostrar_literatura(request):
-    lit = Literatura_Form(request.POST)
-    if request.method == 'POST':
-        lit = Literatura(
-            nombre_literatura=request.get('nombre_literatura'),
-            autor_literatura=request.get('autor_literatura'),
-            editorial_literatura=request.get('editorial_literatura'),
-            anio_edicion_literatura=request.get('anio_edicion_literatura'),
-            email_usuario_literatura=request.get('email_usuario_literatura'),
-        )
-    lit_data = Literatura.objects.all()
-    contexto = {
-        'lit_data': lit_data,
-        'formularioliteratura': Literatura_Form()
-
-    }
-    return render(request, 'AppCoder/literaturabuscar.html', contexto)
-
 def buscar_literatura(request):
     a_buscar = []
     if request.method == 'POST':
         nombre_literatura = request.POST.get('nombre_literatura')
-        a_buscar = Literatura.objects.filter(nombre_literatura__icontains=nombre_literatura)
-
+        autor_literatura = request.POST.get('autor_literatura')
+        editorial_literatura = request.POST.get('editorial_literatura')
+        anio_edicion_literatura = request.POST.get('anio_edicion_literatura')
+        a_buscar =  Literatura.objects.filter(nombre_literatura__icontains=nombre_literatura) & \
+                    Literatura.objects.filter(autor_literatura__icontains=autor_literatura) & \
+                    Literatura.objects.filter(editorial_literatura__icontains=editorial_literatura) & \
+                    Literatura.objects.filter(anio_edicion_literatura__icontains=anio_edicion_literatura)
 
     contexto = {
         'buscar_literatura': Buscar_Literatura_Form(),
@@ -85,6 +73,7 @@ def buscar_literatura(request):
     }
 
     return render(request, 'AppCoder/literaturabuscar.html', contexto)
+
 
 def cargar_Musica(request):
     mus = Musica_Form(request.POST)

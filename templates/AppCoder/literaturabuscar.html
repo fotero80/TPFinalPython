@@ -4,28 +4,42 @@
 <title>Literatura</title>
 {% endblock %}
 
+{% block stile %}
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align:center;
+}
+
+</style>
+{% endblock %}
+
 {% block bodytitleoptions %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-5">
-                <a class="navbar-brand" href="#!">Inventario personal</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'TPFinalMain' %}">Home</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-5">
+        <a class="navbar-brand" href="#!">Inventario personal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" aria-current="page"
+                                        href="{% url 'TPFinalMain' %}">Home</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 {% endblock %}
 
 {% block bodyheader %}
-<header class="bg-dark py-5">
+<header class="bg-dark py-1">
     <div class="container px-5">
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
-                <div class="text-center my-5">
-                    <h1 class="display-5 fw-bolder text-white mb-2">Cargue los datos que desea buscar</h1>
-                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <div class="text-center my-8">
+                    <h1 class="display-7 fw-bolder text-white mb-1">Cargue los datos que desea buscar</h1>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                     </div>
                 </div>
             </div>
@@ -33,11 +47,11 @@
     </div>
     <div class="datos-literatura">
         <form style="color:white;" id="literatura" name="literatura" action="{% url 'TPFinalBuscarLiteratura' %}"
-              method="POST">
+              method="POST" novalidate>
             <b>
                 {% csrf_token %}
                 {{ buscar_literatura.as_p }}
-                <p><input type="submit" value="Buscar"/></p>
+                <p><input type="submit" value="Buscar" /></p>
                 <br>
             </b>
         </form>
@@ -46,12 +60,26 @@
 {% endblock %}
 
 {% block bodyoptions %}
-<section class="py-5 border-bottom" id="features">
-        <div class="datos-literatura">
+<section class="py-5 border-bottom" id="resultado">
+    <div class="datos-literatura">
         <h4>Los datos encontrados son: </h4>
-        {% for literatura in literatura %}
-            <p> El nombre es: {{literatura.nombre_literatura}}</p>
+        <table style="width:100%" >
+            <tr>
+                <th>Nombre</th>
+                <th>Autor</th>
+                <th>Editorial</th>
+                <th>Año</th>
+            </tr>
+            {% for literatura in literatura %}
+                <tr>
+                    <td>{{literatura.nombre_literatura}}</td>
+                    <td>{{literatura.autor_literatura}}</td>
+                    <td>{{literatura.editorial_literatura}}</td>
+                    <td>{{literatura.anio_edicion_literatura}}</td>
+                </tr>
             {% endfor %}
+
+        </table>
     </div>
 </section>
 {% endblock %}

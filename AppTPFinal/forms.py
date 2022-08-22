@@ -11,7 +11,10 @@ class Literatura_Form(forms.Form):
 
 
 class Buscar_Literatura_Form(forms.Form):
-    nombre_literatura = forms.CharField()
+    nombre_literatura = forms.CharField(max_length=50)
+    autor_literatura = forms.CharField(max_length=50)
+    editorial_literatura = forms.CharField(max_length=50)
+    anio_edicion_literatura = forms.IntegerField()
 
 
 class Musica_Form(forms.Form):
