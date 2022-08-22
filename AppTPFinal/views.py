@@ -5,11 +5,6 @@ from django.shortcuts import render
 
 from AppTPFinal.forms import Usuario_Form, Literatura_Form, Musica_Form, Cine_Form
 from AppTPFinal.models import Cine, Usuario, Musica, Literatura
-import pandas as pd
-import sqlite3
-con = sqlite3.connect("data/portal_mammals.sqlite")
-cur = con.cursor()
-df = pd.read_sql_query("SELECT * from surveys", con)
 
 def Main(request):
     return render(request, 'AppCoder/main.html')
@@ -69,7 +64,7 @@ def mostrar_literatura(request):
             anio_edicion_literatura=request.get('anio_edicion_literatura'),
             email_usuario_literatura=request.get('email_usuario_literatura'),
         )
-    lit_data =
+    lit_data = Literatura.objects.all()
     contexto = {
         'lit_data': lit_data,
         'formularioliteratura': Literatura_Form()
