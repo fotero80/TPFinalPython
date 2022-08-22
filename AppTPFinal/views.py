@@ -7,6 +7,7 @@ from AppTPFinal.forms import Usuario_Form, Literatura_Form, Musica_Form, Cine_Fo
 from AppTPFinal.models import Cine, Usuario, Musica, Literatura
 
 
+
 def Main(request):
     return render(request, 'AppCoder/main.html')
 
@@ -50,9 +51,28 @@ def cargar_literatura(request):
         ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
 
     contexto = {
-        'formularioliteratura': Literatura_Form()
+        'formulariocargarliteratura': Literatura_Form()
     }
     return render(request, 'AppCoder/literatura.html', contexto)
+
+
+def mostrar_literatura(request):
+    lit = Literatura_Form(request.POST)
+    if request.method == 'POST':
+        lit = Literatura(
+            nombre_literatura=request.POST.get('nombre_literatura'),
+            autor_literatura=request.POST.get('autor_literatura'),
+            editorial_literatura=request.POST.get('editorial_literatura'),
+            anio_edicion_literatura=request.POST.get('anio_edicion_literatura'),
+            email_usuario_literatura=request.POST.get('email_usuario_literatura'),
+        )
+    lit_data = Literatura().objects.all()
+    contexto = {
+        'formularioliteratura': Literatura_Form,
+        'lit_data': lit_data
+    }
+    return render(request, 'AppCoder/literaturabuscar.html', contexto)
+
 
 def cargar_Musica(request):
     mus = Musica_Form(request.POST)
@@ -90,4 +110,3 @@ def cargar_Cine(request):
         'formulariocine': Cine_Form()
     }
     return render(request, 'AppCoder/cine.html', contexto)
-

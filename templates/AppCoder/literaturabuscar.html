@@ -24,24 +24,21 @@
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
                 <div class="text-center my-5">
-                    <h1 class="display-5 fw-bolder text-white mb-2">Cargue su literatura</h1>
-                    <p class="lead text-white-50 mb-4">A continuacion cargue todos los datos de su literatura!</p>
-                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Cargue los datos que desa buscar</h1>
+                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="datos-literatura">
-        <form style="color:white;" id="literatura" name="literatura" action="{% url 'TPFinalCargarliteratura' %}"
-              method="POST">
-            <b>
-                {% csrf_token %}
-                {{ formularioliteratura.as_p }}
-                <p><input type="submit" value="Submit" onclick="validate()"/></p>
-                <br>
-            </b>
-        </form>
-    </div>
+
 </header>
+{% endblock %}
+
+{% block bodyoptions %}
+    <div class="datos-literatura">
+        <h4>Los datos encontrados son: </h4>h4>
+        {%for literatura in literatura %}
+            <p> El nombre es: {{literatura.nombre_literatura}}</p>
+    </div>
 {% endblock %}
