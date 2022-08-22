@@ -10,6 +10,10 @@ class Literatura_Form(forms.Form):
     email_usuario_literatura = forms.EmailField()
 
 
+class Buscar_Literatura_Form(forms.Form):
+    nombre_literatura = forms.CharField()
+
+
 class Musica_Form(forms.Form):
     nombre_artista_musica = forms.CharField(max_length=50)
     nombre_disco_musica = forms.CharField(max_length=50)

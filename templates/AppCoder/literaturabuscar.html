@@ -31,7 +31,17 @@
             </div>
         </div>
     </div>
-
+    <div class="datos-literatura">
+        <form style="color:white;" id="literatura" name="literatura" action="{% url 'TPFinalBuscarLiteratura' %}"
+              method="POST">
+            <b>
+                {% csrf_token %}
+                {{ buscar_literatura.as_p }}
+                <p><input type="submit" value="Buscar"/></p>
+                <br>
+            </b>
+        </form>
+    </div>
 </header>
 {% endblock %}
 
@@ -39,7 +49,7 @@
 <section class="py-5 border-bottom" id="features">
         <div class="datos-literatura">
         <h4>Los datos encontrados son: </h4>
-        {% for literatura in lit_data %}
+        {% for literatura in literatura %}
             <p> El nombre es: {{literatura.nombre_literatura}}</p>
             {% endfor %}
     </div>

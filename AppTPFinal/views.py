@@ -3,7 +3,7 @@ import ctypes
 
 from django.shortcuts import render
 
-from AppTPFinal.forms import Usuario_Form, Literatura_Form, Musica_Form, Cine_Form
+from AppTPFinal.forms import Usuario_Form, Literatura_Form, Musica_Form, Cine_Form, Buscar_Literatura_Form
 from AppTPFinal.models import Cine, Usuario, Musica, Literatura
 
 def Main(request):
@@ -72,6 +72,19 @@ def mostrar_literatura(request):
     }
     return render(request, 'AppCoder/literaturabuscar.html', contexto)
 
+def buscar_literatura(request):
+    a_buscar = []
+    if request.method == 'POST':
+        nombre_literatura = request.POST.get('nombre_literatura')
+        a_buscar = Literatura.objects.filter(nombre_literatura__icontains=nombre_literatura)
+
+
+    contexto = {
+        'buscar_literatura': Buscar_Literatura_Form(),
+        'literatura': a_buscar
+    }
+
+    return render(request, 'AppCoder/literaturabuscar.html', contexto)
 
 def cargar_Musica(request):
     mus = Musica_Form(request.POST)
