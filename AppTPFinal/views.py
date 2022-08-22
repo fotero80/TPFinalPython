@@ -104,7 +104,6 @@ def cargar_Cine(request):
             )
         cine.save()
         ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
-
     contexto = {
         'formulariocine': Cine_Form()
     }
