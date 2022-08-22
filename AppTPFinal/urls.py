@@ -8,7 +8,7 @@ urlpatterns = [
     path('DatosUsuario/', datos_usuario, name='TPFinalMostrarUsuarios'),
     path('CrearLiteratura/', cargar_literatura, name='TPFinalCargarliteratura'),
     path('Musica/', cargar_Musica, name='TPFinalCargarMusica'),
-    path('Cine/>', cargar_Cine, name='TPFinalCargarCine'),
-    path('LiteraturaExistente/>', mostrar_literatura, name='TPFinalBuscarLiteratura'),
+    path('Cine/', cargar_Cine, name='TPFinalCargarCine'),
+    path('LiteraturaExistente/', mostrar_literatura, name='TPFinalBuscarLiteratura'),
 
 ]
