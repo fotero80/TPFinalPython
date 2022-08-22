@@ -20,6 +20,8 @@ GC: G1 Young Generation, G1 Old Generation
 Memory: 2034M
 Cores: 4
 
+- Importar "import ctypes" en las vistas para mostrar avisos pop ups
+
 
 ### Componentes 🔧
 
