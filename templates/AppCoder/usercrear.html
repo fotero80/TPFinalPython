@@ -32,7 +32,7 @@
                 </div>
             </div>
         <div class="datos-usuario">
-            <form style="color:white;" id="usuarios" name="usuarios" action="{% url 'TPFinalMostrarUsuarios' %}" method="POST">
+            <form style="color:white; margin: length; width: 240px;" id="usuarios" name="usuarios" action="{% url 'TPFinalMostrarUsuarios' %}" method="POST">
                 <b>
                 {% csrf_token %}
                     {{ formulariousuario.as_p }}
