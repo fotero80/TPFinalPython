@@ -58,11 +58,11 @@ def mostrar_literatura(request):
     lit = Literatura_Form(request.POST)
     if request.method == 'POST':
         lit = Literatura(
-            nombre_literatura=request.get('nombre_literatura'),
-            autor_literatura=request.get('autor_literatura'),
-            editorial_literatura=request.get('editorial_literatura'),
-            anio_edicion_literatura=request.get('anio_edicion_literatura'),
-            email_usuario_literatura=request.get('email_usuario_literatura'),
+            nombre_literatura=request.POST.get('nombre_literatura'),
+            autor_literatura=request.POST.get('autor_literatura'),
+            editorial_literatura=request.POST.get('editorial_literatura'),
+            anio_edicion_literatura=request.POST.get('anio_edicion_literatura'),
+            email_usuario_literatura=request.POST.get('email_usuario_literatura'),
         )
     lit_data = Literatura.objects.all()
     contexto = {
