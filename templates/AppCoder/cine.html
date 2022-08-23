@@ -33,7 +33,7 @@
         </div>
     </div>
     <div class="datos-cine">
-        <form style="color:white;" id="cine" name="cine" action="{% url 'TPFinalCargarCine' %}" method="POST">
+        <form style="color:white; margin: length; width: 240px;" id="cine" name="cine" action="{% url 'TPFinalCargarCine' %}" method="POST">
             <b>
                 {% csrf_token %}
                 {{ formulariocine.as_p }}

@@ -1,6 +1,6 @@
 from django.urls import path
 from AppTPFinal.views import Main, cargar_literatura, cargar_Musica, cargar_Cine, datos_usuario, datos_crear_usuario, \
-    mostrar_literatura, buscar_literatura
+    buscar_literatura, buscar_cine, buscar_musica
 
 urlpatterns = [
     path('', Main, name='TPFinalMain'),
@@ -10,5 +10,7 @@ urlpatterns = [
     path('Musica/', cargar_Musica, name='TPFinalCargarMusica'),
     path('Cine/', cargar_Cine, name='TPFinalCargarCine'),
     path('LiteraturaExistente/', buscar_literatura, name='TPFinalBuscarLiteratura'),
+    path('MusicaExistente/', buscar_musica, name='TPFinalBuscarmusica'),
+    path('CineExistente/', buscar_cine, name='TPFinalBuscarCine'),
 
 ]
