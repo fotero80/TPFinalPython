@@ -1,5 +1,8 @@
 from django import forms
-from datetime import datetime
+
+
+class DateImput(forms.DateInput):
+    input_type = 'date'
 
 
 class Literatura_Form(forms.Form):
@@ -46,5 +49,6 @@ class Buscar_Cine_Form(forms.Form):
 class Usuario_Form(forms.Form):
     nombre_usuario = forms.CharField(max_length=50)
     apellido_usuario = forms.CharField(max_length=50)
-    fecha_nacimiento_usuario = forms.DateField()
+    fecha_nacimiento_usuario = forms.DateField(widget=DateImput)
     email_usuario = forms.EmailField()
+

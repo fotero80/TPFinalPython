@@ -1,7 +1,6 @@
-from datetime import datetime
 import ctypes
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from AppTPFinal.forms import Usuario_Form, Literatura_Form, Musica_Form, Cine_Form, Buscar_Literatura_Form, \
     Buscar_Musica_Form, Buscar_Cine_Form
@@ -12,14 +11,7 @@ def Main(request):
     return render(request, 'AppCoder/main.html')
 
 
-def datos_crear_usuario(request):
-    contexto = {
-        'formulariousuario': Usuario_Form()
-    }
-    return render(request, 'AppCoder/usercrear.html', contexto)
-
-
-def datos_usuario(request):
+def usuario_crear(request):
     usr = Usuario_Form(request.POST)
     if request.method == 'POST':
         if usr.is_valid():
@@ -30,11 +22,36 @@ def datos_usuario(request):
                 email_usuario=request.POST.get('email_usuario'),
             )
         usr.save()
-    contexto = {
-        'usuario': usr
-    }
-    return render(request, 'AppCoder/datosusercreado.html', contexto)
+        ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
 
+    contexto = {
+        'formulariousuario': Usuario_Form()
+    }
+    return render(request, 'AppCoder/usuario/usuario.html', contexto)
+
+
+def usuario_buscar(request):
+    a_buscar = []
+    if request.method == 'POST':
+        nombre_usuario = request.POST.get('nombre_usuario')
+        apellido_usuario = request.POST.get('apellido_usuario')
+        fecha_nacimiento_usuario = request.POST.get('fecha_nacimiento_usuario')
+        email_usuario = request.POST.get('email_usuario')
+        a_buscar = Usuario.objects.filter(nombre_usuario__icontains=nombre_usuario) & \
+                   Usuario.objects.filter(apellido_usuario__icontains=apellido_usuario) & \
+                   Usuario.objects.filter(fecha_nacimiento_usuario__icontains=fecha_nacimiento_usuario) & \
+                   Usuario.objects.filter(email_usuario__icontains=email_usuario)
+    contexto = {
+        'buscar_usuario': Usuario_Form(),
+        'usuario': a_buscar
+    }
+    return render(request, 'AppCoder/usuario/usuariobuscar.html', contexto)
+
+def usuario_eliminar(request,nombre_usuario):
+    usuario = Usuario.objects.get(nombre_usuario=nombre_usuario)
+    usuario.delete()
+
+    return redirect('TPFinalUsuariosBuscar')
 
 def cargar_literatura(request):
     lit = Literatura_Form(request.POST)
@@ -53,7 +70,7 @@ def cargar_literatura(request):
     contexto = {
         'formulariocargarliteratura': Literatura_Form()
     }
-    return render(request, 'AppCoder/literatura.html', contexto)
+    return render(request, 'AppCoder/literatura/literatura.html', contexto)
 
 
 def buscar_literatura(request):
@@ -72,7 +89,7 @@ def buscar_literatura(request):
         'buscar_literatura': Buscar_Literatura_Form(),
         'literatura': a_buscar
     }
-    return render(request, 'AppCoder/literaturabuscar.html', contexto)
+    return render(request, 'AppCoder/literatura/literaturabuscar.html', contexto)
 
 
 def cargar_Musica(request):
@@ -91,7 +108,7 @@ def cargar_Musica(request):
     contexto = {
         'formulariomusica': Musica_Form()
     }
-    return render(request, 'AppCoder/musica.html', contexto)
+    return render(request, 'AppCoder/musica/musica.html', contexto)
 
 def buscar_musica(request):
     a_buscar = []
@@ -107,7 +124,7 @@ def buscar_musica(request):
         'buscar_musica': Buscar_Musica_Form(),
         'musica': a_buscar
     }
-    return render(request, 'AppCoder/musicabuscar.html', contexto)
+    return render(request, 'AppCoder/musica/musicabuscar.html', contexto)
 
 def cargar_Cine(request):
     cine = Cine_Form(request.POST)
@@ -124,7 +141,7 @@ def cargar_Cine(request):
     contexto = {
         'formulariocine': Cine_Form()
     }
-    return render(request, 'AppCoder/cine.html', contexto)
+    return render(request, 'AppCoder/cine/cine.html', contexto)
 
 def buscar_cine(request):
     a_buscar = []
@@ -140,4 +157,4 @@ def buscar_cine(request):
         'buscar_cine': Buscar_Cine_Form(),
         'cine': a_buscar
     }
-    return render(request, 'AppCoder/cinebuscar.html', contexto)
+    return render(request, 'AppCoder/cine/cinebuscar.html', contexto)

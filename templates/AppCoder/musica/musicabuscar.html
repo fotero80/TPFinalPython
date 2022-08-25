@@ -1,0 +1,81 @@
+{% extends "AppCoder/index.html" %}
+
+{% block headertitlle %}
+<title>Musica</title>
+{% endblock %}
+
+{% block stile %}
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align:center;
+}
+
+</style>
+{% endblock %}
+
+{% block bodytitleoptions %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-5">
+        <a class="navbar-brand" href="#!">Inventario personal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" aria-current="page"
+                                        href="{% url 'TPFinalMain' %}">Home</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block bodyheader %}
+<header class="bg-dark py-1">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-6">
+                <div class="text-center my-8">
+                    <h1 style="color:white; display:inline;">Cargue los datos que desea buscar</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="datos-musica">
+        <form style="color:white; margin: length; width: 240px;" id="musica" name="musica" action="{% url 'TPFinalMusicaBuscar' %}"
+              method="POST" novalidate>
+            <b>
+                {% csrf_token %}
+                {{ buscar_musica.as_p }}
+                <p><input type="submit" value="Buscar" /></p>
+                <br>
+            </b>
+        </form>
+    </div>
+</header>
+{% endblock %}
+
+{% block bodyoptions %}
+<section class="py-5 border-bottom" id="resultado">
+    <div class="datos-musica">
+        <h4>Los datos encontrados son: </h4>
+        <table style="width:100%" >
+            <tr>
+                <th>Artista</th>
+                <th>Disco</th>
+                <th>Año</th>
+            </tr>
+            {% for musica in musica %}
+                <tr>
+                    <td>{{musica.nombre_artista_musica}}</td>
+                    <td>{{musica.nombre_disco_musica}}</td>
+                    <td>{{musica.anio_lanzamiento_musica}}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</section>
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "AppCoder/index.html" %}
 
 {% block headertitlle %}
-<title>Musica</title>
+<title>usuario Crear</title>
 {% endblock %}
 
 {% block stile %}
@@ -11,6 +11,7 @@ table, th, td {
   border-collapse: collapse;
   text-align:center;
 }
+
 
 </style>
 {% endblock %}
@@ -43,13 +44,14 @@ table, th, td {
             </div>
         </div>
     </div>
-    <div class="datos-musica">
-        <form style="color:white; margin: length; width: 240px;" id="musica" name="musica" action="{% url 'TPFinalBuscarmusica' %}"
+    <div class="datos-usuario">
+        <form style="color:white; margin: length; width: 240px;" id="usuario" name="usuario"
+              action="{% url 'TPFinalUsuariosBuscar' %}"
               method="POST" novalidate>
             <b>
                 {% csrf_token %}
-                {{ buscar_musica.as_p }}
-                <p><input type="submit" value="Buscar" /></p>
+                {{ buscar_usuario.as_p }}
+                <p><input type="submit" value="Buscar"/></p>
                 <br>
             </b>
         </form>
@@ -59,20 +61,25 @@ table, th, td {
 
 {% block bodyoptions %}
 <section class="py-5 border-bottom" id="resultado">
-    <div class="datos-musica">
+    <div class="datos-literatura">
         <h4>Los datos encontrados son: </h4>
-        <table style="width:100%" >
+        <table style="width:100%">
             <tr>
-                <th>Artista</th>
-                <th>Disco</th>
-                <th>Año</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fecha de nacimiento</th>
+                <th>Email</th>
+                <th>Eliminar</th>
+
             </tr>
-            {% for musica in musica %}
-                <tr>
-                    <td>{{musica.nombre_artista_musica}}</td>
-                    <td>{{musica.nombre_disco_musica}}</td>
-                    <td>{{musica.anio_lanzamiento_musica}}</td>
-                </tr>
+            {% for usuario in usuario %}
+            <tr>
+                <td>{{usuario.nombre_usuario}}</td>
+                <td>{{usuario.apellido_usuario}}</td>
+                <td>{{usuario.fecha_nacimiento_usuario}}</td>
+                <td>{{usuario.email_usuario}}</td>
+                <td><a href="{% url 'TPFinalUsuariosEliminar' usuario.nombre_usuario %}">Eliminar</a></td>
+            </tr>
             {% endfor %}
 
         </table>

@@ -34,7 +34,9 @@
                     <p class="lead text-white-50 mb-4">Una manera rapida y simple de poder tener ul listado de todo lo
                         que posee!</p>
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'TPFinalCrearUsuarios' %}">Crear
+                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'TPFinalUsuariosCrear' %}">Crear
+                            usuario</a>
+                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'TPFinalUsuariosBuscar' %}">Buscar
                             usuario</a>
                         <!--To Do: a realizar el ingreso de un usuario ya existente -->
                         <!--<a class="btn btn-outline-light btn-lg px-4" href="ingresaruser/">Ingresar</a> -->
@@ -55,12 +57,12 @@
                 </div>
                 <h2 class="h4 fw-bolder">Literatura</h2>
                 <p>Dentro de esta opcion usted podra cargar nueva literatura o buscar dentro de sus existentes.</p>
-                <a class="text-decoration-none" href="{% url 'TPFinalCargarliteratura' %}">
+                <a class="text-decoration-none" href="{% url 'TPFinalLiteraturaCrear' %}">
                     Ir a cargar nueva literatura
                     <i class="bi bi-arrow-right"></i>
                 </a>
                 <br>
-                <a class="text-decoration-none" href="{% url 'TPFinalBuscarLiteratura' %}">
+                <a class="text-decoration-none" href="{% url 'TPFinalLiteraturaBuscar' %}">
                     Ir a buscar literatura existente
                     <i class="bi bi-arrow-right"></i>
                 </a>
@@ -70,12 +72,12 @@
                 </div>
                 <h2 class="h4 fw-bolder">Musica</h2>
                 <p>Dentro de esta opcion usted podra cargar nueva musica o buscar dentro de sus existentes.</p>
-                <a class="text-decoration-none" href="{% url 'TPFinalCargarMusica' %}">
+                <a class="text-decoration-none" href="{% url 'TPFinalMusicaCrear' %}">
                     Ir a cargar musica
                     <i class="bi bi-arrow-right"></i>
                 </a>
                 <br>
-                <a class="text-decoration-none" href="{% url 'TPFinalBuscarmusica' %}">
+                <a class="text-decoration-none" href="{% url 'TPFinalMusicaBuscar' %}">
                     Ir a buscar musica existente
                     <i class="bi bi-arrow-right"></i>
                 </a>
@@ -85,12 +87,12 @@
                 </div>
                 <h2 class="h4 fw-bolder">Cine</h2>
                 <p>Dentro de esta opcion usted podra cargar nuevos films o buscar dentro de sus existentes.</p>
-                <a class="text-decoration-none" href="{% url 'TPFinalCargarCine' %}">
+                <a class="text-decoration-none" href="{% url 'TPFinalCineCrear' %}">
                     ir a cargar films
                     <i class="bi bi-arrow-right"></i>
                 </a>
                 <br>
-                <a class="text-decoration-none" href="{% url 'TPFinalBuscarCine' %}">
+                <a class="text-decoration-none" href="{% url 'TPFinalCineBuscar' %}">
                     ir a buscar films existentes
                     <i class="bi bi-arrow-right"></i>
                 </a>

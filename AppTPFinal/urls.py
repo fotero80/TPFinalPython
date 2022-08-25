@@ -1,16 +1,24 @@
 from django.urls import path
-from AppTPFinal.views import Main, cargar_literatura, cargar_Musica, cargar_Cine, datos_usuario, datos_crear_usuario, \
-    buscar_literatura, buscar_cine, buscar_musica
+from AppTPFinal.views import Main, cargar_literatura, cargar_Musica, cargar_Cine, usuario_buscar, usuario_crear, \
+    buscar_literatura, buscar_cine, buscar_musica, usuario_eliminar
 
 urlpatterns = [
     path('', Main, name='TPFinalMain'),
-    path('CrearUsuario/', datos_crear_usuario, name='TPFinalCrearUsuarios'),
-    path('DatosUsuario/', datos_usuario, name='TPFinalMostrarUsuarios'),
-    path('CrearLiteratura/', cargar_literatura, name='TPFinalCargarliteratura'),
-    path('Musica/', cargar_Musica, name='TPFinalCargarMusica'),
-    path('Cine/', cargar_Cine, name='TPFinalCargarCine'),
-    path('LiteraturaExistente/', buscar_literatura, name='TPFinalBuscarLiteratura'),
-    path('MusicaExistente/', buscar_musica, name='TPFinalBuscarmusica'),
-    path('CineExistente/', buscar_cine, name='TPFinalBuscarCine'),
+    #Urls utilizadas para el CRUD de usuarios
+    path('Usuario/Crear/', usuario_crear, name='TPFinalUsuariosCrear'),
+    path('Usuario/Buscar/', usuario_buscar, name='TPFinalUsuariosBuscar'),
+    path('Usuario/Eliminar/<str:nombre_usuario>', usuario_eliminar, name='TPFinalUsuariosEliminar'),
+
+    #Urls utilizadas para el CRUD de literatura
+    path('Literatura/Crear/', cargar_literatura, name='TPFinalLiteraturaCrear'),
+    path('Literatura/Buscar/', buscar_literatura, name='TPFinalLiteraturaBuscar'),
+
+    # Urls utilizadas para el CRUD de musica
+    path('Musica/Crear/', cargar_Musica, name='TPFinalMusicaCrear'),
+    path('Musica/Buscar/', buscar_musica, name='TPFinalMusicaBuscar'),
+
+    # Urls utilizadas para el CRUD de cine
+    path('Cine/Crear/', cargar_Cine, name='TPFinalCineCrear'),
+    path('Cine/Buscar/', buscar_cine, name='TPFinalCineBuscar'),
 
 ]
