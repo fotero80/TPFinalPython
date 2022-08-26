@@ -63,17 +63,21 @@ table, th, td {
         <h4>Los datos encontrados son: </h4>
         <table style="width:100%" >
             <tr>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Autor</th>
                 <th>Editorial</th>
                 <th>Año</th>
+                <th>Eliminar</th>
             </tr>
             {% for literatura in literatura %}
                 <tr>
+                    <td>{{literatura.id_literatura}}</td>
                     <td>{{literatura.nombre_literatura}}</td>
                     <td>{{literatura.autor_literatura}}</td>
                     <td>{{literatura.editorial_literatura}}</td>
                     <td>{{literatura.anio_edicion_literatura}}</td>
+                    <td><a href="{% url 'TPFinalLiteraturaEliminar' literatura.id_literatura %}">Eliminar</a></td>
                 </tr>
             {% endfor %}
 

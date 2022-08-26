@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Literatura (models.Model):
+    id_literatura = models.AutoField(primary_key=True, default='0')
     nombre_literatura = models.CharField(max_length=50)
     autor_literatura = models.CharField(max_length=50)
     editorial_literatura = models.CharField(max_length=50)
@@ -13,6 +14,7 @@ class Literatura (models.Model):
 
 
 class Musica (models.Model):
+    id_musica = models.AutoField(primary_key=True, default='0')
     nombre_artista_musica = models.CharField(max_length=50)
     nombre_disco_musica = models.CharField(max_length=50)
     anio_lanzamiento_musica = models.IntegerField()
@@ -23,6 +25,7 @@ class Musica (models.Model):
 
 
 class Cine (models.Model):
+    id_cine = models.AutoField(primary_key=True, default='0')
     nombre_pelicula_cine = models.CharField(max_length=50)
     nombre_director_cine = models.CharField(max_length=50)
     anio_lanzamiento_cine = models.IntegerField()
@@ -33,10 +36,11 @@ class Cine (models.Model):
 
 
 class Usuario (models.Model):
+    id_usuario = models.AutoField(primary_key=True, default='0')
     nombre_usuario = models.CharField(max_length=50)
     apellido_usuario = models.CharField(max_length=50)
     fecha_nacimiento_usuario = models.DateField()
-    email_usuario = models.EmailField()
+    email_usuario = models.EmailField(unique=True)
 
     def __str__(self):
         return f"Usuario: {self.nombre_usuario} {self.apellido_usuario}"

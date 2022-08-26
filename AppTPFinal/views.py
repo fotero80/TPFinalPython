@@ -47,8 +47,9 @@ def usuario_buscar(request):
     }
     return render(request, 'AppCoder/usuario/usuariobuscar.html', contexto)
 
-def usuario_eliminar(request,nombre_usuario):
-    usuario = Usuario.objects.get(nombre_usuario=nombre_usuario)
+
+def usuario_eliminar(request, id_usuario):
+    usuario = Usuario.objects.get(id_usuario=id_usuario)
     usuario.delete()
 
     return redirect('TPFinalUsuariosBuscar')
@@ -92,6 +93,12 @@ def buscar_literatura(request):
     return render(request, 'AppCoder/literatura/literaturabuscar.html', contexto)
 
 
+def literatura_eliminar(request, id_literatura):
+    literatura = Literatura.objects.get(id_literatura=id_literatura)
+    literatura.delete()
+
+    return redirect('TPFinalLiteraturaBuscar')
+
 def cargar_Musica(request):
     mus = Musica_Form(request.POST)
     if request.method == 'POST':
@@ -126,6 +133,14 @@ def buscar_musica(request):
     }
     return render(request, 'AppCoder/musica/musicabuscar.html', contexto)
 
+
+def musica_eliminar(request, id_musica):
+    musica = Usuario.objects.get(id_musica=id_musica)
+    musica.delete()
+
+    return redirect('TPFinalMusicaBuscar')
+
+
 def cargar_Cine(request):
     cine = Cine_Form(request.POST)
     if request.method == 'POST':
@@ -158,3 +173,9 @@ def buscar_cine(request):
         'cine': a_buscar
     }
     return render(request, 'AppCoder/cine/cinebuscar.html', contexto)
+
+def cine_eliminar(request, id_cine):
+    cine = Usuario.objects.get(id_cine=id_cine)
+    cine.delete()
+
+    return redirect('TPFinalCineBuscar')

@@ -63,15 +63,18 @@ table, th, td {
         <h4>Los datos encontrados son: </h4>
         <table style="width:100%" >
             <tr>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Director</th>
                 <th>Año</th>
             </tr>
             {% for cine in cine %}
                 <tr>
+                    <td>{{cine.id_cine}}</td>
                     <td>{{cine.nombre_pelicula_cine}}</td>
                     <td>{{cine.nombre_director_cine}}</td>
                     <td>{{cine.anio_lanzamiento_cine}}</td>
+                    <td><a href="{% url 'TPFinalCineEliminar' usuario.id_cine %}">Eliminar</a></td>
                 </tr>
             {% endfor %}
 

@@ -63,15 +63,18 @@ table, th, td {
         <h4>Los datos encontrados son: </h4>
         <table style="width:100%" >
             <tr>
+                <th>ID</th>
                 <th>Artista</th>
                 <th>Disco</th>
                 <th>Año</th>
             </tr>
             {% for musica in musica %}
                 <tr>
+                    <td>{{musica.id_musica}}</td>
                     <td>{{musica.nombre_artista_musica}}</td>
                     <td>{{musica.nombre_disco_musica}}</td>
                     <td>{{musica.anio_lanzamiento_musica}}</td>
+                    <td><a href="{% url 'TPFinalMusicaEliminar' musica.id_musica %}">Eliminar</a></td>
                 </tr>
             {% endfor %}
 

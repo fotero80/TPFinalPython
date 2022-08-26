@@ -65,6 +65,7 @@ table, th, td {
         <h4>Los datos encontrados son: </h4>
         <table style="width:100%">
             <tr>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Fecha de nacimiento</th>
@@ -74,11 +75,12 @@ table, th, td {
             </tr>
             {% for usuario in usuario %}
             <tr>
+                <td>{{usuario.id_usuario}}</td>
                 <td>{{usuario.nombre_usuario}}</td>
                 <td>{{usuario.apellido_usuario}}</td>
                 <td>{{usuario.fecha_nacimiento_usuario}}</td>
                 <td>{{usuario.email_usuario}}</td>
-                <td><a href="{% url 'TPFinalUsuariosEliminar' usuario.nombre_usuario %}">Eliminar</a></td>
+                <td><a href="{% url 'TPFinalUsuariosEliminar' usuario.id_usuario %}">Eliminar</a></td>
             </tr>
             {% endfor %}
 
