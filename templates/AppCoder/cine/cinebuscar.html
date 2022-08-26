@@ -44,7 +44,7 @@ table, th, td {
         </div>
     </div>
     <div class="datos-cine">
-        <form style="color:white; margin: length; width: 240px;" id="cine" name="cine" action="{% url 'TPFinalBuscarCine' %}"
+        <form style="color:white; margin: length; width: 240px;" id="cine" name="cine" action="{% url 'TPFinalCineBuscar' %}"
               method="POST" novalidate>
             <b>
                 {% csrf_token %}
@@ -74,7 +74,7 @@ table, th, td {
                     <td>{{cine.nombre_pelicula_cine}}</td>
                     <td>{{cine.nombre_director_cine}}</td>
                     <td>{{cine.anio_lanzamiento_cine}}</td>
-                    <td><a href="{% url 'TPFinalCineEliminar' usuario.id_cine %}">Eliminar</a></td>
+                    <td><a href="{% url 'TPFinalCineEliminar' cine.id_cine %}">Eliminar</a></td>
                 </tr>
             {% endfor %}
 

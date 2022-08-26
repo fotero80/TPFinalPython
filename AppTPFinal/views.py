@@ -94,8 +94,8 @@ def buscar_literatura(request):
 
 
 def literatura_eliminar(request, id_literatura):
-    literatura = Literatura.objects.get(id_literatura=id_literatura)
-    literatura.delete()
+    lit = Literatura.objects.get(id_literatura=id_literatura)
+    lit.delete()
 
     return redirect('TPFinalLiteraturaBuscar')
 
@@ -135,7 +135,7 @@ def buscar_musica(request):
 
 
 def musica_eliminar(request, id_musica):
-    musica = Usuario.objects.get(id_musica=id_musica)
+    musica = Musica.objects.get(id_musica=id_musica)
     musica.delete()
 
     return redirect('TPFinalMusicaBuscar')
@@ -175,7 +175,7 @@ def buscar_cine(request):
     return render(request, 'AppCoder/cine/cinebuscar.html', contexto)
 
 def cine_eliminar(request, id_cine):
-    cine = Usuario.objects.get(id_cine=id_cine)
+    cine = Cine.objects.get(id_cine=id_cine)
     cine.delete()
 
     return redirect('TPFinalCineBuscar')

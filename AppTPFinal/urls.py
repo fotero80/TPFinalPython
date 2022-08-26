@@ -16,11 +16,11 @@ urlpatterns = [
     # Urls utilizadas para el CRUD de musica
     path('Musica/Crear/', cargar_Musica, name='TPFinalMusicaCrear'),
     path('Musica/Buscar/', buscar_musica, name='TPFinalMusicaBuscar'),
-    path('Literatura/Eliminar/<int:id_musica>', musica_eliminar, name='TPFinalMusicaEliminar'),
+    path('Musica/Eliminar/<int:id_musica>', musica_eliminar, name='TPFinalMusicaEliminar'),
 
     # Urls utilizadas para el CRUD de cine
     path('Cine/Crear/', cargar_Cine, name='TPFinalCineCrear'),
     path('Cine/Buscar/', buscar_cine, name='TPFinalCineBuscar'),
-    path('Literatura/Eliminar/<int:id_literatura>', cine_eliminar, name='TPFinalCineEliminar'),
+    path('Cine/Eliminar/<int:id_cine>', cine_eliminar, name='TPFinalCineEliminar'),
 
 ]
