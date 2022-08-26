@@ -67,6 +67,8 @@ table, th, td {
                 <th>Artista</th>
                 <th>Disco</th>
                 <th>Año</th>
+                <th>Eliminar</th>
+                <th>Modificar</th>
             </tr>
             {% for musica in musica %}
                 <tr>
@@ -75,6 +77,7 @@ table, th, td {
                     <td>{{musica.nombre_disco_musica}}</td>
                     <td>{{musica.anio_lanzamiento_musica}}</td>
                     <td><a href="{% url 'TPFinalMusicaEliminar' musica.id_musica %}">Eliminar</a></td>
+                    <td><a href="{% url 'TPFinalMusicaModificar' musica.id_musica  %}">Modificar</a></td>
                 </tr>
             {% endfor %}
 

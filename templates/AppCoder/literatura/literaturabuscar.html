@@ -69,6 +69,7 @@ table, th, td {
                 <th>Editorial</th>
                 <th>Año</th>
                 <th>Eliminar</th>
+                <th>Modificar</th>
             </tr>
             {% for literatura in literatura %}
                 <tr>
@@ -78,6 +79,7 @@ table, th, td {
                     <td>{{literatura.editorial_literatura}}</td>
                     <td>{{literatura.anio_edicion_literatura}}</td>
                     <td><a href="{% url 'TPFinalLiteraturaEliminar' literatura.id_literatura %}">Eliminar</a></td>
+                    <td><a href="{% url 'TPFinalLiteraturaModificar' literatura.id_literatura %}">Modificar</a></td>
                 </tr>
             {% endfor %}
 

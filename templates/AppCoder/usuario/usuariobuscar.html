@@ -71,7 +71,7 @@ table, th, td {
                 <th>Fecha de nacimiento</th>
                 <th>Email</th>
                 <th>Eliminar</th>
-
+                <th>Modificar</th>
             </tr>
             {% for usuario in usuario %}
             <tr>
@@ -81,6 +81,7 @@ table, th, td {
                 <td>{{usuario.fecha_nacimiento_usuario}}</td>
                 <td>{{usuario.email_usuario}}</td>
                 <td><a href="{% url 'TPFinalUsuariosEliminar' usuario.id_usuario %}">Eliminar</a></td>
+                <td><a href="{% url 'TPFinalUsuariosModificar' usuario.id_usuario %}">Modificar</a></td>
             </tr>
             {% endfor %}
 

@@ -10,7 +10,8 @@ from AppTPFinal.models import Cine, Usuario, Musica, Literatura
 def Main(request):
     return render(request, 'AppCoder/main.html')
 
-
+#--------------------------------------------------------------------------------------------------------
+#Modulos de Usuarios
 def usuario_crear(request):
     usr = Usuario_Form(request.POST)
     if request.method == 'POST':
@@ -21,8 +22,8 @@ def usuario_crear(request):
                 fecha_nacimiento_usuario=request.POST.get('fecha_nacimiento_usuario'),
                 email_usuario=request.POST.get('email_usuario'),
             )
-        usr.save()
-        ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
+            usr.save()
+            ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
 
     contexto = {
         'formulariousuario': Usuario_Form()
@@ -54,7 +55,42 @@ def usuario_eliminar(request, id_usuario):
 
     return redirect('TPFinalUsuariosBuscar')
 
-def cargar_literatura(request):
+
+def usuario_modificar(request, id_usuario):
+    usuario = Usuario.objects.get(id_usuario=id_usuario)
+
+    if request.method == 'POST':
+        usr = Usuario_Form(request.POST)
+        if usr.is_valid():
+            data = usr.cleaned_data
+
+            usuario.nombre_usuario= data.get('nombre_usuario')
+            usuario.apellido_usuario= data.get('apellido_usuario')
+            usuario.fecha_nacimiento_usuario= data.get('fecha_nacimiento_usuario')
+            usuario.email_usuario= data.get('email_usuario')
+
+            usuario.save()
+            ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
+            return redirect('TPFinalUsuariosBuscar')
+
+
+    usuario_form = Usuario_Form(initial={
+                'nombre_usuario': usuario.nombre_usuario,
+                'apellido_usuario': usuario.apellido_usuario,
+                'fecha_nacimiento_usuario': usuario.fecha_nacimiento_usuario,
+                'email_usuario': usuario.email_usuario
+                }
+             )
+    contexto = {
+        'formulariousuario' : usuario_form
+    }
+
+    return render(request, 'AppCoder/usuario/usuariomodificar.html', contexto)
+
+
+#--------------------------------------------------------------------------------------------------------
+#Modulos de Literatura
+def literatura_crear(request):
     lit = Literatura_Form(request.POST)
     if request.method == 'POST':
         if lit.is_valid():
@@ -74,7 +110,7 @@ def cargar_literatura(request):
     return render(request, 'AppCoder/literatura/literatura.html', contexto)
 
 
-def buscar_literatura(request):
+def literatura_buscar(request):
     a_buscar = []
     if request.method == 'POST':
         nombre_literatura = request.POST.get('nombre_literatura')
@@ -99,7 +135,43 @@ def literatura_eliminar(request, id_literatura):
 
     return redirect('TPFinalLiteraturaBuscar')
 
-def cargar_Musica(request):
+
+def literatura_modificar(request, id_literatura):
+    lit = Literatura.objects.get(id_literatura=id_literatura)
+
+    if request.method == 'POST':
+        Lite = Literatura_Form(request.POST)
+        if Lite.is_valid():
+            data = Lite.cleaned_data
+
+            lit.nombre_literatura= data.get('nombre_literatura')
+            lit.autor_literatura= data.get('autor_literatura')
+            lit.editorial_literatura= data.get('editorial_literatura')
+            lit.anio_edicion_literatura= data.get('anio_edicion_literatura')
+            lit.email_usuario_literatura = data.get('email_usuario_literatura')
+
+            lit.save()
+            ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
+            return redirect('TPFinalLiteraturaBuscar')
+
+
+    literatura_form = Literatura_Form(initial={
+                'nombre_literatura': lit.nombre_literatura,
+                'autor_literatura': lit.autor_literatura,
+                'editorial_literatura': lit.editorial_literatura,
+                'anio_edicion_literatura': lit.anio_edicion_literatura,
+                'email_usuario_literatura': lit.email_usuario_literatura
+                }
+             )
+    contexto = {
+        'formulariocargarliteratura': literatura_form
+    }
+
+    return render(request, 'AppCoder/literatura/literaturamodificar.html', contexto)
+
+#--------------------------------------------------------------------------------------------------------
+#Modulos de Musica
+def musica_crear(request):
     mus = Musica_Form(request.POST)
     if request.method == 'POST':
         if mus.is_valid():
@@ -117,7 +189,7 @@ def cargar_Musica(request):
     }
     return render(request, 'AppCoder/musica/musica.html', contexto)
 
-def buscar_musica(request):
+def musica_buscar(request):
     a_buscar = []
     if request.method == 'POST':
         nombre_artista_musica = request.POST.get('nombre_artista_musica')
@@ -141,7 +213,40 @@ def musica_eliminar(request, id_musica):
     return redirect('TPFinalMusicaBuscar')
 
 
-def cargar_Cine(request):
+def musica_modificar(request, id_musica):
+    mus = Musica.objects.get(id_musica=id_musica)
+
+    if request.method == 'POST':
+        Musi = Musica_Form(request.POST)
+        if Musi.is_valid():
+            data = Musi.cleaned_data
+
+            mus.nombre_artista_musica= data.get('nombre_artista_musica')
+            mus.nombre_disco_musica= data.get('nombre_disco_musica')
+            mus.anio_lanzamiento_musica= data.get('anio_lanzamiento_musica')
+            mus.email_usuario_musica= data.get('email_usuario_musica')
+
+            mus.save()
+            ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
+            return redirect('TPFinalLiteraturaBuscar')
+
+
+    musica_form = Musica_Form(initial={
+                'nombre_artista_musica': mus.nombre_artista_musica,
+                'nombre_disco_musica': mus.nombre_disco_musica,
+                'anio_lanzamiento_musica': mus.anio_lanzamiento_musica,
+                'email_usuario_musica': mus.email_usuario_musica,
+                }
+             )
+    contexto = {
+        'formulariomusica': musica_form
+    }
+
+    return render(request, 'AppCoder/musica/musicamodificar.html', contexto)
+
+#--------------------------------------------------------------------------------------------------------
+#Modulos de Cine
+def cine_crear(request):
     cine = Cine_Form(request.POST)
     if request.method == 'POST':
         if cine.is_valid():
@@ -158,7 +263,7 @@ def cargar_Cine(request):
     }
     return render(request, 'AppCoder/cine/cine.html', contexto)
 
-def buscar_cine(request):
+def cine_buscar(request):
     a_buscar = []
     if request.method == 'POST':
         nombre_pelicula_cine = request.POST.get('nombre_pelicula_cine')
@@ -179,3 +284,34 @@ def cine_eliminar(request, id_cine):
     cine.delete()
 
     return redirect('TPFinalCineBuscar')
+
+def cine_modificar(request, id_cine):
+    cine = Cine.objects.get(id_cine=id_cine)
+
+    if request.method == 'POST':
+        cine_temp = Cine_Form(request.POST)
+        if cine_temp.is_valid():
+            data = cine_temp.cleaned_data
+
+            cine.nombre_pelicula_cine= data.get('nombre_pelicula_cine')
+            cine.nombre_director_cine= data.get('nombre_director_cine')
+            cine.anio_lanzamiento_cine= data.get('anio_lanzamiento_cine')
+            cine.email_usuario_cine= data.get('email_usuario_cine')
+
+            cine.save()
+            ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
+            return redirect('TPFinalCineBuscar')
+
+
+    cine_form = Cine_Form(initial={
+                'nombre_pelicula_cine': cine.nombre_pelicula_cine,
+                'nombre_director_cine': cine.nombre_director_cine,
+                'anio_lanzamiento_cine': cine.anio_lanzamiento_cine,
+                'email_usuario_cine': cine.email_usuario_cine,
+                }
+             )
+    contexto = {
+        'formulariocine': cine_form
+    }
+
+    return render(request, 'AppCoder/cine/cinemodificar.html', contexto)

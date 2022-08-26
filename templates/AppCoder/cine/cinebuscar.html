@@ -67,6 +67,8 @@ table, th, td {
                 <th>Nombre</th>
                 <th>Director</th>
                 <th>Año</th>
+                <th>Eliminar</th>
+                <th>Modificar</th>
             </tr>
             {% for cine in cine %}
                 <tr>
@@ -75,6 +77,7 @@ table, th, td {
                     <td>{{cine.nombre_director_cine}}</td>
                     <td>{{cine.anio_lanzamiento_cine}}</td>
                     <td><a href="{% url 'TPFinalCineEliminar' cine.id_cine %}">Eliminar</a></td>
+                    <td><a href="{% url 'TPFinalCineModificar' cine.id_cine %}">Modificar</a></td>
                 </tr>
             {% endfor %}
 
