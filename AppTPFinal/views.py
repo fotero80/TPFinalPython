@@ -1,12 +1,11 @@
 import ctypes
-from django.contrib.auth.decorators import user_passes_test
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-
-from AppTPFinal.forms import Usuario_Form, Literatura_Form, Musica_Form, Cine_Form, Buscar_Literatura_Form, \
+from django.contrib.auth.models import User
+from AppTPFinal.forms import  Literatura_Form, Musica_Form, Cine_Form, Buscar_Literatura_Form, \
     Buscar_Musica_Form, Buscar_Cine_Form
-from AppTPFinal.models import Cine, Usuario, Musica, Literatura
+from AppTPFinal.models import Cine, Musica, Literatura
 
 
 def Main(request):
@@ -18,6 +17,8 @@ def Main(request):
 @login_required()
 def literatura_crear(request):
     lit = Literatura_Form(request.POST)
+    email = None
+    email = request.user.email
     if request.method == 'POST':
         if lit.is_valid():
             lit = Literatura(
@@ -25,7 +26,7 @@ def literatura_crear(request):
                 autor_literatura=request.POST.get('autor_literatura'),
                 editorial_literatura=request.POST.get('editorial_literatura'),
                 anio_edicion_literatura=request.POST.get('anio_edicion_literatura'),
-                email_usuario_literatura=request.POST.get('email_usuario_literatura'),
+                email_usuario_literatura=email,
             )
         lit.save()
         ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
@@ -37,16 +38,25 @@ def literatura_crear(request):
 
 @login_required()
 def literatura_buscar(request):
+    email = None
+    email = request.user.email
     a_buscar = []
     if request.method == 'POST':
         nombre_literatura = request.POST.get('nombre_literatura')
         autor_literatura = request.POST.get('autor_literatura')
         editorial_literatura = request.POST.get('editorial_literatura')
         anio_edicion_literatura = request.POST.get('anio_edicion_literatura')
-        a_buscar = Literatura.objects.filter(nombre_literatura__icontains=nombre_literatura) & \
+        if request.user.is_superuser:
+            a_buscar = Literatura.objects.filter(nombre_literatura__icontains=nombre_literatura) & \
                    Literatura.objects.filter(autor_literatura__icontains=autor_literatura) & \
                    Literatura.objects.filter(editorial_literatura__icontains=editorial_literatura) & \
                    Literatura.objects.filter(anio_edicion_literatura__icontains=anio_edicion_literatura)
+        else:
+            a_buscar = Literatura.objects.filter(nombre_literatura__icontains=nombre_literatura) & \
+                       Literatura.objects.filter(autor_literatura__icontains=autor_literatura) & \
+                       Literatura.objects.filter(editorial_literatura__icontains=editorial_literatura) & \
+                       Literatura.objects.filter(anio_edicion_literatura__icontains=anio_edicion_literatura) & \
+                       Literatura.objects.filter(email_usuario_literatura=email)
 
     contexto = {
         'buscar_literatura': Buscar_Literatura_Form(),
@@ -69,12 +79,10 @@ def literatura_modificar(request, id_literatura):
         Lite = Literatura_Form(request.POST)
         if Lite.is_valid():
             data = Lite.cleaned_data
-
             lit.nombre_literatura= data.get('nombre_literatura')
             lit.autor_literatura= data.get('autor_literatura')
             lit.editorial_literatura= data.get('editorial_literatura')
             lit.anio_edicion_literatura= data.get('anio_edicion_literatura')
-            lit.email_usuario_literatura = data.get('email_usuario_literatura')
 
             lit.save()
             ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
@@ -100,13 +108,15 @@ def literatura_modificar(request, id_literatura):
 @login_required()
 def musica_crear(request):
     mus = Musica_Form(request.POST)
+    email = None
+    email = request.user.email
     if request.method == 'POST':
         if mus.is_valid():
             mus = Musica(
                 nombre_artista_musica=request.POST.get('nombre_artista_musica'),
                 nombre_disco_musica=request.POST.get('nombre_disco_musica'),
                 anio_lanzamiento_musica=request.POST.get('anio_lanzamiento_musica'),
-                email_usuario_musica=request.POST.get('email_usuario_musica'),
+                email_usuario_musica=email,
             )
         mus.save()
         ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
@@ -118,15 +128,22 @@ def musica_crear(request):
 
 @login_required()
 def musica_buscar(request):
+    email = None
+    email = request.user.email
     a_buscar = []
     if request.method == 'POST':
         nombre_artista_musica = request.POST.get('nombre_artista_musica')
         nombre_disco_musica = request.POST.get('nombre_disco_musica')
         anio_lanzamiento_musica = request.POST.get('anio_lanzamiento_musica')
-        a_buscar = Musica.objects.filter(nombre_artista_musica__icontains=nombre_artista_musica) & \
+        if request.user.is_superuser:
+            a_buscar = Musica.objects.filter(nombre_artista_musica__icontains=nombre_artista_musica) & \
                    Musica.objects.filter(nombre_disco_musica__icontains=nombre_disco_musica) & \
                    Musica.objects.filter(anio_lanzamiento_musica__icontains=anio_lanzamiento_musica)
-
+        else:
+            a_buscar = Musica.objects.filter(nombre_artista_musica__icontains=nombre_artista_musica) & \
+                       Musica.objects.filter(nombre_disco_musica__icontains=nombre_disco_musica) & \
+                       Musica.objects.filter(anio_lanzamiento_musica__icontains=anio_lanzamiento_musica) & \
+                    Musica.objects.filter(email_usuario_musica=email)
     contexto = {
         'buscar_musica': Buscar_Musica_Form(),
         'musica': a_buscar
@@ -148,11 +165,9 @@ def musica_modificar(request, id_musica):
         Musi = Musica_Form(request.POST)
         if Musi.is_valid():
             data = Musi.cleaned_data
-
             mus.nombre_artista_musica= data.get('nombre_artista_musica')
             mus.nombre_disco_musica= data.get('nombre_disco_musica')
             mus.anio_lanzamiento_musica= data.get('anio_lanzamiento_musica')
-            mus.email_usuario_musica= data.get('email_usuario_musica')
 
             mus.save()
             ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
@@ -177,13 +192,15 @@ def musica_modificar(request, id_musica):
 @login_required()
 def cine_crear(request):
     cine = Cine_Form(request.POST)
+    email = None
+    email = request.user.email
     if request.method == 'POST':
         if cine.is_valid():
             cine = Cine(
                 nombre_pelicula_cine=request.POST.get('nombre_pelicula_cine'),
                 nombre_director_cine=request.POST.get('nombre_director_cine'),
                 anio_lanzamiento_cine=request.POST.get('anio_lanzamiento_cine'),
-                email_usuario_cine=request.POST.get('email_usuario_cine'),
+                email_usuario_cine=email,
             )
         cine.save()
         ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
@@ -194,14 +211,22 @@ def cine_crear(request):
 
 @login_required()
 def cine_buscar(request):
+    email = None
+    email = request.user.email
     a_buscar = []
     if request.method == 'POST':
         nombre_pelicula_cine = request.POST.get('nombre_pelicula_cine')
         nombre_director_cine = request.POST.get('nombre_director_cine')
         anio_lanzamiento_cine = request.POST.get('anio_lanzamiento_cine')
-        a_buscar = Cine.objects.filter(nombre_pelicula_cine__icontains=nombre_pelicula_cine) & \
+        if request.user.is_superuser:
+            a_buscar = Cine.objects.filter(nombre_pelicula_cine__icontains=nombre_pelicula_cine) & \
                    Cine.objects.filter(nombre_director_cine__icontains=nombre_director_cine) & \
                    Cine.objects.filter(anio_lanzamiento_cine__icontains=anio_lanzamiento_cine)
+        else:
+            a_buscar = Cine.objects.filter(nombre_pelicula_cine__icontains=nombre_pelicula_cine) & \
+                       Cine.objects.filter(nombre_director_cine__icontains=nombre_director_cine) & \
+                       Cine.objects.filter(anio_lanzamiento_cine__icontains=anio_lanzamiento_cine) & \
+                    Cine.objects.filter(email_usuario_cine=email)
 
     contexto = {
         'buscar_cine': Buscar_Cine_Form(),
@@ -224,11 +249,9 @@ def cine_modificar(request, id_cine):
         cine_temp = Cine_Form(request.POST)
         if cine_temp.is_valid():
             data = cine_temp.cleaned_data
-
             cine.nombre_pelicula_cine= data.get('nombre_pelicula_cine')
             cine.nombre_director_cine= data.get('nombre_director_cine')
             cine.anio_lanzamiento_cine= data.get('anio_lanzamiento_cine')
-            cine.email_usuario_cine= data.get('email_usuario_cine')
 
             cine.save()
             ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)

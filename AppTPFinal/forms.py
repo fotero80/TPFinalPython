@@ -10,7 +10,7 @@ class Literatura_Form(forms.Form):
     autor_literatura = forms.CharField(max_length=50)
     editorial_literatura = forms.CharField(max_length=50)
     anio_edicion_literatura = forms.IntegerField()
-    email_usuario_literatura = forms.EmailField()
+    #email_usuario_literatura = forms.EmailField()
 
 
 class Buscar_Literatura_Form(forms.Form):
@@ -24,7 +24,7 @@ class Musica_Form(forms.Form):
     nombre_artista_musica = forms.CharField(max_length=50)
     nombre_disco_musica = forms.CharField(max_length=50)
     anio_lanzamiento_musica = forms.IntegerField()
-    email_usuario_musica = forms.EmailField()
+    #email_usuario_musica = forms.EmailField()
 
 
 class Buscar_Musica_Form(forms.Form):
@@ -37,20 +37,10 @@ class Cine_Form(forms.Form):
     nombre_pelicula_cine = forms.CharField(max_length=50)
     nombre_director_cine = forms.CharField(max_length=50)
     anio_lanzamiento_cine = forms.IntegerField()
-    email_usuario_cine = forms.EmailField()
+    #email_usuario_cine = forms.EmailField()
 
 
 class Buscar_Cine_Form(forms.Form):
     nombre_pelicula_cine = forms.CharField(max_length=50)
     nombre_director_cine = forms.CharField(max_length=50)
     anio_lanzamiento_cine = forms.IntegerField()
-
-
-class Usuario_Form(forms.Form):
-    nombre_usuario = forms.CharField(max_length=50)
-    apellido_usuario = forms.CharField(max_length=50)
-    fecha_nacimiento_usuario = forms.DateField(widget=DateImput)
-    email_usuario = forms.EmailField()
-
-
-
