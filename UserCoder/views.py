@@ -76,14 +76,14 @@ def usuario_buscar(request):
     return render(request, 'UserCoder/usuariobuscar.html', contexto)
 
 
-#@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser)
 def usuario_eliminar(request, username):
     usuario = User.objects.get(username=username)
     usuario.delete()
 
     return redirect('TPFinalUsuariosBuscar')
 
-#@user_passes_test(lambda u: u.is_superuser)
+@user_passes_test(lambda u: u.is_superuser)
 def usuario_modificar(request, username):
     usuario = User.objects.get(username=username)
 
