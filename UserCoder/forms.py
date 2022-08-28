@@ -15,10 +15,10 @@ class userRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'username')
+        fields = ('username', 'first_name', 'last_name', 'email')
 
 
-class User_Form(forms.Form):
+class UserFindForm(forms.Form):
     username = forms.CharField()
     first_name = forms.CharField()
     last_name = forms.CharField()

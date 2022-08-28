@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
-from UserCoder.forms import userRegisterForm, User_Form
+from UserCoder.forms import userRegisterForm, UserFindForm
 
 
 def user_login(request):
@@ -50,7 +50,7 @@ def user_logon(request):
 
     contexto = {
         'form': userRegisterForm(),
-        'name_submit': 'Registrarse',
+        'name_submit': 'Registrar usuario',
         'tittle': 'Ingrese sus datos para crear su usuario.'
     }
     return render(request, 'UserCoder/login.html', contexto)
@@ -70,7 +70,7 @@ def usuario_buscar(request):
                    User.objects.filter(last_name__icontains=last_name) & \
                    User.objects.filter(email__icontains=email)
     contexto = {
-        'buscar_usuario': User_Form(),
+        'buscar_usuario': UserFindForm(),
         'usuario': a_buscar
     }
     return render(request, 'UserCoder/usuariobuscar.html', contexto)
@@ -88,7 +88,7 @@ def usuario_modificar(request, username):
     usuario = User.objects.get(username=username)
 
     if request.method == 'POST':
-        usr = User_Form(request.POST)
+        usr = UserFindForm(request.POST)
         if usr.is_valid():
             data = usr.cleaned_data
             usuario.username= data.get('username')
@@ -99,7 +99,7 @@ def usuario_modificar(request, username):
             ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
             return redirect('TPFinalUsuariosBuscar')
 
-    usuario_form = User_Form(initial={
+    usuario_form = UserFindForm(initial={
                 'username': usuario.username,
                 'first_name': usuario.first_name,
                 'last_name': usuario.last_name,

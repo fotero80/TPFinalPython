@@ -6,14 +6,6 @@
 
 {% block stile %}
 <style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-  text-align:center;
-}
-
-
-
 </style>
 {% endblock %}
 
@@ -30,44 +22,47 @@ table, th, td {
 
 {% block bodyheader %}
 <h1 style="color:white; display:inline;">Cargue los datos que desea buscar</h1>
-
-<div class="space2">
-</div>
-<div class="datos-musica">
-    <form class="bodyoptionstittle" id="musica" name="musica" action="{% url 'TPFinalMusicaBuscar' %}"
-          method="POST" novalidate>
-        <b>
-            {% csrf_token %}
-            {{ buscar_musica.as_p }}
-            <p><input type="submit" value="Buscar"/></p>
-            <br>
-        </b>
-    </form>
-</div>
-</header>
 {% endblock %}
-
 {% block bodyoptions %}
+<section>
+    <div class="datos-musica">
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <form class="bodyoptionstittle" action="{% url 'TPFinalMusicaBuscar' %}" method="post" novalidate>{% csrf_token %}
+                <table style="width:40%" >
+                    {% for field in buscar_musica %}
+            <tr>
+                <th>{{ field.label }}</th>
+                <th>{{ field }}</th>
+                    {% endfor %}
+            </table>
+            <input style="width: auto;" type="submit" value="Buscar">
+            </form>
+        </div>
+    </div>
+</div>
+</section>
+
 <section class="py-5 border-bottom" id="resultado">
     <div class="datos-musica">
         <h4>Los datos encontrados son: </h4>
-        <table style="width:100%">
+        <table class="thdata" style="width:100%">
             <tr>
-                <th>ID</th>
-                <th>Artista</th>
-                <th>Disco</th>
-                <th>Año</th>
-                <th>Eliminar</th>
-                <th>Modificar</th>
+                <th class="thdata">ID</th>
+                <th class="thdata">Artista</th>
+                <th class="thdata">Disco</th>
+                <th class="thdata">Año</th>
+                <th class="thdata">Eliminar</th>
+                <th class="thdata">Modificar</th>
             </tr>
             {% for musica in musica %}
             <tr>
-                <td>{{musica.id_musica}}</td>
-                <td>{{musica.nombre_artista_musica}}</td>
-                <td>{{musica.nombre_disco_musica}}</td>
-                <td>{{musica.anio_lanzamiento_musica}}</td>
-                <td><a href="{% url 'TPFinalMusicaEliminar' musica.id_musica %}">Eliminar</a></td>
-                <td><a href="{% url 'TPFinalMusicaModificar' musica.id_musica  %}">Modificar</a></td>
+                <td class="tddata">{{musica.id_musica}}</td>
+                <td class="tddata">{{musica.nombre_artista_musica}}</td>
+                <td class="tddata">{{musica.nombre_disco_musica}}</td>
+                <td class="tddata">{{musica.anio_lanzamiento_musica}}</td>
+                <td class="tddata"><a href="{% url 'TPFinalMusicaEliminar' musica.id_musica %}">Eliminar</a></td>
+                <td class="tddata"><a href="{% url 'TPFinalMusicaModificar' musica.id_musica  %}">Modificar</a></td>
             </tr>
             {% endfor %}
 
