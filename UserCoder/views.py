@@ -15,10 +15,8 @@ def user_login(request):
 
         if form.is_valid():
             data = form.cleaned_data
-
             usuario = data.get('username')
             contrasenia = data.get('password')
-
             user = authenticate(username=usuario, password=contrasenia)
 
             if user:

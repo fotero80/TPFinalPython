@@ -171,7 +171,7 @@ def musica_modificar(request, id_musica):
 
             mus.save()
             ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
-            return redirect('TPFinalLiteraturaBuscar')
+            return redirect('TPFinalMusicaBuscar')
 
 
     musica_form = Musica_Form(initial={
