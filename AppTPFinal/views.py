@@ -1,5 +1,7 @@
 import ctypes
+from django.contrib.auth.decorators import user_passes_test
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from AppTPFinal.forms import Usuario_Form, Literatura_Form, Musica_Form, Cine_Form, Buscar_Literatura_Form, \
@@ -10,86 +12,10 @@ from AppTPFinal.models import Cine, Usuario, Musica, Literatura
 def Main(request):
     return render(request, 'AppCoder/main.html')
 
-#--------------------------------------------------------------------------------------------------------
-#Modulos de Usuarios
-def usuario_crear(request):
-    usr = Usuario_Form(request.POST)
-    if request.method == 'POST':
-        if usr.is_valid():
-            usr = Usuario(
-                nombre_usuario=request.POST.get('nombre_usuario'),
-                apellido_usuario=request.POST.get('apellido_usuario'),
-                fecha_nacimiento_usuario=request.POST.get('fecha_nacimiento_usuario'),
-                email_usuario=request.POST.get('email_usuario'),
-            )
-            usr.save()
-            ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
-
-    contexto = {
-        'formulariousuario': Usuario_Form()
-    }
-    return render(request, 'AppCoder/usuario/usuario.html', contexto)
-
-
-def usuario_buscar(request):
-    a_buscar = []
-    if request.method == 'POST':
-        nombre_usuario = request.POST.get('nombre_usuario')
-        apellido_usuario = request.POST.get('apellido_usuario')
-        fecha_nacimiento_usuario = request.POST.get('fecha_nacimiento_usuario')
-        email_usuario = request.POST.get('email_usuario')
-        a_buscar = Usuario.objects.filter(nombre_usuario__icontains=nombre_usuario) & \
-                   Usuario.objects.filter(apellido_usuario__icontains=apellido_usuario) & \
-                   Usuario.objects.filter(fecha_nacimiento_usuario__icontains=fecha_nacimiento_usuario) & \
-                   Usuario.objects.filter(email_usuario__icontains=email_usuario)
-    contexto = {
-        'buscar_usuario': Usuario_Form(),
-        'usuario': a_buscar
-    }
-    return render(request, 'AppCoder/usuario/usuariobuscar.html', contexto)
-
-
-def usuario_eliminar(request, id_usuario):
-    usuario = Usuario.objects.get(id_usuario=id_usuario)
-    usuario.delete()
-
-    return redirect('TPFinalUsuariosBuscar')
-
-
-def usuario_modificar(request, id_usuario):
-    usuario = Usuario.objects.get(id_usuario=id_usuario)
-
-    if request.method == 'POST':
-        usr = Usuario_Form(request.POST)
-        if usr.is_valid():
-            data = usr.cleaned_data
-
-            usuario.nombre_usuario= data.get('nombre_usuario')
-            usuario.apellido_usuario= data.get('apellido_usuario')
-            usuario.fecha_nacimiento_usuario= data.get('fecha_nacimiento_usuario')
-            usuario.email_usuario= data.get('email_usuario')
-
-            usuario.save()
-            ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
-            return redirect('TPFinalUsuariosBuscar')
-
-
-    usuario_form = Usuario_Form(initial={
-                'nombre_usuario': usuario.nombre_usuario,
-                'apellido_usuario': usuario.apellido_usuario,
-                'fecha_nacimiento_usuario': usuario.fecha_nacimiento_usuario,
-                'email_usuario': usuario.email_usuario
-                }
-             )
-    contexto = {
-        'formulariousuario' : usuario_form
-    }
-
-    return render(request, 'AppCoder/usuario/usuariomodificar.html', contexto)
-
 
 #--------------------------------------------------------------------------------------------------------
 #Modulos de Literatura
+@login_required()
 def literatura_crear(request):
     lit = Literatura_Form(request.POST)
     if request.method == 'POST':
@@ -109,7 +35,7 @@ def literatura_crear(request):
     }
     return render(request, 'AppCoder/literatura/literatura.html', contexto)
 
-
+@login_required()
 def literatura_buscar(request):
     a_buscar = []
     if request.method == 'POST':
@@ -128,14 +54,14 @@ def literatura_buscar(request):
     }
     return render(request, 'AppCoder/literatura/literaturabuscar.html', contexto)
 
-
+@login_required()
 def literatura_eliminar(request, id_literatura):
     lit = Literatura.objects.get(id_literatura=id_literatura)
     lit.delete()
 
     return redirect('TPFinalLiteraturaBuscar')
 
-
+@login_required()
 def literatura_modificar(request, id_literatura):
     lit = Literatura.objects.get(id_literatura=id_literatura)
 
@@ -171,6 +97,7 @@ def literatura_modificar(request, id_literatura):
 
 #--------------------------------------------------------------------------------------------------------
 #Modulos de Musica
+@login_required()
 def musica_crear(request):
     mus = Musica_Form(request.POST)
     if request.method == 'POST':
@@ -189,6 +116,7 @@ def musica_crear(request):
     }
     return render(request, 'AppCoder/musica/musica.html', contexto)
 
+@login_required()
 def musica_buscar(request):
     a_buscar = []
     if request.method == 'POST':
@@ -205,14 +133,14 @@ def musica_buscar(request):
     }
     return render(request, 'AppCoder/musica/musicabuscar.html', contexto)
 
-
+@login_required()
 def musica_eliminar(request, id_musica):
     musica = Musica.objects.get(id_musica=id_musica)
     musica.delete()
 
     return redirect('TPFinalMusicaBuscar')
 
-
+@login_required()
 def musica_modificar(request, id_musica):
     mus = Musica.objects.get(id_musica=id_musica)
 
@@ -246,6 +174,7 @@ def musica_modificar(request, id_musica):
 
 #--------------------------------------------------------------------------------------------------------
 #Modulos de Cine
+@login_required()
 def cine_crear(request):
     cine = Cine_Form(request.POST)
     if request.method == 'POST':
@@ -263,6 +192,7 @@ def cine_crear(request):
     }
     return render(request, 'AppCoder/cine/cine.html', contexto)
 
+@login_required()
 def cine_buscar(request):
     a_buscar = []
     if request.method == 'POST':
@@ -279,12 +209,14 @@ def cine_buscar(request):
     }
     return render(request, 'AppCoder/cine/cinebuscar.html', contexto)
 
+@login_required()
 def cine_eliminar(request, id_cine):
     cine = Cine.objects.get(id_cine=id_cine)
     cine.delete()
 
     return redirect('TPFinalCineBuscar')
 
+@login_required()
 def cine_modificar(request, id_cine):
     cine = Cine.objects.get(id_cine=id_cine)
 

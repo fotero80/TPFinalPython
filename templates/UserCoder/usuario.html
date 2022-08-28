@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+
+{% block headertitlle %}
+    <title>User</title>
+{% endblock %}
+
+{% block bodytitleoptions %}
+{% if user.is_authenticated %}
+<div class="space">
+</div>
+<a style="color:white;"> User: <br>{{ user.get_username }}</a>
+<div class="space">
+</div>
+<a class="btn btn-primary" href="{% url 'UserCoderLogOut' %}"> Logout </a>
+{% endif %}
+{% endblock %}
+
+{% block bodyheader %}
+    <header >
+
+                            <h1 class="display-5 fw-bolder text-white mb-2">Cree su usuario</h1>
+                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                            </div>
+    {% endblock %}
+    {% block bodyoptions %}
+          <div class="space2">
+    </div>
+        <div class="datos-usuario">
+            <form class="bodyoptionstittle" id="usuarios" name="usuarios" action="{% url 'TPFinalUsuariosCrear' %}" method="POST">
+                <b>
+                {% csrf_token %}
+                    {{ formulariousuario.as_p }}
+                <p><input type="submit" value="Submit" onclick="validate()"/></p>
+                <br>
+                </b>
+            </form>
+        </div>
+    </header>
+{% endblock %}

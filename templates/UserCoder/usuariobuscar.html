@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block headertitlle %}
-<title>Literatura</title>
+<title>usuario Crear</title>
 {% endblock %}
 
 {% block stile %}
@@ -11,6 +11,7 @@ table, th, td {
   border-collapse: collapse;
   text-align:center;
 }
+
 
 </style>
 {% endblock %}
@@ -27,17 +28,20 @@ table, th, td {
 {% endblock %}
 
 {% block bodyheader %}
-<h1 style="color:white; display:inline;">Cargue los datos que desea buscar</h1>
+<header >
 
-    <div class="datos-cine">
-        <div class="space2">
+                    <h1 style="color:white; display:inline;">Cargue los datos que desea buscar</h1>
+
+    <div class="datos-usuario">
+                <div class="space2">
     </div>
-        <form class="bodyoptionstittle" id="cine" name="cine" action="{% url 'TPFinalCineBuscar' %}"
+        <form class="bodyoptionstittle" id="usuario" name="usuario"
+              action="{% url 'TPFinalUsuariosBuscar' %}"
               method="POST" novalidate>
             <b>
                 {% csrf_token %}
-                {{ buscar_cine.as_p }}
-                <p><input type="submit" value="Buscar" /></p>
+                {{ buscar_usuario.as_p }}
+                <p><input type="submit" value="Buscar"/></p>
                 <br>
             </b>
         </form>
@@ -49,24 +53,24 @@ table, th, td {
 <section class="py-5 border-bottom" id="resultado">
     <div class="datos-literatura">
         <h4>Los datos encontrados son: </h4>
-        <table style="width:100%" >
+        <table style="width:100%">
             <tr>
-                <th>ID</th>
+                <th>Username</th>
                 <th>Nombre</th>
-                <th>Director</th>
-                <th>Año</th>
+                <th>Apellido</th>
+                <th>Email</th>
                 <th>Eliminar</th>
                 <th>Modificar</th>
             </tr>
-            {% for cine in cine %}
-                <tr>
-                    <td>{{cine.id_cine}}</td>
-                    <td>{{cine.nombre_pelicula_cine}}</td>
-                    <td>{{cine.nombre_director_cine}}</td>
-                    <td>{{cine.anio_lanzamiento_cine}}</td>
-                    <td><a href="{% url 'TPFinalCineEliminar' cine.id_cine %}">Eliminar</a></td>
-                    <td><a href="{% url 'TPFinalCineModificar' cine.id_cine %}">Modificar</a></td>
-                </tr>
+            {% for usuario in usuario %}
+            <tr>
+                <td>{{usuario.username}}</td>
+                <td>{{usuario.first_name}}</td>
+                <td>{{usuario.last_name}}</td>
+                <td>{{usuario.email}}</td>
+                <td><a href="{% url 'TPFinalUsuariosEliminar' usuario.username %}">Eliminar</a></td>
+                <td><a href="{% url 'TPFinalUsuariosModificar' usuario.username %}">Modificar</a></td>
+            </tr>
             {% endfor %}
 
         </table>

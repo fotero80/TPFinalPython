@@ -52,3 +52,5 @@ class Usuario_Form(forms.Form):
     fecha_nacimiento_usuario = forms.DateField(widget=DateImput)
     email_usuario = forms.EmailField()
 
+
+

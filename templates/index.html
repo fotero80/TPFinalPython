@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% if messages %}
-
-{% for message in messages %}
-{{ message }}
-{% endfor %}
-
-{% endif %}
     {% load static %}
+    {% include 'styles/styles.html' %}
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
@@ -27,12 +21,36 @@
 </head>
 <body>
 <!-- Responsive navbar-->
-{% block bodytitleoptions %}
-{% endblock %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-5">
+        <a class="navbar-brand" href="#!">Inventario personal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/TPFinal">Home</a>
+                </li>
+                {% block bodytitleoptions %}
+                {% endblock %}
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <!-- Header-->
 <!-- Bloque para cargar la primera seccion de la pagina-->
-{% block bodyheader %}
-{% endblock %}
+<header class="bodyheader">
+    <div class="container px-5">
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-8">
+                {% block bodyheader %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</header>
 <!-- Features section-->
 <!-- Bloque para cargar la segunda seccion de la pagina-->
 {% block bodyoptions %}

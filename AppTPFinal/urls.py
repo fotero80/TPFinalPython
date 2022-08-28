@@ -1,13 +1,14 @@
 from django.urls import path
 from AppTPFinal.views import *
+from UserCoder.views import *
 
 urlpatterns = [
     path('', Main, name='TPFinalMain'),
     #Urls utilizadas para el CRUD de usuarios
-    path('Usuario/Crear/', usuario_crear, name='TPFinalUsuariosCrear'),
-    path('Usuario/Buscar/', usuario_buscar, name='TPFinalUsuariosBuscar'),
-    path('Usuario/Eliminar/<int:id_usuario>', usuario_eliminar, name='TPFinalUsuariosEliminar'),
-    path('Usuario/Modificar/<int:id_usuario>', usuario_modificar, name='TPFinalUsuariosModificar'),
+    #path('Usuario/Crear/', user_logon, name='TPFinalUsuariosCrear'),
+    #path('Usuario/Buscar/', usuario_buscar, name='TPFinalUsuariosBuscar'),
+    #path('Usuario/Eliminar/<int:username>', usuario_eliminar, name='TPFinalUsuariosEliminar'),
+    #path('Usuario/Modificar/<int:username>', usuario_modificar, name='TPFinalUsuariosModificar'),
 
     #Urls utilizadas para el CRUD de literatura
     path('Literatura/Crear/', literatura_crear, name='TPFinalLiteraturaCrear'),

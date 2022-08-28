@@ -1,15 +1,33 @@
-{% extends ‘index.html’ %}
+{% extends "AppCoder/main.html" %}
 
 {% block title %}Login{% endblock %}
 
-{% block body %}
+{% block bodytitleoptions %}
+{% endblock %}
 
+{% block bodyheader %}
+<div class="text-center my-5">
+    <h1 class="bodyheadertittle">{{tittle}}</h1>
+</div>
 
-{% csrf_token %}
+{% endblock %}
 
-{{ form.as_p }}
+{% block bodyoptions %}
+<div class="log">
+    <div class="space2">
+    </div>
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <form style="margin: auto; width: 420px; text-align: center;" action="" method="post">{% csrf_token %}
 
+            {{ form.as_p }}
 
+            <input type="submit" value="{{name_submit}}">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
 
-
+{% block bodycontact %}
 {% endblock %}
