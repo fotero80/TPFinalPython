@@ -26,14 +26,44 @@
     <div class="space2">
     </div>
     <div class="datos-usuario">
-        <form class="bodyoptionstittle" id="usuarios" name="usuarios" action="" method="POST">
-            <b>
-                {% csrf_token %}
-                {{ formulariousuario.as_p }}
-                <p><input type="submit" value="Modificar" onclick="validate()"/></p>
-                <br>
-            </b>
-        </form>
+        <div class="container px-5 my-5">
+            <div class="row gx-5">
+                <form class="bodyoptionstittle" id="usuarios" name="usuarios" action="" method="POST">
+                    <b>
+                        {% csrf_token %}
+                        <table style="width:40%">
+                            {% for field in formulariousuario %}
+                            <tr>
+                                {% if field.label == "Username" %}
+                                <th>Nombre de usuario <em>*</em></th>
+                                {% endif %}
+                                {% if field.label == "First name" %}
+                                <th>Nombre <em>*</em></th>
+                                {% endif %}
+                                {% if field.label == "Last name" %}
+                                <th>Apellido <em>*</em></th>
+                                {% endif %}
+                                {% if field.label == "Email" %}
+                                <th>Email <em>*</em></th>
+                                {% endif %}
+                                {% if field.label == "Password" %}
+                                <th>Contraseña <em>*</em></th>
+                                {% endif %}
+                                {% if field.label == "Password confirmation" %}
+                                <th>Repita la contraseña <em>*</em></th>
+                                {% endif %}
+                                <th>{{ field }}</th>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        <br>
+                        <label style="color: black;">Los campos con * son obligatorios.</label><br>
+                        <p><input type="submit" value="Modificar" onclick="validate()"/></p>
+                        <br>
+                    </b>
+                </form>
+            </div>
+        </div>
     </div>
 </header>
 {% endblock %}
