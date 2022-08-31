@@ -11,7 +11,6 @@ class userRegisterForm(UserCreationForm):
     first_name = forms.CharField(max_length=50)
     last_name = forms.CharField(max_length=50)
     email = forms.EmailField()
-    # username = forms.CharField(widget=forms.HiddenInput())
 
     class Meta:
         model = User

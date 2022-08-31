@@ -6,3 +6,4 @@ admin.site.register(Literatura)
 admin.site.register(Musica)
 admin.site.register(Cine)
 admin.site.register(Usuario)
+

@@ -1,7 +1,7 @@
 import ctypes
 from django.contrib.auth.decorators import user_passes_test
-from django.contrib.auth import authenticate, login, get_user_model
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -84,7 +84,6 @@ def usuario_eliminar(request, username):
 @user_passes_test(lambda u: u.is_superuser)
 def usuario_modificar(request, username):
     usuario = User.objects.get(username=username)
-
     if request.method == 'POST':
         usr = UserFindForm(request.POST)
         if usr.is_valid():
@@ -105,7 +104,8 @@ def usuario_modificar(request, username):
                 }
              )
     contexto = {
-        'formulariousuario' : usuario_form
+        'formulariousuario' : usuario_form,
     }
 
     return render(request, 'UserCoder/usuariomodificar.html', contexto)
+
