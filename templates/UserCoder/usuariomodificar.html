@@ -48,13 +48,19 @@
                                 {% if field.label == "Password confirmation" %}
                                 <th>Repita la contraseña <em>*</em></th>
                                 {% endif %}
+                                {% if field.label == "Imagen" %}
+                                <th>Avatar <em>*</em></th>
+                                {% endif %}
                                 <th>{{ field }}</th>
                             </tr>
                             {% endfor %}
                         </table>
                         <br>
-                        <th>{{ formularioavatar.as_p }}</th>
+                        {% if usuario.avatar.avatar.url != "" %}
                         <th><img src="{{ usuario.avatar.avatar.url }}" alt="" width="50px" height="50px"></th>
+                        {% else %}
+                        <td class="tddata"></td>
+                        {% endif %}
                         <br> <br>
                         <label style="color: black;">Los campos con * son obligatorios.</label><br>
                         <p><input type="submit" value="Modificar"/></p>

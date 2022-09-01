@@ -69,7 +69,11 @@
             </tr>
             {% for usuario in usuario %}
             <tr>
+                {% if  usuario.avatar.avatar.url  != "" %}
                 <td class="tddata"><img src="{{ usuario.avatar.avatar.url }}" alt="" width="40px" height="40px"></td>
+                {% else %}
+                <td class="tddata">No Avatar</td>
+                {% endif %}
                 <td class="tddata">{{usuario.username}}</td>
                 <td class="tddata">{{usuario.first_name}}</td>
                 <td class="tddata">{{usuario.last_name}}</td>

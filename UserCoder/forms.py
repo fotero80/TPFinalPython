@@ -26,10 +26,10 @@ class UserFindForm(forms.Form):
     email = forms.EmailField()
 
 
-class UserPhotoForm(forms.ModelForm):
-    class Meta:
-        model = Avatar
-        fields = ('avatar', )
-        widgets = {
-            'avatar': forms.FileInput(attrs={'class': 'input'}),
-        }
+class UserChangeForm(forms.Form):
+    username = forms.CharField()
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField()
+    imagen = forms.ImageField()
+
