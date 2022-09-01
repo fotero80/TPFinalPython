@@ -21,6 +21,7 @@ Memory: 2034M
 Cores: 4
 
 - Importar "import ctypes" en las vistas para mostrar avisos pop ups
+- Instalar python -m pip install Pillow
 
 
 ### Componentes 🔧
