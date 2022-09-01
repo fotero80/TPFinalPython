@@ -1,5 +1,5 @@
 import ctypes
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
@@ -82,7 +82,7 @@ def usuario_eliminar(request, username):
 
     return redirect('TPFinalUsuariosBuscar')
 
-@user_passes_test(lambda u: u.is_superuser)
+@login_required()
 def usuario_modificar(request, username):
     usuario = User.objects.get(username=username)
     if request.method == 'POST':
@@ -96,16 +96,22 @@ def usuario_modificar(request, username):
             usuario.save()
 
             avatar = Avatar.objects.filter(user=usuario)
+            imagen=data.get("imagen")
             if avatar.exists():
-                avatar = avatar[0]
-                avatar.avatar = data.get("imagen")
-                avatar.save()
+                if imagen:
+                    avatar = avatar[0]
+                    avatar.avatar = imagen
+                    avatar.save()
 
             else:
                 avatar = Avatar(user=usuario, avatar=data.get("imagen"))
                 avatar.save()
             ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
-        return redirect('TPFinalUsuariosBuscar')
+
+        if request.user.is_superuser:
+            return redirect('TPFinalUsuariosBuscar')
+        else:
+            return redirect('TPFinalUsuariosModificar',username)
 
     usuario_form = UserChangeForm(initial={
                 'username': usuario.username,
