@@ -95,11 +95,11 @@ def usuario_modificar(request, username):
             usuario.last_name= data.get('last_name')
             usuario.email= data.get('email')
             usuario.save()
-
-        if form_avatar.is_valid():
+        # aca deberia guardar los datos del avatar
+        #if form_avatar.is_valid():
             #ctypes.windll.user32.MessageBoxW(0, u, "mensaje", 0)
             #avatar = Avatar(user=u, imagen=form_avatar.cleaned_data['avatar'])
-            form_avatar.save()
+            #form_avatar.save()
         ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
         return redirect('TPFinalUsuariosBuscar')
 
