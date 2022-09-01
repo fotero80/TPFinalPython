@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
-from UserCoder.forms import userRegisterForm, UserFindForm
+from UserCoder.forms import userRegisterForm, UserFindForm, UserPhotoForm
+from UserCoder.models import Avatar
 
 
 def user_login(request):
@@ -85,7 +86,8 @@ def usuario_eliminar(request, username):
 def usuario_modificar(request, username):
     usuario = User.objects.get(username=username)
     if request.method == 'POST':
-        usr = UserFindForm(request.POST)
+        usr = UserFindForm(request.POST or None, request.FILES or None)
+        form_avatar = UserPhotoForm(request.POST or None, request.FILES or None)
         if usr.is_valid():
             data = usr.cleaned_data
             usuario.username= data.get('username')
@@ -93,8 +95,13 @@ def usuario_modificar(request, username):
             usuario.last_name= data.get('last_name')
             usuario.email= data.get('email')
             usuario.save()
-            ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
-            return redirect('TPFinalUsuariosBuscar')
+
+        if form_avatar.is_valid():
+            #ctypes.windll.user32.MessageBoxW(0, u, "mensaje", 0)
+            #avatar = Avatar(user=u, imagen=form_avatar.cleaned_data['avatar'])
+            form_avatar.save()
+        ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
+        return redirect('TPFinalUsuariosBuscar')
 
     usuario_form = UserFindForm(initial={
                 'username': usuario.username,
@@ -103,9 +110,14 @@ def usuario_modificar(request, username):
                 'email': usuario.email
                 }
              )
+    avatar_form = UserPhotoForm(initial={
+            'user' : Avatar.user,
+            'avatar': Avatar.avatar
+    })
     contexto = {
         'formulariousuario' : usuario_form,
+        'formularioavatar': avatar_form,
+        'usuario': usuario
     }
 
     return render(request, 'UserCoder/usuariomodificar.html', contexto)
-

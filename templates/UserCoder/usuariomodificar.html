@@ -23,7 +23,8 @@
     <div class="datos-usuario">
         <div class="container px-5 my-5">
             <div class="row gx-5">
-                <form class="bodyoptionstittle" id="usuarios" name="usuarios" action="" method="POST">
+                <form class="bodyoptionstittle" id="usuarios" name="usuarios" action="" method="POST"
+                      enctype="multipart/form-data">
                     <b>
                         {% csrf_token %}
                         <table style="width:40%">
@@ -52,13 +53,17 @@
                             {% endfor %}
                         </table>
                         <br>
+                        <th>{{ formularioavatar.as_p }}</th>
+                        <th><img src="{{ usuario.avatar.avatar.url }}" alt="" width="50px" height="50px"></th>
+                        <br> <br>
                         <label style="color: black;">Los campos con * son obligatorios.</label><br>
-                        <p><input type="submit" value="Modificar" onclick="validate()"/></p>
+                        <p><input type="submit" value="Modificar"/></p>
                         <br>
                     </b>
                 </form>
             </div>
         </div>
     </div>
+
 </header>
 {% endblock %}

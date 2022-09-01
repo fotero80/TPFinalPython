@@ -2,6 +2,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 
+from UserCoder.models import Avatar
+
 
 class DateImput(forms.DateInput):
     input_type = 'date'
@@ -22,3 +24,12 @@ class UserFindForm(forms.Form):
     first_name = forms.CharField()
     last_name = forms.CharField()
     email = forms.EmailField()
+
+
+class UserPhotoForm(forms.ModelForm):
+    class Meta:
+        model = Avatar
+        fields = ('avatar', )
+        widgets = {
+            'avatar': forms.FileInput(attrs={'class': 'input'}),
+        }

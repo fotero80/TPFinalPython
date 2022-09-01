@@ -59,6 +59,7 @@
         <h4>Los datos encontrados son: </h4>
         <table  class="thdata" style="width:100%">
             <tr>
+                <th class="thdata">Avatar</th>
                 <th class="thdata">Username</th>
                 <th class="thdata">Nombre</th>
                 <th class="thdata">Apellido</th>
@@ -68,6 +69,7 @@
             </tr>
             {% for usuario in usuario %}
             <tr>
+                <td class="tddata"><img src="{{ usuario.avatar.avatar.url }}" alt="" width="40px" height="40px"></td>
                 <td class="tddata">{{usuario.username}}</td>
                 <td class="tddata">{{usuario.first_name}}</td>
                 <td class="tddata">{{usuario.last_name}}</td>
@@ -79,5 +81,6 @@
 
         </table>
     </div>
+
 </section>
 {% endblock %}

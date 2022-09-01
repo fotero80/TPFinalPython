@@ -1,0 +1,40 @@
+{% extends "index.html" %}
+
+{% block headertitlle %}
+<title>User</title>
+{% endblock %}
+
+{% block bodytitleoptions %}
+{% if user.is_authenticated %}
+<a class="btn btn-primary" href="{% url 'UserCoderLogOut' %}"> Logout </a>
+{% endif %}
+{% endblock %}
+
+{% block bodyheader %}
+<header>
+
+    <h1 class="display-5 fw-bolder text-white mb-2">Modifique su usuario</h1>
+    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+    </div>
+    {% endblock %}
+    {% block bodyoptions %}
+    <div class="space2">
+    </div>
+    <div class="datos-usuario">
+        <div class="container px-5 my-5">
+            <div class="row gx-5">
+                <div class="avatar">
+                    {{ request.user.avatar.url }} #there is trying
+                    {{ request.user.avatar.avatar.url }}
+                    <img src="{{ request.user.avatar.avatar.url }}" alt="" width="80px" height="80px">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" id="file"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
