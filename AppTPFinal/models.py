@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -11,6 +12,10 @@ class Literatura (models.Model):
 
     def __str__(self):
         return f"Literatura: {self.nombre_literatura} {self.autor_literatura}"
+
+class ImagenLiteratura (models.Model):
+    id_literatura = models.OneToOneField(Literatura, on_delete=models.CASCADE) # Delete profile when user is deleted
+    imglit = models.ImageField(upload_to='literatura', null=True, blank=True)
 
 
 class Musica (models.Model):
@@ -44,3 +49,4 @@ class Usuario (models.Model):
 
     def __str__(self):
         return f"Usuario: {self.nombre_usuario} {self.apellido_usuario}"
+

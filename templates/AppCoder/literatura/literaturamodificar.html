@@ -21,8 +21,8 @@
     <div class="datos-usuario">
         <div class="container px-5 my-5">
             <div class="row gx-5">
-                <form class="bodyoptionstittle" action="" method="post" novalidate>{% csrf_token %}
-                    <table style="width:40%">
+                <form class="bodyoptionstittle" action="" method="post" enctype="multipart/form-data" novalidate>{% csrf_token %}
+                    <table style="width:60%">
                         {% for field in formulariocargarliteratura %}
                         <tr>
                             {% if field.label == "Nombre literatura" %}
@@ -37,11 +37,20 @@
                             {% if field.label == "Anio edicion literatura" %}
                             <th>Año de la edicion del libro <em>*</em></th>
                             {% endif %}
+                            {% if field.label == "Imglit" %}
+                            <th>Imagen literatura</th>
+                            {% endif %}
                             <th>{{ field }}</th>
                         </tr>
                         {% endfor %}
                     </table>
                     <br>
+                    {% if literatura.imagenliteratura.imglit.url != "" %}
+                    <th><img src="{{ literatura.imagenliteratura.imglit.url }}" alt="" width="50px" height="50px"></th>
+                    {% else %}
+                    <td class="tddata"></td>
+                    {% endif %}
+                    <br> <br>
                     <label style="color: black;">Los campos con * son obligatorios.</label><br>
                     <p><input type="submit" value="Modificar" onclick="validate()"/></p>
                 </form>

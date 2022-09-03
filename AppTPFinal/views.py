@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from AppTPFinal.forms import  Literatura_Form, Musica_Form, Cine_Form, Buscar_Literatura_Form, \
     Buscar_Musica_Form, Buscar_Cine_Form
-from AppTPFinal.models import Cine, Musica, Literatura
+from AppTPFinal.models import Cine, Musica, Literatura, ImagenLiteratura
 
 
 def Main(request):
@@ -16,7 +16,7 @@ def Main(request):
 #Modulos de Literatura
 @login_required()
 def literatura_crear(request):
-    lit = Literatura_Form(request.POST)
+    lit = Literatura_Form(request.POST or None, request.FILES or None)
     email = None
     email = request.user.email
     if request.method == 'POST':
@@ -29,6 +29,11 @@ def literatura_crear(request):
                 email_usuario_literatura=email,
             )
         lit.save()
+
+        imagen = request.FILES["imglit"]
+        img = ImagenLiteratura(id_literatura=lit, imglit=imagen)
+        img.save()
+
         ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
 
     contexto = {
@@ -74,7 +79,6 @@ def literatura_eliminar(request, id_literatura):
 @login_required()
 def literatura_modificar(request, id_literatura):
     lit = Literatura.objects.get(id_literatura=id_literatura)
-
     if request.method == 'POST':
         Lite = Literatura_Form(request.POST)
         if Lite.is_valid():
@@ -83,8 +87,20 @@ def literatura_modificar(request, id_literatura):
             lit.autor_literatura= data.get('autor_literatura')
             lit.editorial_literatura= data.get('editorial_literatura')
             lit.anio_edicion_literatura= data.get('anio_edicion_literatura')
-
             lit.save()
+
+            img = ImagenLiteratura.objects.filter(id_literatura=lit)
+            imagen=request.FILES["imglit"]
+            if img.exists():
+                if imagen:
+                    img = img[0]
+                    img.imglit = imagen
+                    img.save()
+
+            else:
+                img = ImagenLiteratura(id_literatura=lit, imglit=imagen)
+                img.save()
+
             ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
             return redirect('TPFinalLiteraturaBuscar')
 
@@ -98,7 +114,8 @@ def literatura_modificar(request, id_literatura):
                 }
              )
     contexto = {
-        'formulariocargarliteratura': literatura_form
+        'formulariocargarliteratura': literatura_form,
+        'literatura': lit,
     }
 
     return render(request, 'AppCoder/literatura/literaturamodificar.html', contexto)

@@ -10,6 +10,7 @@ class Literatura_Form(forms.Form):
     autor_literatura = forms.CharField(max_length=50)
     editorial_literatura = forms.CharField(max_length=50)
     anio_edicion_literatura = forms.IntegerField()
+    imglit = forms.ImageField(required=False)
     #email_usuario_literatura = forms.EmailField()
 
 
