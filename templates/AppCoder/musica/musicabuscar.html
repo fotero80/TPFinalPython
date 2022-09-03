@@ -54,6 +54,7 @@
         <table class="thdata" style="width:100%">
             <tr>
                 <th class="thdata">ID</th>
+                <th class="thdata">Imagen</th>
                 <th class="thdata">Artista</th>
                 <th class="thdata">Disco</th>
                 <th class="thdata">Año</th>
@@ -63,6 +64,11 @@
             {% for musica in musica %}
             <tr>
                 <td class="tddata">{{musica.id_musica}}</td>
+                {% if  musica.imagenmusica.imgmus.url  != "" %}
+                <td class="tddata"><img src="{{ musica.imagenmusica.imgmus.url }}" alt="" width="40px" height="40px"></td>
+                {% else %}
+                <td class="tddata">No image</td>
+                {% endif %}
                 <td class="tddata">{{musica.nombre_artista_musica}}</td>
                 <td class="tddata">{{musica.nombre_disco_musica}}</td>
                 <td class="tddata">{{musica.anio_lanzamiento_musica}}</td>

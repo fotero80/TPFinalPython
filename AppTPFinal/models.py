@@ -14,7 +14,7 @@ class Literatura (models.Model):
         return f"Literatura: {self.nombre_literatura} {self.autor_literatura}"
 
 class ImagenLiteratura (models.Model):
-    id_literatura = models.OneToOneField(Literatura, on_delete=models.CASCADE) # Delete profile when user is deleted
+    id_literatura = models.OneToOneField(Literatura, on_delete=models.CASCADE)
     imglit = models.ImageField(upload_to='literatura', null=True, blank=True)
 
 
@@ -28,6 +28,9 @@ class Musica (models.Model):
     def __str__(self):
         return f"Musica: {self.nombre_artista_musica} {self.nombre_disco_musica}"
 
+class ImagenMusica (models.Model):
+    id_musica = models.OneToOneField(Musica, on_delete=models.CASCADE)
+    imgmus = models.ImageField(upload_to='musica', null=True, blank=True)
 
 class Cine (models.Model):
     id_cine = models.AutoField(primary_key=True)
@@ -39,6 +42,10 @@ class Cine (models.Model):
     def __str__(self):
         return f"Cine: {self.nombre_pelicula_cine} {self.nombre_director_cine}"
 
+
+class ImagenCine (models.Model):
+    id_cine = models.OneToOneField(Cine, on_delete=models.CASCADE)
+    imgcin = models.ImageField(upload_to='cine', null=True, blank=True)
 
 class Usuario (models.Model):
     id_usuario = models.AutoField(primary_key=True)

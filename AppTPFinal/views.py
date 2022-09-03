@@ -2,10 +2,8 @@ import ctypes
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from AppTPFinal.forms import  Literatura_Form, Musica_Form, Cine_Form, Buscar_Literatura_Form, \
-    Buscar_Musica_Form, Buscar_Cine_Form
-from AppTPFinal.models import Cine, Musica, Literatura, ImagenLiteratura
+from AppTPFinal.forms import *
+from AppTPFinal.models import *
 
 
 def Main(request):
@@ -136,6 +134,10 @@ def musica_crear(request):
                 email_usuario_musica=email,
             )
         mus.save()
+
+        imagen = request.FILES["imgmus"]
+        img = ImagenMusica(id_musica=mus, imgmus=imagen)
+        img.save()
         ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
 
     contexto = {
@@ -185,8 +187,20 @@ def musica_modificar(request, id_musica):
             mus.nombre_artista_musica= data.get('nombre_artista_musica')
             mus.nombre_disco_musica= data.get('nombre_disco_musica')
             mus.anio_lanzamiento_musica= data.get('anio_lanzamiento_musica')
-
             mus.save()
+
+            img = ImagenMusica.objects.filter(id_musica=mus)
+            imagen=request.FILES["imgmus"]
+            if img.exists():
+                if imagen:
+                    img = img[0]
+                    img.imgmus = imagen
+                    img.save()
+
+            else:
+                img = ImagenMusica(id_musica=mus, imgmus=imagen)
+                img.save()
+
             ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
             return redirect('TPFinalMusicaBuscar')
 
@@ -199,7 +213,8 @@ def musica_modificar(request, id_musica):
                 }
              )
     contexto = {
-        'formulariomusica': musica_form
+        'formulariomusica': musica_form,
+        'musica': mus,
     }
 
     return render(request, 'AppCoder/musica/musicamodificar.html', contexto)
@@ -220,6 +235,10 @@ def cine_crear(request):
                 email_usuario_cine=email,
             )
         cine.save()
+
+        imagen = request.FILES["imgcin"]
+        img = ImagenCine(id_cine=cine, imgcin=imagen)
+        img.save()
         ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
     contexto = {
         'formulariocine': Cine_Form()
@@ -269,8 +288,20 @@ def cine_modificar(request, id_cine):
             cine.nombre_pelicula_cine= data.get('nombre_pelicula_cine')
             cine.nombre_director_cine= data.get('nombre_director_cine')
             cine.anio_lanzamiento_cine= data.get('anio_lanzamiento_cine')
-
             cine.save()
+
+            img = ImagenCine.objects.filter(id_cine=cine)
+            imagen=request.FILES["imgcin"]
+            if img.exists():
+                if imagen:
+                    img = img[0]
+                    img.imgcin = imagen
+                    img.save()
+
+            else:
+                img = ImagenCine(id_cine=cine, imgcin=imagen)
+                img.save()
+
             ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
             return redirect('TPFinalCineBuscar')
 
@@ -283,7 +314,8 @@ def cine_modificar(request, id_cine):
                 }
              )
     contexto = {
-        'formulariocine': cine_form
+        'formulariocine': cine_form,
+        'cine': cine,
     }
 
     return render(request, 'AppCoder/cine/cinemodificar.html', contexto)

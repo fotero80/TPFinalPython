@@ -25,6 +25,7 @@ class Musica_Form(forms.Form):
     nombre_artista_musica = forms.CharField(max_length=50)
     nombre_disco_musica = forms.CharField(max_length=50)
     anio_lanzamiento_musica = forms.IntegerField()
+    imgmus = forms.ImageField(required=False)
     #email_usuario_musica = forms.EmailField()
 
 
@@ -38,6 +39,7 @@ class Cine_Form(forms.Form):
     nombre_pelicula_cine = forms.CharField(max_length=50)
     nombre_director_cine = forms.CharField(max_length=50)
     anio_lanzamiento_cine = forms.IntegerField()
+    imgcin = forms.ImageField(required=False)
     #email_usuario_cine = forms.EmailField()
 
 
