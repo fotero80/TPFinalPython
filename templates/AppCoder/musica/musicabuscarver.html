@@ -23,7 +23,7 @@
     <div class="datos-musica">
     <div class="container px-5 my-5">
         <div class="row gx-5">
-            <form class="bodyoptionstittle" action="{% url 'TPFinalMusicaBuscar' %}" method="post" novalidate>{% csrf_token %}
+            <form class="bodyoptionstittle"  method="post" novalidate>{% csrf_token %}
                 <table style="width:40%" >
                     {% for field in buscar_musica %}
                 <tr>
@@ -56,9 +56,8 @@
                 <th class="thdata">Imagen</th>
                 <th class="thdata">Artista</th>
                 <th class="thdata">Disco</th>
-                <th class="thdata">Año</th>
-                <th class="thdata">Eliminar</th>
-                <th class="thdata">Modificar</th>
+                <th class="thdata">Descripcion</th>
+                <th class="thdata">Ver</th>
             </tr>
             {% for musica in musica %}
             <tr>
@@ -71,8 +70,7 @@
                 <td class="tddata">{{musica.nombre_artista_musica}}</td>
                 <td class="tddata">{{musica.nombre_disco_musica}}</td>
                 <td class="tddata">{{musica.descripcion_musica|safe}}</td>
-                <td class="tddata"><a href="{% url 'TPFinalMusicaEliminar' musica.id_musica %}">Eliminar</a></td>
-                <td class="tddata"><a href="{% url 'TPFinalMusicaModificar' musica.id_musica  %}">Modificar</a></td>
+                <td class="tddata"><a href="{% url 'TPFinalMusicaVer' musica.id_musica  %}">Ver</a></td>
             </tr>
             {% endfor %}
 

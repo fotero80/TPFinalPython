@@ -69,6 +69,24 @@ def literatura_buscar(request):
     return render(request, 'AppCoder/literatura/literaturabuscar.html', contexto)
 
 
+def literatura_buscar_ver(request):
+    a_buscar = []
+    if request.method == 'POST':
+        nombre_literatura = request.POST.get('nombre_literatura')
+        autor_literatura = request.POST.get('autor_literatura')
+        editorial_literatura = request.POST.get('editorial_literatura')
+        descripcion_literatura = request.POST.get('descripcion_literatura')
+        a_buscar = Literatura.objects.filter(nombre_literatura__icontains=nombre_literatura) & \
+                    Literatura.objects.filter(autor_literatura__icontains=autor_literatura) & \
+                    Literatura.objects.filter(editorial_literatura__icontains=editorial_literatura) & \
+                    Literatura.objects.filter(descripcion_literatura__icontains=descripcion_literatura)
+
+    contexto = {
+        'buscar_literatura': Buscar_Literatura_Form(),
+        'literatura': a_buscar
+    }
+    return render(request, 'AppCoder/literatura/literaturabuscarver.html', contexto)
+
 @login_required()
 def literatura_eliminar(request, id_literatura):
     lit = Literatura.objects.get(id_literatura=id_literatura)
@@ -121,6 +139,21 @@ def literatura_modificar(request, id_literatura):
 
     return render(request, 'AppCoder/literatura/literaturamodificar.html', contexto)
 
+def literatura_ver(request, id_literatura):
+    lit = Literatura.objects.get(id_literatura=id_literatura)
+    literatura_form = Literatura_Form(initial={
+        'nombre_literatura': lit.nombre_literatura,
+        'autor_literatura': lit.autor_literatura,
+        'editorial_literatura': lit.editorial_literatura,
+        'descripcion_literatura': lit.descripcion_literatura,
+    }
+    )
+    contexto = {
+        'formulariocargarliteratura': literatura_form,
+        'literatura': lit,
+    }
+
+    return render(request, 'AppCoder/literatura/literaturaver.html', contexto)
 
 # --------------------------------------------------------------------------------------------------------
 # Modulos de Musica
@@ -174,6 +207,21 @@ def musica_buscar(request):
     }
     return render(request, 'AppCoder/musica/musicabuscar.html', contexto)
 
+def musica_buscar_ver(request):
+    a_buscar = []
+    if request.method == 'POST':
+        nombre_artista_musica = request.POST.get('nombre_artista_musica')
+        nombre_disco_musica = request.POST.get('nombre_disco_musica')
+        descripcion_musica = request.POST.get('descripcion_musica')
+        a_buscar = Musica.objects.filter(nombre_artista_musica__icontains=nombre_artista_musica) & \
+                    Musica.objects.filter(nombre_disco_musica__icontains=nombre_disco_musica) & \
+                    Musica.objects.filter(descripcion_musica__icontains=descripcion_musica)
+    contexto = {
+        'buscar_musica': Buscar_Musica_Form(),
+        'musica': a_buscar
+    }
+    return render(request, 'AppCoder/musica/musicabuscarver.html', contexto)
+
 
 @login_required()
 def musica_eliminar(request, id_musica):
@@ -226,6 +274,20 @@ def musica_modificar(request, id_musica):
 
     return render(request, 'AppCoder/musica/musicamodificar.html', contexto)
 
+def musica_ver(request, id_musica):
+    mus = Musica.objects.get(id_musica=id_musica)
+    musica_form = Musica_Form(initial={
+        'nombre_artista_musica': mus.nombre_artista_musica,
+        'nombre_disco_musica': mus.nombre_disco_musica,
+        'descripcion_musica': mus.descripcion_musica,
+    }
+    )
+    contexto = {
+        'formulariomusica': musica_form,
+        'musica': mus,
+    }
+
+    return render(request, 'AppCoder/musica/musicaver.html', contexto)
 
 # --------------------------------------------------------------------------------------------------------
 # Modulos de Cine
@@ -280,6 +342,22 @@ def cine_buscar(request):
     return render(request, 'AppCoder/cine/cinebuscar.html', contexto)
 
 
+def cine_buscar_ver(request):
+    a_buscar = []
+    if request.method == 'POST':
+        nombre_pelicula_cine = request.POST.get('nombre_pelicula_cine')
+        nombre_director_cine = request.POST.get('nombre_director_cine')
+        descripcion_cine = request.POST.get('descripcion_cine')
+        a_buscar = Cine.objects.filter(nombre_pelicula_cine__icontains=nombre_pelicula_cine) & \
+                    Cine.objects.filter(nombre_director_cine__icontains=nombre_director_cine) & \
+                    Cine.objects.filter(descripcion_cine__icontains=descripcion_cine)
+
+    contexto = {
+        'buscar_cine': Buscar_Cine_Form(),
+        'cine': a_buscar
+    }
+    return render(request, 'AppCoder/cine/cinebuscarver.html', contexto)
+
 @login_required()
 def cine_eliminar(request, id_cine):
     cine = Cine.objects.get(id_cine=id_cine)
@@ -330,3 +408,18 @@ def cine_modificar(request, id_cine):
     }
 
     return render(request, 'AppCoder/cine/cinemodificar.html', contexto)
+
+def cine_ver(request, id_cine):
+    cine = Cine.objects.get(id_cine=id_cine)
+    cine_form = Cine_Form(initial={
+        'nombre_pelicula_cine': cine.nombre_pelicula_cine,
+        'nombre_director_cine': cine.nombre_director_cine,
+        'descripcion_cine': cine.descripcion_cine,
+    }
+    )
+    contexto = {
+        'formulariocine': cine_form,
+        'cine': cine,
+    }
+
+    return render(request, 'AppCoder/cine/cinever.html', contexto)

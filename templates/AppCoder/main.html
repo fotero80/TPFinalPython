@@ -48,10 +48,15 @@
                 </a>
                 <br>
                 <a class="text-decoration-none" href="{% url 'TPFinalLiteraturaBuscar' %}">
-                    Ir a buscar literatura existente
+                    Ir a administrar mi literatura
                     <i class="bi bi-arrow-right"></i>
                 </a>
                 {% endif %}
+                <br>
+                <a class="text-decoration-none" href="{% url 'TPFinalLiteraturaBuscarVer' %}">
+                    Ir a buscar literatura existente
+                    <i class="bi bi-arrow-right"></i>
+                </a>
             </div>
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i>
@@ -65,10 +70,15 @@
                 </a>
                 <br>
                 <a class="text-decoration-none" href="{% url 'TPFinalMusicaBuscar' %}">
-                    Ir a buscar musica existente
+                    Ir a administrar mi musica
                     <i class="bi bi-arrow-right"></i>
                 </a>
                 {% endif %}
+                <br>
+                <a class="text-decoration-none" href="{% url 'TPFinalMusicaBuscarVer' %}">
+                    Ir a buscar musica existente
+                    <i class="bi bi-arrow-right"></i>
+                </a>
             </div>
             <div class="col-lg-4 ">
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i>
@@ -82,11 +92,18 @@
                 </a>
                 <br>
                 <a class="text-decoration-none" href="{% url 'TPFinalCineBuscar' %}">
-                    ir a buscar films existentes
+                    ir a administrar mis films
                     <i class="bi bi-arrow-right"></i>
                 </a>
                 {% endif %}
+                <br>
+                <a class="text-decoration-none" href="{% url 'TPFinalCineBuscarVer' %}">
+                    Ir a buscar films existentes
+                    <i class="bi bi-arrow-right"></i>
+                </a>
             </div>
+            <br>
+            <br>
             <!--para que un super user pueda administrar usuarios-->
             {% if user.is_authenticated and user.is_superuser%}
             <div class="col-lg-4 mb-5 mb-lg-0">

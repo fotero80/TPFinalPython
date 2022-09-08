@@ -24,7 +24,7 @@
     <div class="datos-cine">
         <div class="container px-5 my-5">
             <div class="row gx-5">
-                <form class="bodyoptionstittle" action="{% url 'TPFinalCineBuscar' %}" method="post" novalidate>{% csrf_token %}
+                <form class="bodyoptionstittle" method="post" novalidate>{% csrf_token %}
                     <table style="width:40%">
                         {% for field in buscar_cine %}
                         <tr>
@@ -58,9 +58,8 @@
                 <th class="thdata">Imagen</th>
                 <th class="thdata">Nombre</th>
                 <th class="thdata">Director</th>
-                <th class="thdata">Año</th>
-                <th class="thdata">Eliminar</th>
-                <th class="thdata">Modificar</th>
+                <th class="thdata">Descripcion</th>
+                <th class="thdata">Ver</th>
             </tr>
             {% for cine in cine %}
             <tr>
@@ -74,8 +73,7 @@
                 <td class="tddata">{{cine.nombre_pelicula_cine}}</td>
                 <td class="tddata">{{cine.nombre_director_cine}}</td>
                 <td class="tddata">{{cine.descripcion_cine|safe}}</td>
-                <td class="tddata"><a href="{% url 'TPFinalCineEliminar' cine.id_cine %}">Eliminar</a></td>
-                <td class="tddata"><a href="{% url 'TPFinalCineModificar' cine.id_cine %}">Modificar</a></td>
+                <td class="tddata"><a href="{% url 'TPFinalCineVer' cine.id_cine %}">Ver</a></td>
             </tr>
             {% endfor %}
 
