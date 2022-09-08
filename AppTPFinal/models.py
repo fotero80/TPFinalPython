@@ -1,12 +1,13 @@
-from django.contrib.auth.models import User
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 class Literatura (models.Model):
     id_literatura = models.AutoField(primary_key=True)
     nombre_literatura = models.CharField(max_length=50)
     autor_literatura = models.CharField(max_length=50)
-    editorial_literatura = models.CharField(max_length=50)
+    #editorial_literatura = models.CharField(max_length=50)
+    editorial_literatura = RichTextField(blank=True, null=True)
     anio_edicion_literatura = models.IntegerField()
     email_usuario_literatura = models.EmailField()
 

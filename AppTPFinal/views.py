@@ -35,7 +35,7 @@ def literatura_crear(request):
         ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
 
     contexto = {
-        'formulariocargarliteratura': Literatura_Form()
+        'formulariocargarliteratura': Literatura_Form(),
     }
     return render(request, 'AppCoder/literatura/literatura.html', contexto)
 

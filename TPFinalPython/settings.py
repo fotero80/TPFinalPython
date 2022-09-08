@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'AppTPFinal',
     'UserCoder',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -130,4 +131,6 @@ LOGIN_URL = 'TPFinalMain'
 MEDIA_URL = 'TPFinal/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+CKEDITOR_MEDIA_PREFIX = "AppTPFinal/static/AppCode/ckeditor/" #copiar ``media/ckeditor``
+CKEDITOR_UPLOAD_PATH = "AppTPFinal/media/ckeditor/"# Subir archivos
 

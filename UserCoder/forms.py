@@ -2,8 +2,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 
-from UserCoder.models import Avatar
-
 
 class DateImput(forms.DateInput):
     input_type = 'date'

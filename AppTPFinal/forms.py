@@ -1,4 +1,6 @@
 from django import forms
+from ckeditor.fields import RichTextField
+from ckeditor.widgets import CKEditorWidget
 
 
 class DateImput(forms.DateInput):
@@ -8,10 +10,10 @@ class DateImput(forms.DateInput):
 class Literatura_Form(forms.Form):
     nombre_literatura = forms.CharField(max_length=50)
     autor_literatura = forms.CharField(max_length=50)
-    editorial_literatura = forms.CharField(max_length=50)
+    editorial_literatura = forms.CharField(widget=CKEditorWidget())
     anio_edicion_literatura = forms.IntegerField()
     imglit = forms.ImageField(required=False)
-    #email_usuario_literatura = forms.EmailField()
+
 
 
 class Buscar_Literatura_Form(forms.Form):

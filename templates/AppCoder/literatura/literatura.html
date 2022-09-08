@@ -23,30 +23,33 @@
 </div>
 <div class="container px-5 my-5">
     <div class="row gx-5">
-        <form class="bodyoptionstittle" action="{% url 'TPFinalLiteraturaCrear' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <form class="bodyoptionstittle" action="{% url 'TPFinalLiteraturaCrear' %}" method="post"
+              enctype="multipart/form-data">{% csrf_token %}
             <table style="width:60%">
                 {% for field in formulariocargarliteratura %}
                 <tr>
-                    {% if  field.label  == "Nombre literatura" %}
+                    {% if field.label == "Nombre literatura" %}
                     <th>Nombre del libro <em>*</em></th>
                     {% endif %}
-                    {% if  field.label  == "Autor literatura" %}
+                    {% if field.label == "Autor literatura" %}
                     <th>Nombre del autor <em>*</em></th>
                     {% endif %}
-                    {% if  field.label  == "Editorial literatura" %}
+                    {% if field.label == "Editorial literatura" %}
                     <th>Nombre de la editorial <em>*</em></th>
                     {% endif %}
-                    {% if  field.label  == "Anio edicion literatura" %}
+                    {% if field.label == "Anio edicion literatura" %}
                     <th>Año de la edicion del libro <em>*</em></th>
                     {% endif %}
-                    {% if  field.label  == "Imglit" %}
-                    <th>Imagen literatura </th>
+                    {% if field.label == "Imglit" %}
+                    <th>Imagen literatura</th>
                     {% endif %}
                     <th>{{ field }}</th>
+                    <th>{{ field.media }}</th>
                 </tr>
                 {% endfor %}
-            </table><br>
-            <label style= "color: black;" >Los campos con * son obligatorios.</label><br>
+            </table>
+            <br>
+            <label style="color: black;">Los campos con * son obligatorios.</label><br>
             <p><input type="submit" value="Grabar" onclick="validate()"/></p>
         </form>
     </div>
