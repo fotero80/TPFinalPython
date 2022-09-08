@@ -6,9 +6,8 @@ class Literatura (models.Model):
     id_literatura = models.AutoField(primary_key=True)
     nombre_literatura = models.CharField(max_length=50)
     autor_literatura = models.CharField(max_length=50)
-    #editorial_literatura = models.CharField(max_length=50)
-    editorial_literatura = RichTextField(blank=True, null=True)
-    anio_edicion_literatura = models.IntegerField()
+    editorial_literatura = models.CharField(max_length=50)
+    descripcion_literatura = RichTextField(blank=True, null=True)
     email_usuario_literatura = models.EmailField()
 
     def __str__(self):
@@ -23,7 +22,7 @@ class Musica (models.Model):
     id_musica = models.AutoField(primary_key=True)
     nombre_artista_musica = models.CharField(max_length=50)
     nombre_disco_musica = models.CharField(max_length=50)
-    anio_lanzamiento_musica = models.IntegerField()
+    descripcion_musica = RichTextField(blank=True, null=True)
     email_usuario_musica = models.EmailField()
 
     def __str__(self):
@@ -37,7 +36,7 @@ class Cine (models.Model):
     id_cine = models.AutoField(primary_key=True)
     nombre_pelicula_cine = models.CharField(max_length=50)
     nombre_director_cine = models.CharField(max_length=50)
-    anio_lanzamiento_cine = models.IntegerField()
+    descripcion_cine = RichTextField(blank=True, null=True)
     email_usuario_cine = models.EmailField()
 
     def __str__(self):

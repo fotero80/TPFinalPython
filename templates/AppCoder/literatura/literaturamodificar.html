@@ -22,7 +22,8 @@
         <div class="container px-5 my-5">
             <div class="row gx-5">
                 <form class="bodyoptionstittle" action="" method="post" enctype="multipart/form-data" novalidate>{% csrf_token %}
-                    <table style="width:60%">
+                    <table style="width:100%">
+                        {{ formulariocargarliteratura.media }}
                         {% for field in formulariocargarliteratura %}
                         <tr>
                             {% if field.label == "Nombre literatura" %}
@@ -34,13 +35,14 @@
                             {% if field.label == "Editorial literatura" %}
                             <th>Nombre de la editorial <em>*</em></th>
                             {% endif %}
-                            {% if field.label == "Anio edicion literatura" %}
-                            <th>Año de la edicion del libro <em>*</em></th>
+                            {% if field.label == "Descripcion literatura" %}
+                            <th>Descripcion del libro <em>*</em></th>
                             {% endif %}
                             {% if field.label == "Imglit" %}
                             <th>Imagen literatura</th>
                             {% endif %}
                             <th>{{ field }}</th>
+                            <th>{{ field.media }}</th>
                         </tr>
                         {% endfor %}
                     </table>

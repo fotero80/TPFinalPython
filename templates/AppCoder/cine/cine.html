@@ -25,7 +25,8 @@
         <div class="container px-5 my-5">
             <div class="row gx-5">
                 <form class="bodyoptionstittle" action="{% url 'TPFinalCineCrear' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
-                    <table style="width:60%">
+                    <table style="width:100%">
+                        {{ formulariocine.media }}
                         {% for field in formulariocine %}
                         <tr>
                             {% if field.label == "Nombre pelicula cine" %}
@@ -34,13 +35,14 @@
                             {% if field.label == "Nombre director cine" %}
                             <th>Nombre del director <em>*</em></th>
                             {% endif %}
-                            {% if field.label == "Anio lanzamiento cine" %}
-                            <th>Año de lanzamiento <em>*</em></th>
+                            {% if field.label == "Descripcion cine" %}
+                            <th>Descripcion <em>*</em></th>
                             {% endif %}
                             {% if field.label == "Imgcin" %}
                             <th>Imagen literatura </th>
                             {% endif %}
                             <th>{{ field }}</th>
+                            <th>{{ field.media }}</th>
                         </tr>
                         {% endfor %}
                     </table>

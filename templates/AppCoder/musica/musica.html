@@ -24,7 +24,8 @@
     <div class="container px-5 my-5">
         <div class="row gx-5">
             <form class="bodyoptionstittle" action="{% url 'TPFinalMusicaCrear' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
-                <table style="width:60%">
+                <table style="width:100%">
+                    {{ formulariomusica.media }}
                     {% for field in formulariomusica %}
                 <tr>
                     {% if  field.label  == "Nombre artista musica" %}
@@ -33,13 +34,14 @@
                     {% if  field.label  == "Nombre disco musica" %}
                     <th>Nombre disco <em>*</em></th>
                     {% endif %}
-                    {% if  field.label  == "Anio lanzamiento musica" %}
-                    <th>Año de lanzamiento <em>*</em></th>
+                    {% if  field.label  == "Descripcion musica" %}
+                    <th>Descripcion <em>*</em></th>
                     {% endif %}
                     {% if  field.label  == "Imgmus" %}
                     <th>Imagen musica </th>
                     {% endif %}
                     <th>{{ field }}</th>
+                    <th>{{ field.media }}</th>
                 </tr>
                 {% endfor %}
             </table><br>

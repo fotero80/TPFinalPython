@@ -37,8 +37,8 @@
                             {% if field.label == "Editorial literatura" %}
                             <th>Nombre de la editorial</th>
                             {% endif %}
-                            {% if field.label == "Anio edicion literatura" %}
-                            <th>Año de la edicion del libro</th>
+                            {% if field.label == "Descripcion literatura" %}
+                            <th>Descripcion del libro</th>
                             {% endif %}
                             <th>{{ field }}</th>
                         </tr>
@@ -57,6 +57,7 @@
     <div class="datos-literatura">
         <h4>Los datos encontrados son: </h4>
         <table class="tabledata" style="width:100%">
+            {{ formulariocargarliteratura.media }}
             <tr>
                 <th class="thdata">ID</th>
                 <th class="thdata">Imagen</th>
@@ -78,7 +79,7 @@
                 <td class="tddata">{{literatura.nombre_literatura}}</td>
                 <td class="tddata">{{literatura.autor_literatura}}</td>
                 <td class="tddata">{{literatura.editorial_literatura}}</td>
-                <td class="tddata">{{literatura.anio_edicion_literatura}}</td>
+                <td class="tddata">{{literatura.descripcion_literatura|safe}}</td>
                 <td class="tddata"><a href="{% url 'TPFinalLiteraturaEliminar' literatura.id_literatura %}">Eliminar</a>
                 </td>
                 <td class="tddata"><a

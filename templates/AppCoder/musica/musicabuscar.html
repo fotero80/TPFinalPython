@@ -33,8 +33,8 @@
                     {% if  field.label  == "Nombre disco musica" %}
                     <th>Nombre disco </th>
                     {% endif %}
-                    {% if  field.label  == "Anio lanzamiento musica" %}
-                    <th>Año de lanzamiento </th>
+                    {% if  field.label  == "Descripcion musica" %}
+                    <th>Descripcion </th>
                     {% endif %}
                     <th>{{ field }}</th>
                 </tr>
@@ -71,7 +71,7 @@
                 {% endif %}
                 <td class="tddata">{{musica.nombre_artista_musica}}</td>
                 <td class="tddata">{{musica.nombre_disco_musica}}</td>
-                <td class="tddata">{{musica.anio_lanzamiento_musica}}</td>
+                <td class="tddata">{{musica.descripcion_musica|safe}}</td>
                 <td class="tddata"><a href="{% url 'TPFinalMusicaEliminar' musica.id_musica %}">Eliminar</a></td>
                 <td class="tddata"><a href="{% url 'TPFinalMusicaModificar' musica.id_musica  %}">Modificar</a></td>
             </tr>

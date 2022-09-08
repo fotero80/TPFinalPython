@@ -34,8 +34,8 @@
                             {% if field.label == "Nombre director cine" %}
                             <th>Nombre del director</th>
                             {% endif %}
-                            {% if field.label == "Anio lanzamiento cine" %}
-                            <th>Año de lanzamiento</th>
+                            {% if field.label == "Descripcion cine" %}
+                            <th>Descripcion</th>
                             {% endif %}
                             <th>{{ field }}</th>
                         </tr>
@@ -74,7 +74,7 @@
                 {% endif %}
                 <td class="tddata">{{cine.nombre_pelicula_cine}}</td>
                 <td class="tddata">{{cine.nombre_director_cine}}</td>
-                <td class="tddata">{{cine.anio_lanzamiento_cine}}</td>
+                <td class="tddata">{{cine.descripcion_cine|safe}}</td>
                 <td class="tddata"><a href="{% url 'TPFinalCineEliminar' cine.id_cine %}">Eliminar</a></td>
                 <td class="tddata"><a href="{% url 'TPFinalCineModificar' cine.id_cine %}">Modificar</a></td>
             </tr>
