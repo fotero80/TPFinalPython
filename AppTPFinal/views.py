@@ -15,8 +15,8 @@ def Main(request):
 @login_required()
 def literatura_crear(request):
     lit = Literatura_Form(request.POST or None, request.FILES or None)
-    email = None
-    email = request.user.email
+    username = None
+    username = request.user.username
     if request.method == 'POST':
         if lit.is_valid():
             lit = Literatura(
@@ -24,7 +24,7 @@ def literatura_crear(request):
                 autor_literatura=request.POST.get('autor_literatura'),
                 editorial_literatura=request.POST.get('editorial_literatura'),
                 descripcion_literatura=request.POST.get('descripcion_literatura'),
-                email_usuario_literatura=email,
+                username_literatura=username,
             )
             lit.save()
         if 'imglit' in request.FILES:
@@ -42,8 +42,8 @@ def literatura_crear(request):
 
 @login_required()
 def literatura_buscar(request):
-    email = None
-    email = request.user.email
+    username = None
+    username = request.user.username
     a_buscar = []
     if request.method == 'POST':
         nombre_literatura = request.POST.get('nombre_literatura')
@@ -60,7 +60,7 @@ def literatura_buscar(request):
                        Literatura.objects.filter(autor_literatura__icontains=autor_literatura) & \
                        Literatura.objects.filter(editorial_literatura__icontains=editorial_literatura) & \
                        Literatura.objects.filter(descripcion_literatura__icontains=descripcion_literatura) & \
-                       Literatura.objects.filter(email_usuario_literatura=email)
+                       Literatura.objects.filter(username_literatura=username)
 
     contexto = {
         'buscar_literatura': Buscar_Literatura_Form(),
@@ -129,7 +129,7 @@ def literatura_modificar(request, id_literatura):
         'autor_literatura': lit.autor_literatura,
         'editorial_literatura': lit.editorial_literatura,
         'descripcion_literatura': lit.descripcion_literatura,
-        'email_usuario_literatura': lit.email_usuario_literatura
+        'username_literatura': lit.username_literatura
     }
     )
     contexto = {
@@ -160,15 +160,15 @@ def literatura_ver(request, id_literatura):
 @login_required()
 def musica_crear(request):
     mus = Musica_Form(request.POST)
-    email = None
-    email = request.user.email
+    username = None
+    username = request.user.username
     if request.method == 'POST':
         if mus.is_valid():
             mus = Musica(
                 nombre_artista_musica=request.POST.get('nombre_artista_musica'),
                 nombre_disco_musica=request.POST.get('nombre_disco_musica'),
                 descripcion_musica=request.POST.get('descripcion_musica'),
-                email_usuario_musica=email,
+                username_musica=username,
             )
             mus.save()
         if 'imgmus' in request.FILES:
@@ -185,8 +185,8 @@ def musica_crear(request):
 
 @login_required()
 def musica_buscar(request):
-    email = None
-    email = request.user.email
+    username = None
+    username = request.user.username
     a_buscar = []
     if request.method == 'POST':
         nombre_artista_musica = request.POST.get('nombre_artista_musica')
@@ -200,7 +200,7 @@ def musica_buscar(request):
             a_buscar = Musica.objects.filter(nombre_artista_musica__icontains=nombre_artista_musica) & \
                        Musica.objects.filter(nombre_disco_musica__icontains=nombre_disco_musica) & \
                        Musica.objects.filter(descripcion_musica__icontains=descripcion_musica) & \
-                       Musica.objects.filter(email_usuario_musica=email)
+                       Musica.objects.filter(username_musica=username)
     contexto = {
         'buscar_musica': Buscar_Musica_Form(),
         'musica': a_buscar
@@ -264,7 +264,7 @@ def musica_modificar(request, id_musica):
         'nombre_artista_musica': mus.nombre_artista_musica,
         'nombre_disco_musica': mus.nombre_disco_musica,
         'descripcion_musica': mus.descripcion_musica,
-        'email_usuario_musica': mus.email_usuario_musica,
+        'username_musica': mus.username_musica,
     }
     )
     contexto = {
@@ -294,15 +294,15 @@ def musica_ver(request, id_musica):
 @login_required()
 def cine_crear(request):
     cine = Cine_Form(request.POST)
-    email = None
-    email = request.user.email
+    username = None
+    username = request.user.username
     if request.method == 'POST':
         if cine.is_valid():
             cine = Cine(
                 nombre_pelicula_cine=request.POST.get('nombre_pelicula_cine'),
                 nombre_director_cine=request.POST.get('nombre_director_cine'),
                 descripcion_cine=request.POST.get('descripcion_cine'),
-                email_usuario_cine=email,
+                username_cine=username,
             )
             cine.save()
         if 'imgcin' in request.FILES:
@@ -318,8 +318,8 @@ def cine_crear(request):
 
 @login_required()
 def cine_buscar(request):
-    email = None
-    email = request.user.email
+    username = None
+    username = request.user.username
     a_buscar = []
     if request.method == 'POST':
         nombre_pelicula_cine = request.POST.get('nombre_pelicula_cine')
@@ -333,7 +333,7 @@ def cine_buscar(request):
             a_buscar = Cine.objects.filter(nombre_pelicula_cine__icontains=nombre_pelicula_cine) & \
                        Cine.objects.filter(nombre_director_cine__icontains=nombre_director_cine) & \
                        Cine.objects.filter(descripcion_cine__icontains=descripcion_cine) & \
-                       Cine.objects.filter(email_usuario_cine=email)
+                       Cine.objects.filter(username_cine=username)
 
     contexto = {
         'buscar_cine': Buscar_Cine_Form(),
@@ -399,7 +399,7 @@ def cine_modificar(request, id_cine):
         'nombre_pelicula_cine': cine.nombre_pelicula_cine,
         'nombre_director_cine': cine.nombre_director_cine,
         'descripcion_cine': cine.descripcion_cine,
-        'email_usuario_cine': cine.email_usuario_cine,
+        'username_cine': cine.username_cine,
     }
     )
     contexto = {

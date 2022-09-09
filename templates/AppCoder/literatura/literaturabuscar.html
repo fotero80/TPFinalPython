@@ -66,6 +66,7 @@
                 <th class="thdata">Editorial</th>
                 <th class="thdata">Descripcion</th>
                 <th class="thdata">Fecha de creacion</th>
+                <th class="thdata">Usuario creador</th>
                 <th class="thdata">Eliminar</th>
                 <th class="thdata">Modificar</th>
             </tr>
@@ -83,6 +84,7 @@
                 <td class="tddata">{{literatura.editorial_literatura}}</td>
                 <td class="tddata">{{literatura.descripcion_literatura|safe}}</td>
                 <td class="tddata">{{literatura.fecha_creacion_literatura}}</td>
+                <td class="tddata">{{literatura.username_literatura}}</td>
                 <td class="tddata"><a href="{% url 'TPFinalLiteraturaEliminar' literatura.id_literatura %}">Eliminar</a>
                 </td>
                 <td class="tddata"><a

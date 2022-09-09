@@ -60,6 +60,7 @@
                 <th class="thdata">Director</th>
                 <th class="thdata">Descripcion</th>
                 <th class="thdata">Fecha de creacion</th>
+                <th class="thdata">Usuario creador</th>
                 <th class="thdata">Eliminar</th>
                 <th class="thdata">Modificar</th>
             </tr>
@@ -76,6 +77,7 @@
                 <td class="tddata">{{cine.nombre_director_cine}}</td>
                 <td class="tddata">{{cine.descripcion_cine|safe}}</td>
                 <td class="tddata">{{cine.fecha_creacion_cine}}</td>
+                <td class="tddata">{{cine.username_cine}}</td>
                 <td class="tddata"><a href="{% url 'TPFinalCineEliminar' cine.id_cine %}">Eliminar</a></td>
                 <td class="tddata"><a href="{% url 'TPFinalCineModificar' cine.id_cine %}">Modificar</a></td>
             </tr>

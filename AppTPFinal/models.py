@@ -8,7 +8,7 @@ class Literatura(models.Model):
     autor_literatura = models.CharField(max_length=50)
     editorial_literatura = models.CharField(max_length=50)
     descripcion_literatura = RichTextField(blank=True, null=True)
-    email_usuario_literatura = models.EmailField()
+    username_literatura = models.CharField(max_length=50)
     fecha_creacion_literatura = models.DateTimeField(auto_now_add=True)
 
 
@@ -26,7 +26,7 @@ class Musica(models.Model):
     nombre_artista_musica = models.CharField(max_length=50)
     nombre_disco_musica = models.CharField(max_length=50)
     descripcion_musica = RichTextField(blank=True, null=True)
-    email_usuario_musica = models.EmailField()
+    username_musica = models.CharField(max_length=50)
     fecha_creacion_musica = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -43,8 +43,8 @@ class Cine(models.Model):
     nombre_pelicula_cine = models.CharField(max_length=50)
     nombre_director_cine = models.CharField(max_length=50)
     descripcion_cine = RichTextField(blank=True, null=True)
-    email_usuario_cine = models.EmailField()
-    fecha_creacion_musica = models.DateTimeField(auto_now_add=True)
+    username_cine = models.CharField(max_length=50)
+    fecha_creacion_cine = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Cine: {self.nombre_pelicula_cine} {self.nombre_director_cine}"
