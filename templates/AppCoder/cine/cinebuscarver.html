@@ -59,6 +59,7 @@
                 <th class="thdata">Nombre</th>
                 <th class="thdata">Director</th>
                 <th class="thdata">Descripcion</th>
+                <th class="thdata">Fecha de creacion</th>
                 <th class="thdata">Ver</th>
             </tr>
             {% for cine in cine %}
@@ -73,6 +74,7 @@
                 <td class="tddata">{{cine.nombre_pelicula_cine}}</td>
                 <td class="tddata">{{cine.nombre_director_cine}}</td>
                 <td class="tddata">{{cine.descripcion_cine|safe}}</td>
+                <td class="tddata">{{cine.fecha_creacion_cine}}</td>
                 <td class="tddata"><a href="{% url 'TPFinalCineVer' cine.id_cine %}">Ver</a></td>
             </tr>
             {% endfor %}

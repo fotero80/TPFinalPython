@@ -57,6 +57,7 @@
                 <th class="thdata">Artista</th>
                 <th class="thdata">Disco</th>
                 <th class="thdata">Descripcion</th>
+                <th class="thdata">Fecha de creacion</th>
                 <th class="thdata">Ver</th>
             </tr>
             {% for musica in musica %}
@@ -70,6 +71,7 @@
                 <td class="tddata">{{musica.nombre_artista_musica}}</td>
                 <td class="tddata">{{musica.nombre_disco_musica}}</td>
                 <td class="tddata">{{musica.descripcion_musica|safe}}</td>
+                <td class="tddata">{{musica.fecha_creacion_musica}}</td>
                 <td class="tddata"><a href="{% url 'TPFinalMusicaVer' musica.id_musica  %}">Ver</a></td>
             </tr>
             {% endfor %}

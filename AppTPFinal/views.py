@@ -26,7 +26,7 @@ def literatura_crear(request):
                 descripcion_literatura=request.POST.get('descripcion_literatura'),
                 email_usuario_literatura=email,
             )
-        lit.save()
+            lit.save()
         if 'imglit' in request.FILES:
             imagen = request.FILES["imglit"]
             img = ImagenLiteratura(id_literatura=lit, imglit=imagen)
@@ -170,7 +170,7 @@ def musica_crear(request):
                 descripcion_musica=request.POST.get('descripcion_musica'),
                 email_usuario_musica=email,
             )
-        mus.save()
+            mus.save()
         if 'imgmus' in request.FILES:
             imagen = request.FILES["imgmus"]
             img = ImagenMusica(id_musica=mus, imgmus=imagen)
@@ -304,7 +304,7 @@ def cine_crear(request):
                 descripcion_cine=request.POST.get('descripcion_cine'),
                 email_usuario_cine=email,
             )
-        cine.save()
+            cine.save()
         if 'imgcin' in request.FILES:
             imagen = request.FILES["imgcin"]
             img = ImagenCine(id_cine=cine, imgcin=imagen)

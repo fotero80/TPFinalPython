@@ -56,7 +56,8 @@
                 <th class="thdata">Imagen</th>
                 <th class="thdata">Artista</th>
                 <th class="thdata">Disco</th>
-                <th class="thdata">Año</th>
+                <th class="thdata">Descripcion</th>
+                <th class="thdata">Fecha de creacion</th>
                 <th class="thdata">Eliminar</th>
                 <th class="thdata">Modificar</th>
             </tr>
@@ -71,6 +72,7 @@
                 <td class="tddata">{{musica.nombre_artista_musica}}</td>
                 <td class="tddata">{{musica.nombre_disco_musica}}</td>
                 <td class="tddata">{{musica.descripcion_musica|safe}}</td>
+                <td class="tddata">{{musica.fecha_creacion_musica}}</td>
                 <td class="tddata"><a href="{% url 'TPFinalMusicaEliminar' musica.id_musica %}">Eliminar</a></td>
                 <td class="tddata"><a href="{% url 'TPFinalMusicaModificar' musica.id_musica  %}">Modificar</a></td>
             </tr>
