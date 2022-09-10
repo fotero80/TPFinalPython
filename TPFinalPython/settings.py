@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'AppTPFinal',
     'UserCoder',
     'ckeditor',
+
 ]
 
 MIDDLEWARE = [
