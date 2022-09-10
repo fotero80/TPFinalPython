@@ -23,7 +23,15 @@
 </div>
 <div class="container px-5 my-5">
     <div class="row gx-5">
-        <form class="bodyoptionstittle" action="{% url 'TPFinalLiteraturaCrear' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form class="bodyoptionstittle" action="{% url 'TPFinalLiteraturaCrear' %}" method="post"
+              enctype="multipart/form-data">{% csrf_token %}
             <table style="width:100%">
                 {{ formulariocargarliteratura.media }}
 

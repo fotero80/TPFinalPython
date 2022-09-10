@@ -23,6 +23,13 @@
     <div class="datos-usuario">
         <div class="container px-5 my-5">
             <div class="row gx-5">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
                 <form class="bodyoptionstittle" id="usuarios" name="usuarios" action="" method="POST"
                       enctype="multipart/form-data">
                     <b>
@@ -49,7 +56,7 @@
                                 <th>Repita la contraseña <em>*</em></th>
                                 {% endif %}
                                 {% if field.label == "Imagen" %}
-                                <th>Avatar </th>
+                                <th>Avatar</th>
                                 {% endif %}
                                 <th>{{ field }}</th>
                             </tr>

@@ -12,41 +12,50 @@
 
 {% block bodyheader %}
 
-                    <h1 class="display-5 fw-bolder text-white mb-2">Cargue su musica</h1>
-                    <p class="lead text-white-50 mb-4">A continuación cargue todos los datos de su colección de musica!</p>
-                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                    </div>
+<h1 class="display-5 fw-bolder text-white mb-2">Cargue su musica</h1>
+<p class="lead text-white-50 mb-4">A continuación cargue todos los datos de su colección de musica!</p>
+<div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+</div>
 {% endblock %}
 {% block bodyoptions %}
-    <div class="datos-musica">}
-            <div class="space2">
+<div class="datos-musica">}
+    <div class="space2">
     </div>
     <div class="container px-5 my-5">
         <div class="row gx-5">
-            <form class="bodyoptionstittle" action="{% url 'TPFinalMusicaCrear' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form class="bodyoptionstittle" action="{% url 'TPFinalMusicaCrear' %}" method="post"
+                  enctype="multipart/form-data">{% csrf_token %}
                 <table style="width:100%">
                     {{ formulariomusica.media }}
                     {% for field in formulariomusica %}
-                <tr>
-                    {% if  field.label  == "Nombre artista musica" %}
-                    <th>Nombre artista <em>*</em></th>
-                    {% endif %}
-                    {% if  field.label  == "Nombre disco musica" %}
-                    <th>Nombre disco <em>*</em></th>
-                    {% endif %}
-                    {% if  field.label  == "Descripcion musica" %}
-                    <th>Descripcion <em>*</em></th>
-                    {% endif %}
-                    {% if  field.label  == "Imgmus" %}
-                    <th>Imagen musica </th>
-                    {% endif %}
-                    <th>{{ field }}</th>
-                    <th>{{ field.media }}</th>
-                </tr>
-                {% endfor %}
-            </table><br>
-            <label style= "color: black;" >Los campos con * son obligatorios.</label><br>
-            <p><input type="submit" value="Grabar" onclick="validate()"/></p>
+                    <tr>
+                        {% if field.label == "Nombre artista musica" %}
+                        <th>Nombre artista <em>*</em></th>
+                        {% endif %}
+                        {% if field.label == "Nombre disco musica" %}
+                        <th>Nombre disco <em>*</em></th>
+                        {% endif %}
+                        {% if field.label == "Descripcion musica" %}
+                        <th>Descripcion <em>*</em></th>
+                        {% endif %}
+                        {% if field.label == "Imgmus" %}
+                        <th>Imagen musica</th>
+                        {% endif %}
+                        <th>{{ field }}</th>
+                        <th>{{ field.media }}</th>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <br>
+                <label style="color: black;">Los campos con * son obligatorios.</label><br>
+                <p><input type="submit" value="Grabar" onclick="validate()"/></p>
             </form>
         </div>
     </div>

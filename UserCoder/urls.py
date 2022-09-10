@@ -12,3 +12,4 @@ urlpatterns = [
     path('Usuario/Eliminar/<str:username>', usuario_eliminar, name='TPFinalUsuariosEliminar'),
     path('Usuario/Modificar/<str:username>', usuario_modificar, name='TPFinalUsuariosModificar'),
 ]
+

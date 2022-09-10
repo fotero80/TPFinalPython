@@ -29,6 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'tpfinalpython.herokuapp.com',
+    '127.0.0.1',
 ]
 
 

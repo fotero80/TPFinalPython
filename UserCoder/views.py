@@ -1,4 +1,3 @@
-import ctypes
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
@@ -22,12 +21,11 @@ def user_login(request):
 
             if user:
                 login(request, user)
-                messages.info(request, 'Inicio de sesion satisfactorio!')
+                return redirect('TPFinalMain')
             else:
                 messages.info(request, 'Inicio de sesion fallido!')
         else:
             messages.info(request, 'Inicio de sesion fallido!')
-        return redirect('TPFinalMain')
 
     contexto = {
         'form': AuthenticationForm(),
@@ -42,10 +40,9 @@ def user_logon(request):
         form = userRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            ctypes.windll.user32.MessageBoxW(0, "Tu usuario fue registrado satisfactoriamente!", "mensaje", 0)
+            messages.info(request, 'Registro de usuario satisfactorio!')
         else:
-            ctypes.windll.user32.MessageBoxW(0, "Tu usuario no pudo ser registrado!", "mensaje", 0)
-            return redirect('TPFinalMain')
+            messages.info(request, 'Registro de usuario fallido!')
 
     contexto = {
         'form': userRegisterForm(),
@@ -106,7 +103,7 @@ def usuario_modificar(request, username):
             else:
                 avatar = Avatar(user=usuario, avatar=data.get("imagen"))
                 avatar.save()
-            ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
+                messages.info(request, 'Los datos se han actualizado con exito!')
 
         if request.user.is_superuser:
             return redirect('TPFinalUsuariosBuscar')

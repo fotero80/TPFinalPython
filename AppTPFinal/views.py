@@ -1,11 +1,10 @@
-import ctypes
-
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from AppTPFinal.forms import *
 from AppTPFinal.models import *
 from django.http import HttpResponse
 from django.core.mail import send_mail
+from django.contrib import messages
 
 
 def Main(request):
@@ -33,8 +32,7 @@ def literatura_crear(request):
             imagen = request.FILES["imglit"]
             img = ImagenLiteratura(id_literatura=lit, imglit=imagen)
             img.save()
-
-        ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
+        messages.info(request, 'Los datos se han cargado con exito!')
 
     contexto = {
         'formulariocargarliteratura': Literatura_Form(),
@@ -122,8 +120,7 @@ def literatura_modificar(request, id_literatura):
                 else:
                     img = ImagenLiteratura(id_literatura=lit, imglit=imagen)
                     img.save()
-
-            ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
+            messages.info(request, 'Los datos se han actualizado con exito!')
             return redirect('TPFinalLiteraturaBuscar')
 
     literatura_form = Literatura_Form(initial={
@@ -177,7 +174,7 @@ def musica_crear(request):
             imagen = request.FILES["imgmus"]
             img = ImagenMusica(id_musica=mus, imgmus=imagen)
             img.save()
-        ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
+        messages.info(request, 'Los datos se han cargado con exito!')
 
     contexto = {
         'formulariomusica': Musica_Form()
@@ -258,8 +255,8 @@ def musica_modificar(request, id_musica):
                 else:
                     img = ImagenMusica(id_musica=mus, imgmus=imagen)
                     img.save()
+            messages.info(request, 'Los datos se han actualizado con exito!')
 
-            ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
             return redirect('TPFinalMusicaBuscar')
 
     musica_form = Musica_Form(initial={
@@ -311,7 +308,7 @@ def cine_crear(request):
             imagen = request.FILES["imgcin"]
             img = ImagenCine(id_cine=cine, imgcin=imagen)
             img.save()
-        ctypes.windll.user32.MessageBoxW(0, "Los datos se han cargado con exito", "mensaje", 0)
+        messages.info(request, 'Los datos se han cargado con exito!')
     contexto = {
         'formulariocine': Cine_Form()
     }
@@ -393,8 +390,7 @@ def cine_modificar(request, id_cine):
                 else:
                     img = ImagenCine(id_cine=cine, imgcin=imagen)
                     img.save()
-
-            ctypes.windll.user32.MessageBoxW(0, "Los datos se han actualizado con exito", "mensaje", 0)
+            messages.info(request, 'Los datos se han actualizado con exito!')
             return redirect('TPFinalCineBuscar')
 
     cine_form = Cine_Form(initial={
@@ -447,7 +443,7 @@ def contact(request):
         From: {}
         '''.format(data['message'],data['email'])
         send_mail(data['subject'], message, '',['tpfinalpython@gmail.com'])
-        ctypes.windll.user32.MessageBoxW(0, "Su mensaje se ha enviado con exito", "mensaje", 0)
+        messages.info(request, 'Su mensaje se ha enviado con exito!')
         return redirect('TPFinalMain')
 
     return render(request,'AppCoder/main.html',{})
