@@ -427,3 +427,7 @@ def cine_ver(request, id_cine):
 
 # --------------------------------------------------------------------------------------------------------
 # Envio de email
+def contact(request):
+    if request.method == 'POST':
+        print('Hello')
+        return render(request,'AppCoder/main.html',{})

@@ -34,4 +34,6 @@ urlpatterns = [
     path('Cine/BuscarVer/', cine_buscar_ver, name='TPFinalCineBuscarVer'),
     path('Cine/Ver/<int:id_cine>', cine_ver, name='TPFinalCineVer'),
 
+    path('Contacto', contact, name='Contact'),
+
 ]
