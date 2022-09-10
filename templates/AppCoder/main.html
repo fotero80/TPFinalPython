@@ -142,32 +142,58 @@
             <p class="lead mb-0">Nos encantaria conocer su opinion.</p>
         </div>
         <div class="row gx-5 justify-content-center">
-            <div class="row">
-
+            <div class="col-lg-6">
+                <form id="contactForm" >
+                    <!-- Name input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="name" type="text" placeholder="Enter your name..."
+                               data-sb-validations="required"/>
+                        <label for="name">Full name</label>
+                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                    </div>
+                    <!-- Email address input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="email" type="email" placeholder="name@example.com"
+                               data-sb-validations="required,email"/>
+                        <label for="email">Email address</label>
+                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                    </div>
+                    <!-- Phone number input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890"
+                               data-sb-validations="required"/>
+                        <label for="phone">Phone number</label>
+                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.
+                        </div>
+                    </div>
+                    <!-- Message input-->
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..."
+                                  style="height: 10rem" data-sb-validations="required"></textarea>
+                        <label for="message">Message</label>
+                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.
+                        </div>
+                    </div>
+                    <!-- Submit success message-->
+                    <div class="d-none" id="submitSuccessMessage">
+                        <div class="text-center mb-3">
+                            <div class="fw-bolder">Form submission successful!</div>
+                        </div>
+                    </div>
+                    <!-- Submit error message-->
+                    <div class="d-none" id="submitErrorMessage">
+                        <div class="text-center text-danger mb-3">Error sending message!</div>
+                    </div>
+                    <!-- Submit Button-->
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </section>
-
-
-<div class="row">
-   <div id="templatemo_contact" class="col-md-4 gallery-contact">
-</div>
-   <div class="col-md-8 templatemo_contactform">
-   <div class="templatemo_contacttitle">CONTACTO</div>
-    <div class="templatemo_sub_contacttitle">Si requieres un subtitulo escribelo aquí</div>
-        <p> Escribe aquí el mensaje que quieres presentar si es necesario.</p>
-
-   <form action="enviar.php" method="post">
-                        <input type="text" name="name" id="name" class="name" placeholder="NOMBRE">
-                        <input type="text" name="mail" id="mail" class="email" placeholder="CORREO">
-                        <input type="text" name="phone" id="subject" class="subject" placeholder="TELÉFONO">
-                        <textarea name="message" class="message" placeholder="MENSAJE ... " id="message"></textarea>
-                        <div class="clear"></div>
-                            <div class="col-md-8">
-                                <button type="submit" class="btn btn-primary">ENVIAR </button>
-    </div>
-    </form>
-    </div>
 {% endblock %}
 

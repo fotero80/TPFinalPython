@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from AppTPFinal.forms import *
 from AppTPFinal.models import *
+from django.http import HttpResponse
 
 
 def Main(request):
@@ -423,3 +424,6 @@ def cine_ver(request, id_cine):
     }
 
     return render(request, 'AppCoder/cine/cinever.html', contexto)
+
+# --------------------------------------------------------------------------------------------------------
+# Envio de email
