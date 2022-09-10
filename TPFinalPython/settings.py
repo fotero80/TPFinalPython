@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import dj_database_url
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -40,11 +42,13 @@ INSTALLED_APPS = [
     'AppTPFinal',
     'UserCoder',
     'ckeditor',
+    'whitenoise.runserver_nostatic',
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -134,3 +138,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CKEDITOR_MEDIA_PREFIX = "AppTPFinal/static/AppCode/ckeditor/" #copiar ``media/ckeditor``
 CKEDITOR_UPLOAD_PATH = "AppTPFinal/media/ckeditor/"# Subir archivos
 
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
