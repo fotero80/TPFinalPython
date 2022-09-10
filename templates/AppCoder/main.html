@@ -3,6 +3,7 @@
 
 {% block headertitlle %}
 <title>Main</title>
+
 {% endblock %}
 
 {% block bodytitleoptions %}
@@ -12,7 +13,7 @@
 <a class="btn btn-primary" href="{% url 'UserCoderLogin' %}"> Login </a>
 <div class="space">
 </div>
-<a class="btn btn-primary" href="{% url 'UserCoderLogon' %}"> Logon </a>
+<a class="btn btn-primary" href="{% url 'UserCoderLogon' %}"> Create user </a>
 {% endif %}
 {% endblock %}
 
@@ -21,10 +22,10 @@
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-8">
                 {% block bodyheader %}
-                <h1 class="bodyheadertittle">Mantenga su inventario de literatura, musica y
+                <h1 class="bodyheadertittle">Comparta sus comentarios y conocimientos sobre literatura, musica y
                     cine.</h1>
-                <p class="bodyheadertext">Una manera rapida y simple de poder tener un listado de todo lo
-                    que posee!</p>
+                <p class="bodyheadertext">Una manera rapida y simple de compartir con otras personas su conocimiento y/u
+                    opinion acerca de libros, musica, peliculas!!!</p>
                 {% endblock %}
             </div>
         </div>
@@ -40,7 +41,8 @@
                         class="bi bi-collection"></i>
                 </div>
                 <h2 class="h4 fw-bolder">Literatura</h2>
-                <p>Usted podra cargar nueva literatura o buscar dentro de sus existentes.</p>
+                <p>Como usuario usted podra crear comentarios sobre los libros, revistar, comics y no solo ver lo que
+                    otros escriben.....</p>
                 {% if user.is_authenticated %}
                 <a class="text-decoration-none" href="{% url 'TPFinalLiteraturaCrear' %}">
                     Ir a cargar nueva literatura
@@ -62,7 +64,8 @@
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i>
                 </div>
                 <h2 class="h4 fw-bolder">Musica</h2>
-                <p>Dentro de esta opcion usted podra cargar nueva musica o buscar dentro de sus existentes.</p>
+                <p>Como usuario usted podra crear comentarios sobre los Musica, discos, artistas y no solo ver lo que
+                    otros escriben.....</p>
                 {% if user.is_authenticated %}
                 <a class="text-decoration-none" href="{% url 'TPFinalMusicaCrear' %}">
                     Ir a cargar musica
@@ -84,7 +87,8 @@
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i>
                 </div>
                 <h2 class="h4 fw-bolder">Cine</h2>
-                <p>Dentro de esta opcion usted podra cargar nuevos films o buscar dentro de sus existentes.</p>
+                <p>Como usuario usted podra crear comentarios sobre los peliculas, series, etc.. y no solo ver lo que
+                    otros escriben.....</p>
                 {% if user.is_authenticated %}
                 <a class="text-decoration-none" href="{% url 'TPFinalCineCrear' %}">
                     ir a cargar films
@@ -138,74 +142,32 @@
             <p class="lead mb-0">Nos encantaria conocer su opinion.</p>
         </div>
         <div class="row gx-5 justify-content-center">
-            <div class="col-lg-6">
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- * * SB Forms Contact Form * *-->
-                <!-- * * * * * * * * * * * * * * *-->
-                <!-- This form is pre-integrated with SB Forms.-->
-                <!-- To make this form functional, sign up at-->
-                <!-- https://startbootstrap.com/solution/contact-forms-->
-                <!-- to get an API token!-->
-                <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                    <!-- Name input-->
-                    <div class="form-floating mb-3">
-                        <input class="form-control" id="name" type="text" placeholder="Enter your name..."
-                               data-sb-validations="required"/>
-                        <label for="name">Full name</label>
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                    </div>
-                    <!-- Email address input-->
-                    <div class="form-floating mb-3">
-                        <input class="form-control" id="email" type="email" placeholder="name@example.com"
-                               data-sb-validations="required,email"/>
-                        <label for="email">Email address</label>
-                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                    </div>
-                    <!-- Phone number input-->
-                    <div class="form-floating mb-3">
-                        <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890"
-                               data-sb-validations="required"/>
-                        <label for="phone">Phone number</label>
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.
-                        </div>
-                    </div>
-                    <!-- Message input-->
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..."
-                                  style="height: 10rem" data-sb-validations="required"></textarea>
-                        <label for="message">Message</label>
-                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.
-                        </div>
-                    </div>
-                    <!-- Submit success message-->
-                    <!---->
-                    <!-- This is what your users will see when the form-->
-                    <!-- has successfully submitted-->
-                    <div class="d-none" id="submitSuccessMessage">
-                        <div class="text-center mb-3">
-                            <div class="fw-bolder">Form submission successful!</div>
-                            To activate this form, sign up at
-                            <br/>
-                            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                        </div>
-                    </div>
-                    <!-- Submit error message-->
-                    <!---->
-                    <!-- This is what your users will see when there is-->
-                    <!-- an error submitting the form-->
-                    <div class="d-none" id="submitErrorMessage">
-                        <div class="text-center text-danger mb-3">Error sending message!</div>
-                    </div>
-                    <!-- Submit Button-->
-                    <div class="d-grid">
-                        <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit
-                        </button>
-                    </div>
-                </form>
+            <div class="row">
+
             </div>
         </div>
     </div>
 </section>
+
+
+<div class="row">
+   <div id="templatemo_contact" class="col-md-4 gallery-contact">
+</div>
+   <div class="col-md-8 templatemo_contactform">
+   <div class="templatemo_contacttitle">CONTACTO</div>
+    <div class="templatemo_sub_contacttitle">Si requieres un subtitulo escribelo aquí</div>
+        <p> Escribe aquí el mensaje que quieres presentar si es necesario.</p>
+
+   <form action="enviar.php" method="post">
+                        <input type="text" name="name" id="name" class="name" placeholder="NOMBRE">
+                        <input type="text" name="mail" id="mail" class="email" placeholder="CORREO">
+                        <input type="text" name="phone" id="subject" class="subject" placeholder="TELÉFONO">
+                        <textarea name="message" class="message" placeholder="MENSAJE ... " id="message"></textarea>
+                        <div class="clear"></div>
+                            <div class="col-md-8">
+                                <button type="submit" class="btn btn-primary">ENVIAR </button>
+    </div>
+    </form>
+    </div>
 {% endblock %}
 
