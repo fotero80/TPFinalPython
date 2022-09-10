@@ -140,3 +140,11 @@ CKEDITOR_UPLOAD_PATH = "AppTPFinal/media/ckeditor/"# Subir archivos
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'tpfinalpython@gmail.com'
+EMAIL_HOST_PASSWORD = 'yokcowmldphqmjip'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

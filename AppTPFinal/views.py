@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from AppTPFinal.forms import *
 from AppTPFinal.models import *
 from django.http import HttpResponse
+from django.core.mail import send_mail
 
 
 def Main(request):
@@ -429,5 +430,24 @@ def cine_ver(request, id_cine):
 # Envio de email
 def contact(request):
     if request.method == 'POST':
-        print('Hello')
-        return render(request,'AppCoder/main.html',{})
+        name = request.POST.get('Name')
+        email = request.POST.get('Email')
+        subject= request.POST.get('Subject')
+        message = request.POST.get('Message')
+
+        data = {
+            'name': name,
+            'email': email,
+            'subject': subject,
+            'message': message,
+        }
+        message = '''
+        New messege: {}
+        
+        From: {}
+        '''.format(data['message'],data['email'])
+        send_mail(data['subject'], message, '',['tpfinalpython@gmail.com'])
+        ctypes.windll.user32.MessageBoxW(0, "Su mensaje se ha enviado con exito", "mensaje", 0)
+        return redirect('TPFinalMain')
+
+    return render(request,'AppCoder/main.html',{})
