@@ -136,6 +136,13 @@
 <section class="bg-light py-5" id="contact">
     <div class="container px-5 my-5 px-5">
         <div class="text-center mb-5">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
             <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i>
             </div>
             <h2 class="fw-bolder">Pongase en contacto</h2>
@@ -143,44 +150,44 @@
         </div>
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-3">
-                        <form id="fcf-form-id" class="fcf-form-class" method="post" action="{% url 'Contact' %}">
-                            {% csrf_token %}
+                <form id="fcf-form-id" class="fcf-form-class" method="post" action="{% url 'Contact' %}">
+                    {% csrf_token %}
 
-                            <div class="fcf-form-group">
-                                <label for="Name" class="fcf-label">Ingrese su nombre</label>
-                                <div class="fcf-input-group">
-                                    <input type="text" id="Name" name="Name" class="fcf-form-control" required>
-                                </div>
-                            </div>
+                    <div class="fcf-form-group">
+                        <label for="Name" class="fcf-label">Ingrese su nombre</label>
+                        <div class="fcf-input-group">
+                            <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+                        </div>
+                    </div>
 
-                            <div class="fcf-form-group">
-                                <label for="Email" class="fcf-label">Ingrese su email</label>
-                                <div class="fcf-input-group">
-                                    <input type="email" id="Email" name="Email" class="fcf-form-control" required>
-                                </div>
-                            </div>
+                    <div class="fcf-form-group">
+                        <label for="Email" class="fcf-label">Ingrese su email</label>
+                        <div class="fcf-input-group">
+                            <input type="email" id="Email" name="Email" class="fcf-form-control" required>
+                        </div>
+                    </div>
 
-                            <div class="fcf-form-group">
-                                <label for="Email" class="fcf-label">Ingrese un titulo</label>
-                                <div class="fcf-input-group">
-                                    <input type="text" id="Subject" name="Subject" class="fcf-form-control" required>
-                                </div>
-                            </div>
+                    <div class="fcf-form-group">
+                        <label for="Email" class="fcf-label">Ingrese un titulo</label>
+                        <div class="fcf-input-group">
+                            <input type="text" id="Subject" name="Subject" class="fcf-form-control" required>
+                        </div>
+                    </div>
 
-                            <div class="fcf-form-group" >
-                                <label for="Message" class="fcf-label">Ingrese su mensaje</label>
-                                <div class="fcf-input-group">
-                                    <textarea id="Message" name="Message"  rows="6"
+                    <div class="fcf-form-group">
+                        <label for="Message" class="fcf-label">Ingrese su mensaje</label>
+                        <div class="fcf-input-group">
+                                    <textarea id="Message" name="Message" rows="6"
                                               maxlength="3000" required></textarea>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
 
-                            <div class="fcf-form-group" >
-                                <button type="submit" id="fcf-button"
-                                        class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send Message
-                                </button>
-                            </div>
-                        </form>
+                    <div class="fcf-form-group">
+                        <button type="submit" id="fcf-button"
+                                class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send Message
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

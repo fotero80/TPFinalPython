@@ -4,6 +4,9 @@ _El proyecto se pensó como una página donde se puede compartir opiniones de li
 Para esto los usuarios que deseen subir contenido deberan loguearse. Para ver el contenido no hace falta crearse un
 usario.
 
+Se puede acceder a la app desde la siguiente direccion
+https://tpfinalpython.herokuapp.com/
+
 ### Explicacion funcionamiento 📋
 
 La pagina se puede utilizar de 3 maneras:
