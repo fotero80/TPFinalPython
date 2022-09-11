@@ -42,7 +42,7 @@ def user_logon(request):
             form.save()
             messages.info(request, 'Registro de usuario satisfactorio!')
         else:
-            messages.info(request, 'Registro de usuario fallido!')
+            messages.info(request, form.errors)
 
     contexto = {
         'form': userRegisterForm(),

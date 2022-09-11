@@ -20,6 +20,13 @@
     {% block bodyoptions %}
     <div class="space2">
     </div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <div class="datos-usuario">
         <form class="bodyoptionstittle" id="usuarios" name="usuarios" action="{% url 'TPFinalUsuariosCrear' %}"
               method="POST">
