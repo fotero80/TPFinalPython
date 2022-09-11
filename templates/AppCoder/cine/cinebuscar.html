@@ -31,8 +31,8 @@
                     {% endfor %}
                 </ul>
                 {% endif %}
-                <form class="bodyoptionstittle" action="{% url 'TPFinalCineBuscar' %}" method="post" novalidate>{%
-                    csrf_token %}
+                <form class="bodyoptionstittle" action="{% url 'TPFinalCineBuscar' %}" method="post" novalidate>
+                    {% csrf_token %}
                     <table style="width:40%">
                         {% for field in buscar_cine %}
                         <tr>
