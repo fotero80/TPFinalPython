@@ -11,5 +11,6 @@ urlpatterns = [
     path('Usuario/Buscar/', usuario_buscar, name='TPFinalUsuariosBuscar'),
     path('Usuario/Eliminar/<str:username>', usuario_eliminar, name='TPFinalUsuariosEliminar'),
     path('Usuario/Modificar/<str:username>', usuario_modificar, name='TPFinalUsuariosModificar'),
+    path('Usuario/CambiarPass/', ChangePasswordView.as_view(), name='TPFinalUsuariosModificarPass'),
 ]
 

@@ -4,6 +4,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 
 from UserCoder.forms import userRegisterForm, UserFindForm, UserChangeForm
 from UserCoder.models import Avatar
@@ -103,10 +106,12 @@ def usuario_modificar(request, username):
             else:
                 avatar = Avatar(user=usuario, avatar=data.get("imagen"))
                 avatar.save()
-                messages.info(request, 'Los datos se han actualizado con exito!')
+            messages.info(request, 'Los datos se han cargado con exito!')
+        else:
+            messages.info(request, usr.errors)
 
         if request.user.is_superuser:
-            return redirect('TPFinalUsuariosBuscar')
+            return redirect('TPFinalUsuariosModificar',username)
         else:
             return redirect('TPFinalUsuariosModificar',username)
 
@@ -118,8 +123,14 @@ def usuario_modificar(request, username):
                 }
              )
     contexto = {
-        'formulariousuario' : usuario_form,
+        'formulariousuario': usuario_form,
         'usuario': usuario,
     }
 
     return render(request, 'UserCoder/usuariomodificar.html', contexto)
+
+
+class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+    template_name = 'UserCoder/usuariomodificarpass.html'
+    success_message = "Su password se ha cambiado con exito"
+    success_url = reverse_lazy('TPFinalUsuariosModificar')

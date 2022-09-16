@@ -37,9 +37,7 @@
                         <table style="width:40%">
                             {% for field in formulariousuario %}
                             <tr>
-                                {% if field.label == "Username" %}
-                                <th>Nombre de usuario <em>*</em></th>
-                                {% endif %}
+                                {% if field.label != "Username" %}
                                 {% if field.label == "First name" %}
                                 <th>Nombre <em>*</em></th>
                                 {% endif %}
@@ -59,6 +57,7 @@
                                 <th>Avatar</th>
                                 {% endif %}
                                 <th>{{ field }}</th>
+                                {% endif %}
                             </tr>
                             {% endfor %}
                         </table>
@@ -75,8 +74,8 @@
                     </b>
                 </form>
             </div>
+            <a class="btn btn-secondary " href="{% url 'TPFinalUsuariosModificarPass' %}"> Cambiar password </a>
         </div>
     </div>
-
 </header>
 {% endblock %}
