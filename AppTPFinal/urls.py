@@ -2,6 +2,7 @@ from django.urls import path
 from AppTPFinal.views import *
 from UserCoder.views import *
 
+
 urlpatterns = [
     path('', Main, name='TPFinalMain'),
     #Urls utilizadas para el CRUD de usuarios

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'AppTPFinal',
     'UserCoder',
     'ckeditor',
+    'Mensajes',
     'whitenoise.runserver_nostatic',
 
 ]

@@ -15,7 +15,6 @@ class Literatura_Form(forms.Form):
     imglit = forms.ImageField(required=False)
 
 
-
 class Buscar_Literatura_Form(forms.Form):
     nombre_literatura = forms.CharField(max_length=50)
     autor_literatura = forms.CharField(max_length=50)

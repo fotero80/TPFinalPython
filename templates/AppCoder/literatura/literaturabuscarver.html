@@ -75,6 +75,9 @@
                 <th class="thdata">Usuario creador</th>
                 <th class="thdata">Fecha de creacion</th>
                 <th class="thdata">Ver</th>
+                {% if user.is_authenticated %}
+                <th class="thdata">Enviar mensaje al creador</th>
+                {% endif %}
             </tr>
             {% for literatura in literatura %}
             <tr>
@@ -93,6 +96,10 @@
                 <td class="tddata">{{literatura.fecha_creacion_literatura}}</td>
                 <td class="tddata"><a
                         href="{% url 'TPFinalLiteraturaVer' literatura.id_literatura %}">Ver</a></td>
+                {% if user.is_authenticated %}
+                <td class="tddata"><a
+                        href="{% url 'Mensajes:TPFinalMensajeEnviar' literatura.username_literatura %}">Enviar mensaje</a></td>
+                {% endif %}
             </tr>
             {% endfor %}
 
@@ -100,3 +107,4 @@
     </div>
 </section>
 {% endblock %}
+

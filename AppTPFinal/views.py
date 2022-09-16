@@ -28,11 +28,13 @@ def literatura_crear(request):
                 username_literatura=username,
             )
             lit.save()
-        if 'imglit' in request.FILES:
-            imagen = request.FILES["imglit"]
-            img = ImagenLiteratura(id_literatura=lit, imglit=imagen)
-            img.save()
-        messages.info(request, 'Los datos se han cargado con exito!')
+            if 'imglit' in request.FILES:
+                imagen = request.FILES["imglit"]
+                img = ImagenLiteratura(id_literatura=lit, imglit=imagen)
+                img.save()
+            messages.info(request, 'Los datos se han cargado con exito!')
+        else:
+            messages.info(request, 'Los datos no se han cargado con exito!')
 
     contexto = {
         'formulariocargarliteratura': Literatura_Form(),
@@ -170,11 +172,13 @@ def musica_crear(request):
                 username_musica=username,
             )
             mus.save()
-        if 'imgmus' in request.FILES:
-            imagen = request.FILES["imgmus"]
-            img = ImagenMusica(id_musica=mus, imgmus=imagen)
-            img.save()
-        messages.info(request, 'Los datos se han cargado con exito!')
+            if 'imgmus' in request.FILES:
+                imagen = request.FILES["imgmus"]
+                img = ImagenMusica(id_musica=mus, imgmus=imagen)
+                img.save()
+            messages.info(request, 'Los datos se han cargado con exito!')
+        else:
+            messages.info(request, 'Los datos no se han cargado con exito!')
 
     contexto = {
         'formulariomusica': Musica_Form()
@@ -304,11 +308,13 @@ def cine_crear(request):
                 username_cine=username,
             )
             cine.save()
-        if 'imgcin' in request.FILES:
-            imagen = request.FILES["imgcin"]
-            img = ImagenCine(id_cine=cine, imgcin=imagen)
-            img.save()
-        messages.info(request, 'Los datos se han cargado con exito!')
+            if 'imgcin' in request.FILES:
+                imagen = request.FILES["imgcin"]
+                img = ImagenCine(id_cine=cine, imgcin=imagen)
+                img.save()
+            messages.info(request, 'Los datos se han cargado con exito!')
+        else:
+            messages.info(request, 'Los datos no se han cargado con exito!')
     contexto = {
         'formulariocine': Cine_Form()
     }
