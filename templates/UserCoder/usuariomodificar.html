@@ -37,7 +37,10 @@
                         <table style="width:40%">
                             {% for field in formulariousuario %}
                             <tr>
-                                {% if field.label != "Username" %}
+                                {% if field.label == "Username" %}
+                                <th style="display:none;">Nombre de usuario <em>*</em></th>
+                                <th style="display:none;">{{ field }}</th>
+                                {% else %}
                                 {% if field.label == "First name" %}
                                 <th>Nombre <em>*</em></th>
                                 {% endif %}
