@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.views import PasswordChangeView
@@ -86,14 +86,10 @@ def usuario_eliminar(request, username):
 def usuario_modificar(request, username):
     usuario = User.objects.get(username=username)
     if request.method == 'POST':
-        usr = UserChangeForm(request.POST or None, request.FILES or None)
+        usr = UserChangeForm(request.POST or None, request.FILES or None, instance=usuario)
         if usr.is_valid():
             data = usr.cleaned_data
-            usuario.username= data.get('username')
-            usuario.first_name= data.get('first_name')
-            usuario.last_name= data.get('last_name')
-            usuario.email= data.get('email')
-            usuario.save()
+            usr.save()
 
             avatar = Avatar.objects.filter(user=usuario)
             imagen=data.get("imagen")

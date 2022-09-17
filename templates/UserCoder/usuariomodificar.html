@@ -34,31 +34,46 @@
                       enctype="multipart/form-data">
                     <b>
                         {% csrf_token %}
-                        <table style="width:40%">
+                        <table style="width:80%">
+                            {{ formulariousuario.media }}
                             {% for field in formulariousuario %}
                             <tr>
                                 {% if field.label == "Username" %}
-                                <th style="display:none;">Nombre de usuario <em>*</em></th>
+                                <th >Nombre de usuario <em>*</em></th>
                                 <th style="display:none;">{{ field }}</th>
-                                {% else %}
+                                <th>{{ field.value }}</th>
+                                {% endif %}
                                 {% if field.label == "First name" %}
                                 <th>Nombre <em>*</em></th>
+                                <th>{{ field }}</th>
                                 {% endif %}
                                 {% if field.label == "Last name" %}
                                 <th>Apellido <em>*</em></th>
+                                <th>{{ field }}</th>
                                 {% endif %}
-                                {% if field.label == "Email" %}
+                                {% if field.label == "Email address" %}
                                 <th>Email <em>*</em></th>
+                                <th>{{ field }}</th>
                                 {% endif %}
-                                {% if field.label == "Password" %}
-                                <th>Contraseña <em>*</em></th>
+                                {% if field.label == "Active" and user.is_superuser %}
+                                <th>Usuario activo</th>
+                                <th>{{ field }}</th>
                                 {% endif %}
-                                {% if field.label == "Password confirmation" %}
-                                <th>Repita la contraseña <em>*</em></th>
+                                {% if field.label == "Staff status" and user.is_superuser %}
+                                <th>Staff <em>*</em></th>
+                                <th>{{ field }}</th>
+                                {% endif %}
+                                {% if field.label == "Superuser status" and user.is_superuser %}
+                                <th>Superusuario <em>*</em></th>
+                                <th>{{ field }}</th>
+                                {% endif %}
+                                {% if field.label == "Date joined" %}
+                                <th>Fecha de creacion</th>
+                                <th style="display:none;">{{ field }}</th>
+                                <th>{{ field.value }}</th>
                                 {% endif %}
                                 {% if field.label == "Imagen" %}
                                 <th>Avatar</th>
-                                {% endif %}
                                 <th>{{ field }}</th>
                                 {% endif %}
                             </tr>

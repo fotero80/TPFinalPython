@@ -24,10 +24,6 @@ class UserFindForm(forms.Form):
     email = forms.EmailField()
 
 
-class UserChangeForm(forms.Form):
-    username = forms.CharField()
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    email = forms.EmailField()
+class UserChangeForm(UserChangeForm):
     imagen = forms.ImageField(required=False)
 
