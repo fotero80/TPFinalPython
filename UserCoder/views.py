@@ -112,11 +112,14 @@ def usuario_modificar(request, username):
             return redirect('TPFinalUsuariosModificar',username)
 
     usuario_form = UserChangeForm(initial={
-                'username': usuario.username,
-                'first_name': usuario.first_name,
-                'last_name': usuario.last_name,
-                'email': usuario.email
-                }
+           'username': usuario.username,
+           'first_name': usuario.first_name,
+           'last_name': usuario.last_name,
+           'email': usuario.email,
+           'is_staff': usuario.is_staff,
+           'is_active': usuario.is_active,
+           'is_superuser': usuario.is_superuser
+       }
              )
     contexto = {
         'formulariousuario': usuario_form,
