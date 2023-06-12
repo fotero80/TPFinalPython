@@ -6,8 +6,8 @@ from Mensajes.views import *
 app_name='Mensajes'
 
 urlpatterns = [
-    path('Mensaje/BuscarVer/', mensaje_buscar_ver, name='TPFinalMensajeBuscarVer'),
-    path('Mensaje/Ver/<int:id_mensaje>', mensaje_ver, name='TPFinalMensajeVer'),
-    path('Mensaje/Enviar/<str:username>', mensaje_crear, name='TPFinalMensajeEnviar'),
+    path('Mensaje/BuscarVer/', mensaje_buscar_ver, name='MensajeBuscarVer'),
+    path('Mensaje/Ver/<int:id_mensaje>', mensaje_ver, name='MensajeVer'),
+    path('Mensaje/Enviar/<str:username>', mensaje_crear, name='MensajeEnviar'),
 ]
 

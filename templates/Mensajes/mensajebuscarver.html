@@ -77,9 +77,9 @@
                 <td class="tddataleft">{{mensaje.mensaje|safe}}</td>
                 <td class="tddataleft">{{mensaje.fecha_creacion_mensaje}}</td>
                 <td class="tddatacenter"><a
-                        href="{% url 'Mensajes:TPFinalMensajeVer' mensaje.id_mensaje %}">Ver</a></td>
+                        href="{% url 'Mensajes:MensajeVer' mensaje.id_mensaje %}">Ver</a></td>
                 <td class="tddatacenter"><a
-                        href="{% url 'Mensajes:TPFinalMensajeEnviar' mensaje.usuario_origen %}">Responder</a></td>
+                        href="{% url 'Mensajes:MensajeEnviar' mensaje.usuario_origen %}">Responder</a></td>
             </tr>
             {% endfor %}
 

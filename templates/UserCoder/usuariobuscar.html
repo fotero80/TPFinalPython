@@ -85,8 +85,8 @@
                 <td class="tddata">{{usuario.first_name}}</td>
                 <td class="tddata">{{usuario.last_name}}</td>
                 <td class="tddata">{{usuario.email}}</td>
-                <td class="tddata"><a href="{% url 'TPFinalUsuariosEliminar' usuario.username %}">Eliminar</a></td>
-                <td class="tddata"><a href="{% url 'TPFinalUsuariosModificar' usuario.username %}">Modificar</a></td>
+                <td class="tddata"><a href="{% url 'UsuariosEliminar' usuario.username %}">Eliminar</a></td>
+                <td class="tddata"><a href="{% url 'UsuariosModificar' usuario.username %}">Modificar</a></td>
             </tr>
             {% endfor %}
 

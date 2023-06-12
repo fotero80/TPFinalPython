@@ -24,7 +24,7 @@ def user_login(request):
 
             if user:
                 login(request, user)
-                return redirect('TPFinalMain')
+                return redirect('DocumentosPerdidosMain')
             else:
                 messages.info(request, 'Inicio de sesion fallido!')
         else:
@@ -80,7 +80,7 @@ def usuario_eliminar(request, username):
     usuario = User.objects.get(username=username)
     usuario.delete()
 
-    return redirect('TPFinalUsuariosBuscar')
+    return redirect('UsuariosBuscar')
 
 @login_required()
 def usuario_modificar(request, username):
@@ -111,9 +111,9 @@ def usuario_modificar(request, username):
             messages.info(request, usr.errors)
 
         if request.user.is_superuser:
-            return redirect('TPFinalUsuariosModificar',username)
+            return redirect('DocumentosPerdidosUsuariosModificar',username)
         else:
-            return redirect('TPFinalUsuariosModificar',username)
+            return redirect('UsuariosModificar',username)
 
     usuario_form = UserChangeForm(initial={
                 'username': usuario.username,
@@ -133,4 +133,4 @@ def usuario_modificar(request, username):
 class ChangePasswordView(SuccessMessageMixin, PasswordChangeView):
     template_name = 'UserCoder/usuariomodificarpass.html'
     success_message = "Su password se ha cambiado con exito"
-    success_url = reverse_lazy('TPFinalUsuariosModificar')
+    success_url = reverse_lazy('UsuariosModificar')

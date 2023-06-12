@@ -30,7 +30,7 @@
             {% endfor %}
         </ul>
         {% endif %}
-        <form class="bodyoptionstittle" action="{% url 'TPFinalLiteraturaCrear' %}" method="post"
+        <form class="bodyoptionstittle" action="{% url 'LiteraturaCrear' %}" method="post"
               enctype="multipart/form-data">{% csrf_token %}
             <table style="width:100%">
                 {{ formulariocargarliteratura.media }}
