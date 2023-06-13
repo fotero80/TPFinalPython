@@ -1,6 +1,6 @@
 # Proyecto final de Python de Coder House
 
-_El proyecto se pensó como una página donde se puede compartir opiniones de literatura, música y cine.
+_El proyecto se pensó como una página donde se puede compartir opiniones de documento, música y cine.
 Para esto los usuarios que deseen subir contenido deberan loguearse. Para ver el contenido no hace falta crearse un
 usario.
 
@@ -11,14 +11,14 @@ https://tpfinalpython.herokuapp.com/
 
 La pagina se puede utilizar de 3 maneras:
 Como "Admin":
-Este usuario puede crear, modificar y eliminar cualquier dato de usuarios, literatura, musica o cine creado.
+Este usuario puede crear, modificar y eliminar cualquier dato de usuarios, documento, musica o cine creado.
 Al loguearse con este usuario se mostraran opciones que a los otros usuarios no.
 Al cliclear sobre su nombre de usuario que se encuentra arriba a la derecha, puede modificar sus datos y agregar un
 avatar.
 
 Como "Usuario":
 Una persona se puede crear un usuario por medio del "Create user".
-Una vez creado el usuario, este puede logearse y comenzar a crear contenido de acuerdo a lo que desee, literatura,
+Una vez creado el usuario, este puede logearse y comenzar a crear contenido de acuerdo a lo que desee, documento,
 musica o cine.
 Tambien puede modificar o eliminar los datos que ha ingresado, ya que con esas opciones solo le apareceran lo que él
 haya creado.
@@ -62,17 +62,17 @@ Página para crear un nuevo usuario: http://127.0.0.1:8000/TPFinal/Logon/
 Página donde un usuario se loguea:
 http://127.0.0.1:8000/TPFinal/Login/
 
-Página para crear un nuevo dato de literatura: http://127.0.0.1:8000/TPFinal/Literatura/Crear/
+Página para crear un nuevo dato de documento: http://127.0.0.1:8000/TPFinal/documento/Crear/
 
-Pagina para administrar la literatura creada por cada usuario: http://127.0.0.1:8000/TPFinal/Literatura/Buscar/
+Pagina para administrar la documento creada por cada usuario: http://127.0.0.1:8000/TPFinal/documento/Buscar/
 
-Pagina para ver toda la literatura cargada por todos los usuarios: http://127.0.0.1:8000/TPFinal/Literatura/BuscarVer/
+Pagina para ver toda la documento cargada por todos los usuarios: http://127.0.0.1:8000/TPFinal/documento/BuscarVer/
 
-Pagina paramodificar datos de literatura seleccionada: http://127.0.0.1:8000/TPFinal/Literatura/Modificar/"ID de
-literatura"
+Pagina paramodificar datos de documento seleccionada: http://127.0.0.1:8000/TPFinal/documento/Modificar/"ID de
+documento"
 
-Pagina que muestra una literatura especifica seleccionada: http://127.0.0.1:8000/TPFinal/Literatura/Ver/"ID de
-literatura"
+Pagina que muestra una documento especifica seleccionada: http://127.0.0.1:8000/TPFinal/documento/Ver/"ID de
+documento"
 
 Página para crear un nuevo dato de musica: http://127.0.0.1:8000/TPFinal/Musica/Crear/
 
@@ -106,10 +106,10 @@ Pagina para modificar datos de los usuarios: http://127.0.0.1:8000/TPFinal/Usuar
 Las pruebas realizadas fueron:
 
 - Se creó un usuario desde el formulario que solicita los datos.
-- Se creó un dato de literatura desde el formulario que solicita los datos.
+- Se creó un dato de documento desde el formulario que solicita los datos.
 - Se creó un dato de musica desde el formulario que solicita los datos.
 - Se creó un dato de cine desde el formulario que solicita los datos.
-- Se buscaron datos de literaturas ya cargadas desde el formulario que solicita los datos,
+- Se buscaron datos de documentos ya cargadas desde el formulario que solicita los datos,
   donde realiza la búsqueda con al menos un dato ingresado coincidente.
 - Se buscaron datos de musica ya cargadas desde el formulario que solicita los datos,
   donde realiza la búsqueda con al menos un dato ingresado coincidente.

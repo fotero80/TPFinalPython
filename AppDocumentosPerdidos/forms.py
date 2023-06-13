@@ -8,16 +8,16 @@ class DateImput(forms.DateInput):
     input_type = 'date'
 
 
-class Literatura_Form(forms.Form):
-    nombre_literatura = forms.CharField(max_length=50)
-    autor_literatura = forms.CharField(max_length=50)
-    editorial_literatura = forms.CharField(max_length=50)
-    descripcion_literatura = forms.CharField(widget=CKEditorWidget())
+class documento_Form(forms.Form):
+    nombre_documento = forms.CharField(max_length=50)
+    autor_documento = forms.CharField(max_length=50)
+    editorial_documento = forms.CharField(max_length=50)
+    descripcion_documento = forms.CharField(widget=CKEditorWidget())
     imglit = forms.ImageField(required=False)
 
 
-class Buscar_Literatura_Form(forms.Form):
-    nombre_literatura = forms.CharField(max_length=50)
-    autor_literatura = forms.CharField(max_length=50)
-    editorial_literatura = forms.CharField(max_length=50)
-    descripcion_literatura = forms.CharField(max_length=50)
+class Buscar_documento_Form(forms.Form):
+    nombre_documento = forms.CharField(max_length=50)
+    autor_documento = forms.CharField(max_length=50)
+    editorial_documento = forms.CharField(max_length=50)
+    descripcion_documento = forms.CharField(max_length=50)

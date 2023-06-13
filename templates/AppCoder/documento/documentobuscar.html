@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block headertitlle %}
-<title>Literatura</title>
+<title>documento</title>
 {% endblock %}
 
 {% block stile %}
@@ -21,7 +21,7 @@
 {% endblock %}
 {% block bodyoptions %}
 <section>
-    <div class="datos-literatura">
+    <div class="datos-documento">
         <div class="container px-5 my-5">
             <div class="row gx-5">
                 {% if messages %}
@@ -33,18 +33,18 @@
                 {% endif %}
                 <form class="bodyoptionstittle" method="post" novalidate>{% csrf_token %}
                     <table style="width:40%">
-                        {% for field in buscar_literatura %}
+                        {% for field in buscar_documento %}
                         <tr>
-                            {% if field.label == "Nombre literatura" %}
+                            {% if field.label == "Nombre documento" %}
                             <th>Nombre del libro</th>
                             {% endif %}
-                            {% if field.label == "Autor literatura" %}
+                            {% if field.label == "Autor documento" %}
                             <th>Nombre del autor</th>
                             {% endif %}
-                            {% if field.label == "Editorial literatura" %}
+                            {% if field.label == "Editorial documento" %}
                             <th>Nombre de la editorial</th>
                             {% endif %}
-                            {% if field.label == "Descripcion literatura" %}
+                            {% if field.label == "Descripcion documento" %}
                             <th>Descripcion del libro</th>
                             {% endif %}
                             <th>{{ field }}</th>
@@ -61,10 +61,10 @@
 
 
 <section class="py-5 border-bottom" id="resultado">
-    <div class="datos-literatura">
+    <div class="datos-documento">
         <h4>Los datos encontrados son: </h4>
         <table class="tabledata" style="width:100%">
-            {{ formulariocargarliteratura.media }}
+            {{ formulariocargardocumento.media }}
             <tr>
                 <th class="thdata">ID</th>
                 <th class="thdata">Imagen</th>
@@ -72,39 +72,33 @@
                 <th class="thdata">Autor</th>
                 <th class="thdata">Editorial</th>
                 <th class="thdata">Descripcion</th>
-                <th class="thdata">Usuario creador</th>
                 <th class="thdata">Fecha de creacion</th>
-                <th class="thdata">Ver</th>
-                {% if user.is_authenticated %}
-                <th class="thdata">Enviar mensaje al creador</th>
-                {% endif %}
+                <th class="thdata">Usuario creador</th>
+                <th class="thdata">Eliminar</th>
+                <th class="thdata">Modificar</th>
             </tr>
-            {% for literatura in literatura %}
+            {% for documento in documento %}
             <tr>
-                <td class="tddata">{{literatura.id_literatura}}</td>
-                {% if literatura.imagenliteratura.imglit.url != "" %}
-                <td class="tddata"><img src="{{ literatura.imagenliteratura.imglit.url }}" alt="" width="40px"
+                <td class="tddata">{{documento.id_documento}}</td>
+                {% if documento.imagendocumento.imglit.url != "" %}
+                <td class="tddata"><img src="{{ documento.imagendocumento.imglit.url }}" alt="" width="40px"
                                         height="40px"></td>
                 {% else %}
                 <td class="tddata">No image</td>
                 {% endif %}
-                <td class="tddata">{{literatura.nombre_literatura}}</td>
-                <td class="tddata">{{literatura.autor_literatura}}</td>
-                <td class="tddata">{{literatura.editorial_literatura}}</td>
-                <td class="tddata">{{literatura.descripcion_literatura|safe}}</td>
-                <td class="tddata">{{literatura.username_literatura}}</td>
-                <td class="tddata">{{literatura.fecha_creacion_literatura}}</td>
+                <td class="tddata">{{documento.nombre_documento}}</td>
+                <td class="tddata">{{documento.autor_documento}}</td>
+                <td class="tddata">{{documento.editorial_documento}}</td>
+                <td class="tddata">{{documento.descripcion_documento|safe}}</td>
+                <td class="tddata">{{documento.fecha_creacion_documento}}</td>
+                <td class="tddata">{{documento.username_documento}}</td>
+                <td class="tddata"><a href="{% url 'DocumentoEliminar' documento.id_documento %}">Eliminar</a>
+                </td>
                 <td class="tddata"><a
-                        href="{% url 'LiteraturaVer' literatura.id_literatura %}">Ver</a></td>
-                {% if user.is_authenticated %}
-                <td class="tddata"><a
-                        href="{% url 'Mensajes:MensajeEnviar' literatura.username_literatura %}">Enviar mensaje</a></td>
-                {% endif %}
+                        href="{% url 'DocumentoModificar' documento.id_documento %}">Modificar</a></td>
             </tr>
             {% endfor %}
-
         </table>
     </div>
 </section>
 {% endblock %}
-

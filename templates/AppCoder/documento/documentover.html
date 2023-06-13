@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 
 {% block headertitlle %}
-<title>Literatura</title>
+<title>documento</title>
 {% endblock %}
 
 {% block bodytitleoptions %}
@@ -12,7 +12,7 @@
 
 {% block bodyheader %}
 
-<h1 class="display-5 fw-bolder text-white mb-2">Literatura seleccionada</h1>
+<h1 class="display-5 fw-bolder text-white mb-2">documento seleccionada</h1>
 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
 </div>
 {% endblock %}
@@ -31,27 +31,27 @@
                 <form class="bodyoptionstittle" action="" method="post" enctype="multipart/form-data" novalidate>
                     {%csrf_token %}
                     <table style="width:100%">
-                        {{ formulariocargarliteratura.media }}
+                        {{ formulariocargardocumento.media }}
                         <tr>
                             <th class="thdata">Nombre</th>
-                            <td class="tddata">{{literatura.nombre_literatura}}</td>
+                            <td class="tddata">{{documento.nombre_documento}}</td>
                         </tr>
                         <tr>
                             <th class="thdata">Autor</th>
-                            <td class="tddata">{{literatura.autor_literatura}}</td>
+                            <td class="tddata">{{documento.autor_documento}}</td>
                         </tr>
                         <tr>
                             <th class="thdata">Editorial</th>
-                            <td class="tddata">{{literatura.editorial_literatura}}</td>
+                            <td class="tddata">{{documento.editorial_documento}}</td>
                         </tr>
                         <tr>
                             <th class="thdata">Descripcion</th>
-                            <td class="tddata">{{literatura.descripcion_literatura|safe}}</td>
+                            <td class="tddata">{{documento.descripcion_documento|safe}}</td>
                         </tr>
                         <tr>
                             <th class="thdata">Imagen</th>
-                            {% if literatura.imagenliteratura.imglit.url != "" %}
-                            <td class="tddata"><img src="{{ literatura.imagenliteratura.imglit.url }}" alt=""
+                            {% if documento.imagendocumento.imglit.url != "" %}
+                            <td class="tddata"><img src="{{ documento.imagendocumento.imglit.url }}" alt=""
                                                     width="40px"
                                                     height="40px"></td>
                             {% else %}
@@ -60,11 +60,11 @@
                         </tr>
                         <tr>
                             <th class="thdata">Fecha de creacion</th>
-                            <td class="tddata">{{literatura.fecha_creacion_literatura}}</td>
+                            <td class="tddata">{{documento.fecha_creacion_documento}}</td>
                         </tr>
                         <tr>
                             <th class="thdata">Usuario creador</th>
-                            <td class="tddata">{{literatura.username_literatura}}</td>
+                            <td class="tddata">{{documento.username_documento}}</td>
                         </tr>
                     </table>
                 </form>

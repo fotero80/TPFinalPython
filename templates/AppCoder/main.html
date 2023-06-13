@@ -22,7 +22,7 @@
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-8">
                 {% block bodyheader %}
-                <h1 class="bodyheadertittle">Comparta sus comentarios y conocimientos sobre literatura, musica y
+                <h1 class="bodyheadertittle">Comparta sus comentarios y conocimientos sobre documento, musica y
                     cine.</h1>
                 <p class="bodyheadertext">Una manera rapida y simple de compartir con otras personas su conocimiento y/u
                     opinion acerca de libros, musica, peliculas!!!</p>
@@ -40,23 +40,23 @@
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i
                         class="bi bi-collection"></i>
                 </div>
-                <h2 class="h4 fw-bolder">Literatura</h2>
+                <h2 class="h4 fw-bolder">documento</h2>
                 <p>Como usuario usted podra crear comentarios sobre los libros, revistar, comics y no solo ver lo que
                     otros escriben.....</p>
                 {% if user.is_authenticated %}
-                <a class="text-decoration-none" href="{% url 'LiteraturaCrear' %}">
-                    Ir a cargar nueva literatura
+                <a class="text-decoration-none" href="{% url 'DocumentoCrear' %}">
+                    Ir a cargar nueva documento
                     <i class="bi bi-arrow-right"></i>
                 </a>
                 <br>
-                <a class="text-decoration-none" href="{% url 'LiteraturaBuscar' %}">
-                    Ir a administrar mi literatura
+                <a class="text-decoration-none" href="{% url 'DocumentoBuscar' %}">
+                    Ir a administrar mi documento
                     <i class="bi bi-arrow-right"></i>
                 </a>
                 {% endif %}
                 <br>
-                <a class="text-decoration-none" href="{% url 'LiteraturaBuscarVer' %}">
-                    Ir a buscar literatura existente
+                <a class="text-decoration-none" href="{% url 'DocumentoBuscarVer' %}">
+                    Ir a buscar documento existente
                     <i class="bi bi-arrow-right"></i>
                 </a>
             </div>

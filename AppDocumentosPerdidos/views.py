@@ -11,105 +11,105 @@ def Main(request):
 
 
 # --------------------------------------------------------------------------------------------------------
-# Modulos de Literatura
+# Modulos de documento
 @login_required()
-def literatura_crear(request):
-    lit = Literatura_Form(request.POST or None, request.FILES or None)
+def documento_crear(request):
+    lit = documento_Form(request.POST or None, request.FILES or None)
     username = None
     username = request.user.username
     if request.method == 'POST':
         if lit.is_valid():
-            lit = Literatura(
-                nombre_literatura=request.POST.get('nombre_literatura'),
-                autor_literatura=request.POST.get('autor_literatura'),
-                editorial_literatura=request.POST.get('editorial_literatura'),
-                descripcion_literatura=request.POST.get('descripcion_literatura'),
-                username_literatura=username,
+            lit = documento(
+                nombre_documento=request.POST.get('nombre_documento'),
+                autor_documento=request.POST.get('autor_documento'),
+                editorial_documento=request.POST.get('editorial_documento'),
+                descripcion_documento=request.POST.get('descripcion_documento'),
+                username_documento=username,
             )
             lit.save()
             if 'imglit' in request.FILES:
                 imagen = request.FILES["imglit"]
-                img = ImagenLiteratura(id_literatura=lit, imglit=imagen)
+                img = Imagendocumento(id_documento=lit, imglit=imagen)
                 img.save()
             messages.info(request, 'Los datos se han cargado con exito!')
         else:
             messages.info(request, 'Los datos no se han cargado con exito!')
 
     contexto = {
-        'formulariocargarliteratura': Literatura_Form(),
+        'formulariocargardocumento': documento_Form(),
     }
-    return render(request, 'AppCoder/literatura/literatura.html', contexto)
+    return render(request, 'AppCoder/documento/documento.html', contexto)
 
 
 @login_required()
-def literatura_buscar(request):
+def documento_buscar(request):
     username = None
     username = request.user.username
     a_buscar = []
     if request.method == 'POST':
-        nombre_literatura = request.POST.get('nombre_literatura')
-        autor_literatura = request.POST.get('autor_literatura')
-        editorial_literatura = request.POST.get('editorial_literatura')
-        descripcion_literatura = request.POST.get('descripcion_literatura')
+        nombre_documento = request.POST.get('nombre_documento')
+        autor_documento = request.POST.get('autor_documento')
+        editorial_documento = request.POST.get('editorial_documento')
+        descripcion_documento = request.POST.get('descripcion_documento')
         if request.user.is_superuser:
-            a_buscar = Literatura.objects.filter(nombre_literatura__icontains=nombre_literatura) & \
-                       Literatura.objects.filter(autor_literatura__icontains=autor_literatura) & \
-                       Literatura.objects.filter(editorial_literatura__icontains=editorial_literatura) & \
-                       Literatura.objects.filter(descripcion_literatura__icontains=descripcion_literatura)
+            a_buscar = documento.objects.filter(nombre_documento__icontains=nombre_documento) & \
+                       documento.objects.filter(autor_documento__icontains=autor_documento) & \
+                       documento.objects.filter(editorial_documento__icontains=editorial_documento) & \
+                       documento.objects.filter(descripcion_documento__icontains=descripcion_documento)
         else:
-            a_buscar = Literatura.objects.filter(nombre_literatura__icontains=nombre_literatura) & \
-                       Literatura.objects.filter(autor_literatura__icontains=autor_literatura) & \
-                       Literatura.objects.filter(editorial_literatura__icontains=editorial_literatura) & \
-                       Literatura.objects.filter(descripcion_literatura__icontains=descripcion_literatura) & \
-                       Literatura.objects.filter(username_literatura=username)
+            a_buscar = documento.objects.filter(nombre_documento__icontains=nombre_documento) & \
+                       documento.objects.filter(autor_documento__icontains=autor_documento) & \
+                       documento.objects.filter(editorial_documento__icontains=editorial_documento) & \
+                       documento.objects.filter(descripcion_documento__icontains=descripcion_documento) & \
+                       documento.objects.filter(username_documento=username)
 
     contexto = {
-        'buscar_literatura': Buscar_Literatura_Form(),
-        'literatura': a_buscar
+        'buscar_documento': Buscar_documento_Form(),
+        'documento': a_buscar
     }
-    return render(request, 'AppCoder/literatura/literaturabuscar.html', contexto)
+    return render(request, 'AppCoder/documento/DocumentoBuscar.html', contexto)
 
 
-def literatura_buscar_ver(request):
+def documento_buscar_ver(request):
     a_buscar = []
     if request.method == 'POST':
-        nombre_literatura = request.POST.get('nombre_literatura')
-        autor_literatura = request.POST.get('autor_literatura')
-        editorial_literatura = request.POST.get('editorial_literatura')
-        descripcion_literatura = request.POST.get('descripcion_literatura')
-        a_buscar = Literatura.objects.filter(nombre_literatura__icontains=nombre_literatura) & \
-                    Literatura.objects.filter(autor_literatura__icontains=autor_literatura) & \
-                    Literatura.objects.filter(editorial_literatura__icontains=editorial_literatura) & \
-                    Literatura.objects.filter(descripcion_literatura__icontains=descripcion_literatura)
+        nombre_documento = request.POST.get('nombre_documento')
+        autor_documento = request.POST.get('autor_documento')
+        editorial_documento = request.POST.get('editorial_documento')
+        descripcion_documento = request.POST.get('descripcion_documento')
+        a_buscar = documento.objects.filter(nombre_documento__icontains=nombre_documento) & \
+                    documento.objects.filter(autor_documento__icontains=autor_documento) & \
+                    documento.objects.filter(editorial_documento__icontains=editorial_documento) & \
+                    documento.objects.filter(descripcion_documento__icontains=descripcion_documento)
 
     contexto = {
-        'buscar_literatura': Buscar_Literatura_Form(),
-        'literatura': a_buscar
+        'buscar_documento': Buscar_documento_Form(),
+        'documento': a_buscar
     }
-    return render(request, 'AppCoder/literatura/literaturabuscarver.html', contexto)
+    return render(request, 'AppCoder/documento/DocumentoBuscarVer.html', contexto)
 
 @login_required()
-def literatura_eliminar(request, id_literatura):
-    lit = Literatura.objects.get(id_literatura=id_literatura)
+def documento_eliminar(request, id_documento):
+    lit = documento.objects.get(id_documento=id_documento)
     lit.delete()
 
-    return redirect('LiteraturaBuscar')
+    return redirect('DocumentoBuscar')
 
 
 @login_required()
-def literatura_modificar(request, id_literatura):
-    lit = Literatura.objects.get(id_literatura=id_literatura)
+def documento_modificar(request, id_documento):
+    lit = documento.objects.get(id_documento=id_documento)
     if request.method == 'POST':
-        Lite = Literatura_Form(request.POST)
+        Lite = documento_Form(request.POST)
         if Lite.is_valid():
             data = Lite.cleaned_data
-            lit.nombre_literatura = data.get('nombre_literatura')
-            lit.autor_literatura = data.get('autor_literatura')
-            lit.editorial_literatura = data.get('editorial_literatura')
-            lit.descripcion_literatura = data.get('descripcion_literatura')
+            lit.nombre_documento = data.get('nombre_documento')
+            lit.autor_documento = data.get('autor_documento')
+            lit.editorial_documento = data.get('editorial_documento')
+            lit.descripcion_documento = data.get('descripcion_documento')
             lit.save()
 
-            img = ImagenLiteratura.objects.filter(id_literatura=lit)
+            img = Imagendocumento.objects.filter(id_documento=lit)
             if 'imglit' in request.FILES:
                 imagen = request.FILES["imglit"]
                 if img.exists():
@@ -119,41 +119,41 @@ def literatura_modificar(request, id_literatura):
                         img.save()
 
                 else:
-                    img = ImagenLiteratura(id_literatura=lit, imglit=imagen)
+                    img = Imagendocumento(id_documento=lit, imglit=imagen)
                     img.save()
             messages.info(request, 'Los datos se han actualizado con exito!')
-            return redirect('LiteraturaBuscar')
+            return redirect('DocumentoBuscar')
 
-    literatura_form = Literatura_Form(initial={
-        'nombre_literatura': lit.nombre_literatura,
-        'autor_literatura': lit.autor_literatura,
-        'editorial_literatura': lit.editorial_literatura,
-        'descripcion_literatura': lit.descripcion_literatura,
-        'username_literatura': lit.username_literatura
+    documento_form = documento_Form(initial={
+        'nombre_documento': lit.nombre_documento,
+        'autor_documento': lit.autor_documento,
+        'editorial_documento': lit.editorial_documento,
+        'descripcion_documento': lit.descripcion_documento,
+        'username_documento': lit.username_documento
     }
     )
     contexto = {
-        'formulariocargarliteratura': literatura_form,
-        'literatura': lit,
+        'formulariocargardocumento': documento_form,
+        'documento': lit,
     }
 
-    return render(request, 'AppCoder/literatura/literaturamodificar.html', contexto)
+    return render(request, 'AppCoder/documento/DocumentoModificar.html', contexto)
 
-def literatura_ver(request, id_literatura):
-    lit = Literatura.objects.get(id_literatura=id_literatura)
-    literatura_form = Literatura_Form(initial={
-        'nombre_literatura': lit.nombre_literatura,
-        'autor_literatura': lit.autor_literatura,
-        'editorial_literatura': lit.editorial_literatura,
-        'descripcion_literatura': lit.descripcion_literatura,
+def documento_ver(request, id_documento):
+    lit = documento.objects.get(id_documento=id_documento)
+    documento_form = documento_Form(initial={
+        'nombre_documento': lit.nombre_documento,
+        'autor_documento': lit.autor_documento,
+        'editorial_documento': lit.editorial_documento,
+        'descripcion_documento': lit.descripcion_documento,
     }
     )
     contexto = {
-        'formulariocargarliteratura': literatura_form,
-        'literatura': lit,
+        'formulariocargardocumento': documento_form,
+        'documento': lit,
     }
 
-    return render(request, 'AppCoder/literatura/literaturaver.html', contexto)
+    return render(request, 'AppCoder/documento/DocumentoVer.html', contexto)
 
 # --------------------------------------------------------------------------------------------------------
 # Envio de email

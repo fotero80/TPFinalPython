@@ -6,13 +6,13 @@ from UserCoder.views import *
 urlpatterns = [
     path('', Main, name='DocumentosPerdidosMain'),
 
-    #Urls utilizadas para el CRUD de literatura
-    path('Literatura/Crear/', literatura_crear, name='LiteraturaCrear'),
-    path('Literatura/Buscar/', literatura_buscar, name='LiteraturaBuscar'),
-    path('Literatura/Eliminar/<int:id_literatura>', literatura_eliminar, name='LiteraturaEliminar'),
-    path('Literatura/Modificar/<int:id_literatura>', literatura_modificar, name='LiteraturaModificar'),
-    path('Literatura/BuscarVer/', literatura_buscar_ver, name='LiteraturaBuscarVer'),
-    path('Literatura/Ver/<int:id_literatura>', literatura_ver, name='LiteraturaVer'),
+    #Urls utilizadas para el CRUD de documento
+    path('Documento/Crear/', documento_crear, name='DocumentoCrear'),
+    path('Documento/Buscar/', documento_buscar, name='DocumentoBuscar'),
+    path('Documento/Eliminar/<int:id_documento>', documento_eliminar, name='DocumentoEliminar'),
+    path('Documento/Modificar/<int:id_documento>', documento_modificar, name='DocumentoModificar'),
+    path('Documento/BuscarVer/', documento_buscar_ver, name='DocumentoBuscarVer'),
+    path('Documento/Ver/<int:id_documento>', documento_ver, name='DocumentoVer'),
 
     path('Contacto', contact, name='Contact'),
 

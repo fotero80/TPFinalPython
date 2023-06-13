@@ -2,7 +2,7 @@
 {% include 'styles/styles.html' %}
 
 {% block headertitlle %}
-<title>Literatura</title>
+<title>documento</title>
 {% endblock %}
 
 {% block bodytitleoptions %}
@@ -12,8 +12,8 @@
 {% endblock %}
 
 {% block bodyheader %}
-<h1 class="display-5 fw-bolder text-white mb-2">Cargue su literatura</h1>
-<p class="lead text-white-50 mb-4">A continuacion cargue todos los datos de su literatura!</p>
+<h1 class="display-5 fw-bolder text-white mb-2">Cargue su documento</h1>
+<p class="lead text-white-50 mb-4">A continuacion cargue todos los datos de su documento!</p>
 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
 </div>
 {% endblock %}
@@ -30,27 +30,27 @@
             {% endfor %}
         </ul>
         {% endif %}
-        <form class="bodyoptionstittle" action="{% url 'LiteraturaCrear' %}" method="post"
+        <form class="bodyoptionstittle" action="{% url 'DocumentoCrear' %}" method="post"
               enctype="multipart/form-data">{% csrf_token %}
             <table style="width:100%">
-                {{ formulariocargarliteratura.media }}
+                {{ formulariocargardocumento.media }}
 
-                {% for field in formulariocargarliteratura %}
+                {% for field in formulariocargardocumento %}
                 <tr>
-                    {% if field.label == "Nombre literatura" %}
+                    {% if field.label == "Nombre documento" %}
                     <th>Nombre del libro <em>*</em></th>
                     {% endif %}
-                    {% if field.label == "Autor literatura" %}
+                    {% if field.label == "Autor documento" %}
                     <th>Nombre del autor <em>*</em></th>
                     {% endif %}
-                    {% if field.label == "Editorial literatura" %}
+                    {% if field.label == "Editorial documento" %}
                     <th>Nombre de la editorial <em>*</em></th>
                     {% endif %}
-                    {% if field.label == "Descripcion literatura" %}
+                    {% if field.label == "Descripcion documento" %}
                     <th>Descripcion del libro <em>*</em></th>
                     {% endif %}
                     {% if field.label == "Imglit" %}
-                    <th>Imagen literatura</th>
+                    <th>Imagen documento</th>
                     {% endif %}
                     <th>{{ field }}</th>
                     <th>{{ field.media }}</th>
